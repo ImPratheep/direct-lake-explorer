@@ -54,7 +54,7 @@
 - Quality assurance checklist
 
 ### Module 1 Details
-**→ [docs/STAGE_6_MODULE_1_IMPLEMENTATION.md](./docs/STAGE_6_MODULE_1_IMPLEMENTATION.md)** (13 KB)
+**→ [STAGE_6_MODULE_1_IMPLEMENTATION.md](./STAGE_6_MODULE_1_IMPLEMENTATION.md)** (13 KB)
 - Module 1 features
 - Files created
 - Files modified
@@ -198,7 +198,7 @@ src/components/
 
 ### For Understanding Architecture
 1. Read: [STAGE_6_PROGRESS.md](./STAGE_6_PROGRESS.md)
-2. Review: [docs/STAGE_6_MODULE_1_IMPLEMENTATION.md](./docs/STAGE_6_MODULE_1_IMPLEMENTATION.md)
+2. Review: [STAGE_6_MODULE_1_IMPLEMENTATION.md](./STAGE_6_MODULE_1_IMPLEMENTATION.md)
 3. Study: [STAGE_6_BUILD_VERIFICATION.md](./STAGE_6_BUILD_VERIFICATION.md)
 
 ### For Implementing Modules 2–8
@@ -328,7 +328,7 @@ npm run build           # Verify build (should see "✓ built in X.XXs")
 → See [STAGE_6_PENDING_MODULES.md](./STAGE_6_PENDING_MODULES.md)
 
 ### Architecture Questions
-→ See [docs/STAGE_6_MODULE_1_IMPLEMENTATION.md](./docs/STAGE_6_MODULE_1_IMPLEMENTATION.md)
+→ See [STAGE_6_MODULE_1_IMPLEMENTATION.md](./STAGE_6_MODULE_1_IMPLEMENTATION.md)
 
 ### Quick Reference
 → See [STAGE_6_QUICK_START.md](./STAGE_6_QUICK_START.md)
