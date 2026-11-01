@@ -13,7 +13,9 @@ secrets.json
 .credentials
 
 # Node modules
-# node_modules/
+node_modules/
+
+# Dependency lock files - keep tracked
 # package-lock.json
 # yarn.lock
 # pnpm-lock.yaml

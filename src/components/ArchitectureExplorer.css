@@ -1,0 +1,201 @@
+.architecture-explorer {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  gap: 1rem;
+  padding: 1rem;
+}
+
+.architecture-visualization {
+  flex: 1;
+  overflow-y: auto;
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+}
+
+.architecture-layer {
+  background-color: rgba(0, 0, 0, 0.2);
+  border-left: 4px solid;
+  border-radius: 0.5rem;
+  padding: 1.5rem;
+  transition: all 0.3s ease;
+}
+
+.architecture-layer:hover {
+  background-color: rgba(0, 0, 0, 0.3);
+  transform: translateX(4px);
+}
+
+.layer-header {
+  margin-bottom: 1rem;
+}
+
+.layer-title {
+  font-size: 1.25rem;
+  font-weight: 600;
+  margin-bottom: 0.5rem;
+  color: inherit;
+}
+
+.layer-description {
+  font-size: 0.875rem;
+  color: rgba(241, 245, 249, 0.7);
+  margin-bottom: 0.5rem;
+}
+
+.component-count {
+  display: inline-block;
+  background-color: rgba(0, 0, 0, 0.3);
+  padding: 0.25rem 0.75rem;
+  border-radius: 1rem;
+  font-size: 0.75rem;
+  color: rgba(241, 245, 249, 0.6);
+}
+
+.components-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+  gap: 0.75rem;
+}
+
+.component-card {
+  background-color: rgba(255, 255, 255, 0.05);
+  border: 1px solid rgba(71, 85, 105, 0.5);
+  border-radius: 0.5rem;
+  padding: 1rem;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  text-align: left;
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  font-family: inherit;
+  color: inherit;
+}
+
+.component-card:hover {
+  background-color: rgba(255, 255, 255, 0.1);
+  border-color: #3b82f6;
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(59, 130, 246, 0.2);
+}
+
+.component-card:focus {
+  outline: none;
+  border-color: #3b82f6;
+  box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.2);
+}
+
+.component-card.selected {
+  background-color: rgba(59, 130, 246, 0.15);
+  border-color: #3b82f6;
+  box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.1);
+}
+
+.component-card.hovered {
+  background-color: rgba(255, 255, 255, 0.1);
+}
+
+.component-card.classification-documented {
+  border-left: 3px solid #10b981;
+}
+
+.component-card.classification-simulation {
+  border-left: 3px solid #f59e0b;
+}
+
+.component-card.classification-inferred {
+  border-left: 3px solid #8b5cf6;
+}
+
+.component-name {
+  font-weight: 600;
+  font-size: 0.95rem;
+  line-height: 1.3;
+}
+
+.component-classification {
+  font-size: 0.75rem;
+  color: rgba(241, 245, 219, 0.6);
+  font-weight: 500;
+}
+
+.component-hint {
+  font-size: 0.7rem;
+  color: rgba(241, 245, 219, 0.4);
+  margin-top: auto;
+  font-style: italic;
+}
+
+.explorer-info {
+  padding: 1rem;
+  background-color: rgba(0, 0, 0, 0.2);
+  border-radius: 0.5rem;
+  border-left: 3px solid #3b82f6;
+}
+
+.info-text {
+  font-size: 0.875rem;
+  color: rgba(241, 245, 219, 0.8);
+  margin: 0;
+}
+
+/* RESPONSIVE GRID */
+@media (max-width: 1024px) {
+  .components-grid {
+    grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+  }
+}
+
+@media (max-width: 768px) {
+  .architecture-layer {
+    padding: 1rem;
+  }
+
+  .components-grid {
+    grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+    gap: 0.5rem;
+  }
+
+  .component-card {
+    padding: 0.75rem;
+  }
+
+  .layer-title {
+    font-size: 1.1rem;
+  }
+
+  .layer-description {
+    font-size: 0.8rem;
+  }
+}
+
+@media (max-width: 390px) {
+  .architecture-explorer {
+    padding: 0.5rem;
+    gap: 0.75rem;
+  }
+
+  .architecture-layer {
+    padding: 0.75rem;
+    border-left-width: 3px;
+  }
+
+  .components-grid {
+    grid-template-columns: repeat(auto-fill, minmax(120px, 1fr));
+    gap: 0.5rem;
+  }
+
+  .component-card {
+    padding: 0.5rem;
+  }
+
+  .component-name {
+    font-size: 0.85rem;
+  }
+
+  .layer-title {
+    font-size: 1rem;
+  }
+}

@@ -1,0 +1,371 @@
+/* DATA FLOW WALKTHROUGH STYLES */
+
+.data-flow-walkthrough {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+  padding: 2rem;
+  max-height: 100%;
+  overflow-y: auto;
+}
+
+.walkthrough-header {
+  text-align: center;
+  border-bottom: 1px solid rgba(71, 85, 105, 0.5);
+  padding-bottom: 1.5rem;
+}
+
+.walkthrough-header h2 {
+  font-size: 1.75rem;
+  font-weight: 700;
+  margin: 0 0 0.5rem 0;
+  background: linear-gradient(135deg, #3b82f6, #8b5cf6);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+.walkthrough-subtitle {
+  color: rgba(241, 245, 219, 0.7);
+  margin: 0;
+  font-size: 0.95rem;
+}
+
+.phase-progress {
+  display: flex;
+  justify-content: center;
+  gap: 1rem;
+  flex-wrap: wrap;
+}
+
+.phase-dot {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  background-color: rgba(71, 85, 105, 0.5);
+  border: 2px solid rgba(71, 85, 105, 0.7);
+  color: rgba(241, 245, 219, 0.6);
+  cursor: pointer;
+  font-weight: 600;
+  font-size: 0.9rem;
+  transition: all 0.3s ease;
+}
+
+.phase-dot:hover {
+  background-color: rgba(59, 130, 246, 0.2);
+  border-color: #3b82f6;
+  color: #3b82f6;
+}
+
+.phase-dot.active {
+  background-color: #3b82f6;
+  border-color: #3b82f6;
+  color: white;
+  box-shadow: 0 0 0 4px rgba(59, 130, 246, 0.2);
+}
+
+.phase-dot.completed {
+  background-color: #10b981;
+  border-color: #10b981;
+  color: white;
+}
+
+.phase-content {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 2rem;
+}
+
+.phase-info {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+}
+
+.phase-name {
+  font-size: 1.5rem;
+  font-weight: 600;
+  margin: 0;
+  color: #3b82f6;
+}
+
+.phase-description {
+  font-size: 1rem;
+  line-height: 1.6;
+  color: rgba(241, 245, 219, 0.9);
+  margin: 0;
+}
+
+.phase-details {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.detail-section {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.detail-section h4 {
+  font-size: 0.9rem;
+  font-weight: 600;
+  margin: 0;
+  color: rgba(241, 245, 219, 0.95);
+}
+
+.detail-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 0.35rem;
+}
+
+.detail-list li {
+  padding: 0.5rem 0.75rem;
+  background-color: rgba(0, 0, 0, 0.3);
+  border-left: 2px solid rgba(59, 130, 246, 0.5);
+  border-radius: 0.25rem;
+  font-size: 0.85rem;
+  color: rgba(241, 245, 219, 0.85);
+}
+
+.mode-content {
+  background-color: rgba(59, 130, 246, 0.1);
+  border-left: 3px solid #3b82f6;
+  padding: 1rem;
+  border-radius: 0.5rem;
+}
+
+.mode-indicator {
+  font-size: 0.875rem;
+  margin-bottom: 0.75rem;
+  color: rgba(241, 245, 219, 0.8);
+}
+
+.mode-indicator strong {
+  color: #3b82f6;
+}
+
+.mode-explanation {
+  margin: 0;
+  font-size: 0.95rem;
+  line-height: 1.5;
+  color: rgba(241, 245, 219, 0.85);
+}
+
+.phase-sources {
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+}
+
+.phase-sources h4 {
+  font-size: 0.9rem;
+  font-weight: 600;
+  margin: 0;
+}
+
+.sources-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.sources-list li {
+  padding: 0.5rem 0;
+  border-bottom: 1px solid rgba(71, 85, 105, 0.3);
+}
+
+.sources-list li:last-child {
+  border-bottom: none;
+}
+
+.source-link {
+  color: #3b82f6;
+  text-decoration: none;
+  font-weight: 500;
+  font-size: 0.85rem;
+  transition: color 0.2s ease;
+}
+
+.source-link:hover {
+  color: #60a5fa;
+  text-decoration: underline;
+}
+
+.related-components {
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+}
+
+.related-components h4 {
+  font-size: 0.9rem;
+  font-weight: 600;
+  margin: 0;
+}
+
+.component-tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+}
+
+.component-tag {
+  display: inline-block;
+  background-color: rgba(139, 92, 246, 0.15);
+  border: 1px solid rgba(139, 92, 246, 0.3);
+  color: rgba(217, 70, 239, 1);
+  padding: 0.375rem 0.75rem;
+  border-radius: 1rem;
+  font-size: 0.8rem;
+  font-weight: 500;
+}
+
+.visualization {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  align-items: center;
+  justify-content: center;
+}
+
+.phase-diagram {
+  background-color: rgba(0, 0, 0, 0.3);
+  border: 1px solid rgba(71, 85, 105, 0.5);
+  border-radius: 0.75rem;
+  padding: 2rem;
+  width: 100%;
+  text-align: center;
+}
+
+.diagram-label {
+  font-size: 0.8rem;
+  color: rgba(241, 245, 219, 0.5);
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  margin-bottom: 1rem;
+}
+
+.diagram-content {
+  font-size: 1.1rem;
+  font-weight: 500;
+  color: rgba(241, 245, 219, 0.9);
+  font-family: monospace;
+  line-height: 1.8;
+  white-space: pre-wrap;
+}
+
+.walkthrough-controls {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 2rem;
+  padding-top: 1rem;
+  border-top: 1px solid rgba(71, 85, 105, 0.5);
+}
+
+.nav-button {
+  padding: 0.75rem 1.5rem;
+  background-color: #3b82f6;
+  color: white;
+  border: 1px solid #3b82f6;
+  border-radius: 0.5rem;
+  cursor: pointer;
+  font-weight: 600;
+  font-size: 0.9rem;
+  transition: all 0.2s ease;
+}
+
+.nav-button:hover:not(:disabled) {
+  background-color: #60a5fa;
+  border-color: #60a5fa;
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(59, 130, 246, 0.3);
+}
+
+.nav-button:disabled {
+  background-color: rgba(59, 130, 246, 0.3);
+  border-color: rgba(59, 130, 246, 0.3);
+  cursor: not-allowed;
+  color: rgba(241, 245, 219, 0.5);
+}
+
+.phase-counter {
+  font-weight: 600;
+  color: rgba(241, 245, 219, 0.8);
+  min-width: 120px;
+  text-align: center;
+}
+
+.walkthrough-hints {
+  background-color: rgba(59, 130, 246, 0.05);
+  border-left: 3px solid #3b82f6;
+  padding: 1rem;
+  border-radius: 0.5rem;
+  font-size: 0.85rem;
+  color: rgba(241, 245, 219, 0.7);
+}
+
+.walkthrough-hints p {
+  margin: 0;
+}
+
+/* RESPONSIVE */
+@media (max-width: 768px) {
+  .phase-content {
+    grid-template-columns: 1fr;
+    gap: 1.5rem;
+  }
+
+  .data-flow-walkthrough {
+    padding: 1.5rem;
+    gap: 1rem;
+  }
+
+  .walkthrough-controls {
+    gap: 1rem;
+  }
+
+  .nav-button {
+    padding: 0.5rem 1rem;
+    font-size: 0.8rem;
+  }
+}
+
+@media (max-width: 390px) {
+  .phase-progress {
+    gap: 0.5rem;
+  }
+
+  .phase-dot {
+    width: 32px;
+    height: 32px;
+    font-size: 0.8rem;
+  }
+
+  .phase-diagram {
+    padding: 1rem;
+  }
+
+  .diagram-content {
+    font-size: 0.9rem;
+  }
+
+  .walkthrough-controls {
+    flex-direction: column;
+    gap: 0.75rem;
+  }
+
+  .nav-button {
+    width: 100%;
+  }
+
+  .phase-counter {
+    width: 100%;
+  }
+}
