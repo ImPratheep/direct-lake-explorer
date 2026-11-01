@@ -47,7 +47,7 @@ export interface ApplicationState {
   showQueryWalkthrough: boolean;
   showLegend: boolean;
   hoveredComponentId: string | null;
-  activeModule: 'architecture' | 'deltaLake' | 'parquet' | 'predicatePushdown' | 'partitioning' | 'schemaEvolution';
+  activeModule: 'architecture' | 'deltaLake' | 'parquet' | 'predicatePushdown' | 'partitioning' | 'schemaEvolution' | 'vertipaq';
 }
 
 // ===== Delta Lake Types =====
@@ -204,3 +204,28 @@ export interface SchemaEvolutionState {
   schemaVersions: SchemaVersion[];
   compatibilityMode: 'STRICT' | 'BACKWARD' | 'FORWARD' | 'BOTH';
 }
+
+// Re-export Stage 6 types
+export type {
+  Dictionary,
+  DictionaryValue,
+  DictionaryEncodingResult,
+  EncodingType,
+  EncodingComparison,
+  SegmentStatistics,
+  Segment,
+  SegmentExplorerState,
+  SegmentEvaluationResult,
+  SegmentEliminationResult,
+  ColumnCompressionMetrics,
+  CompressionComparison,
+  LoadingState,
+  ColumnLoadingInfo,
+  DirectLakeLoadingSimulation,
+  MemoryResidencySnapshot,
+  MemoryEvictionSimulation,
+  AggregationFunction,
+  StorageEngineScan,
+  AggregationQuery,
+  Stage6State,
+} from './stage6-vertipaq';

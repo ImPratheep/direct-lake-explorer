@@ -3,13 +3,13 @@
   flex-direction: column;
   gap: 24px;
   padding: 20px;
-  background-color: var(--color-bg-secondary, #1e1e1e);
+  background-color: var(--color-bg);
   border-radius: 8px;
-  color: var(--color-text-primary, #ffffff);
+  color: var(--color-text);
 }
 
 .simulator-header {
-  border-bottom: 1px solid var(--color-border, #333333);
+  border-bottom: 1px solid var(--color-border);
   padding-bottom: 16px;
 }
 
@@ -17,11 +17,12 @@
   margin: 0 0 8px 0;
   font-size: 24px;
   font-weight: 600;
+  color: var(--color-text);
 }
 
 .simulator-description {
   margin: 0;
-  color: var(--color-text-secondary, #aaaaaa);
+  color: var(--color-text-secondary);
   font-size: 14px;
 }
 
@@ -30,7 +31,7 @@
   grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
   gap: 16px;
   padding: 16px;
-  background-color: var(--color-bg-tertiary, #2a2a2a);
+  background-color: var(--color-bg-secondary);
   border-radius: 6px;
   align-items: end;
 }
@@ -44,7 +45,7 @@
 .control-group label {
   font-size: 12px;
   font-weight: 600;
-  color: var(--color-text-secondary, #888888);
+  color: var(--color-text-secondary);
   text-transform: uppercase;
   letter-spacing: 0.5px;
 }
@@ -52,10 +53,10 @@
 .control-group select,
 .control-group input {
   padding: 8px 12px;
-  border: 1px solid var(--color-border, #333333);
+  border: 1px solid var(--color-border);
   border-radius: 4px;
-  background-color: var(--color-bg-secondary, #1e1e1e);
-  color: var(--color-text-primary, #ffffff);
+  background-color: var(--color-bg-secondary);
+  color: var(--color-text);
   font-size: 13px;
   transition: border-color 0.2s ease;
 }
@@ -63,13 +64,13 @@
 .control-group select:focus,
 .control-group input:focus {
   outline: none;
-  border-color: #4a9eff;
-  box-shadow: 0 0 0 2px rgba(74, 158, 255, 0.1);
+  border-color: var(--color-accent-blue);
+  box-shadow: 0 0 0 2px rgba(31, 119, 180, 0.2);
 }
 
 .simulate-button {
   padding: 8px 24px;
-  background-color: #4a9eff;
+  background-color: var(--color-accent-blue);
   color: #ffffff;
   border: none;
   border-radius: 4px;
@@ -80,8 +81,8 @@
 }
 
 .simulate-button:hover {
-  background-color: #3a8eef;
-  box-shadow: 0 2px 8px rgba(74, 158, 255, 0.2);
+  background-color: #1a5fa0;
+  box-shadow: 0 2px 8px rgba(31, 119, 180, 0.3);
 }
 
 .simulate-button:active {
@@ -92,27 +93,27 @@
   display: flex;
   gap: 12px;
   padding: 16px;
-  background-color: var(--color-bg-tertiary, #2a2a2a);
+  background-color: var(--color-bg-secondary);
   border-radius: 6px;
-  border-left: 4px solid #ffb830;
+  border-left: 4px solid var(--color-accent-orange);
 }
 
 .info-icon {
   flex-shrink: 0;
-  color: #ffb830;
+  color: var(--color-accent-orange);
   font-size: 20px;
   margin-top: 2px;
 }
 
 .simulator-explanation h4 {
   margin: 0 0 8px 0;
-  color: var(--color-text-primary, #ffffff);
+  color: var(--color-text);
   font-size: 14px;
 }
 
 .simulator-explanation p {
   margin: 0;
-  color: var(--color-text-primary, #ffffff);
+  color: var(--color-text-secondary);
   font-size: 13px;
   line-height: 1.6;
 }
@@ -124,14 +125,14 @@
 }
 
 .results-summary {
-  background-color: var(--color-bg-tertiary, #2a2a2a);
+  background-color: var(--color-bg-secondary);
   padding: 16px;
   border-radius: 6px;
 }
 
 .results-summary h4 {
   margin: 0 0 16px 0;
-  color: var(--color-text-primary, #ffffff);
+  color: var(--color-text);
   font-size: 14px;
 }
 
@@ -147,26 +148,26 @@
   flex-direction: column;
   gap: 6px;
   padding: 12px;
-  background-color: var(--color-bg-secondary, #1e1e1e);
+  background-color: var(--color-bg-tertiary);
   border-radius: 4px;
-  border-left: 3px solid #4a9eff;
+  border-left: 3px solid var(--color-accent-blue);
 }
 
 .metric.scanned {
-  border-left-color: #4aefb8;
+  border-left-color: var(--color-success);
 }
 
 .metric.skipped {
-  border-left-color: #ff6b6b;
+  border-left-color: var(--color-danger);
 }
 
 .metric.reduction {
-  border-left-color: #ffb830;
+  border-left-color: var(--color-accent-orange);
 }
 
 .metric-label {
   font-size: 12px;
-  color: var(--color-text-secondary, #888888);
+  color: var(--color-text-tertiary);
   text-transform: uppercase;
   letter-spacing: 0.5px;
 }
@@ -174,7 +175,7 @@
 .metric-value {
   font-size: 18px;
   font-weight: 700;
-  color: var(--color-text-primary, #ffffff);
+  color: var(--color-text);
 }
 
 .row-metrics {
@@ -188,28 +189,31 @@
   justify-content: space-between;
   align-items: center;
   padding: 12px;
-  background-color: var(--color-bg-secondary, #1e1e1e);
+  background-color: var(--color-bg-tertiary);
   border-radius: 4px;
-  border: 1px solid var(--color-border, #333333);
+  border: 1px solid var(--color-border);
+  color: var(--color-text);
 }
 
 .row-metric.scanned {
-  border-color: #4aefb8;
+  border-color: var(--color-success);
+  background-color: rgba(16, 185, 129, 0.05);
 }
 
 .row-metric.skipped {
-  border-color: #ff6b6b;
+  border-color: var(--color-danger);
+  background-color: rgba(239, 68, 68, 0.05);
 }
 
 .evaluation-details {
-  background-color: var(--color-bg-tertiary, #2a2a2a);
+  background-color: var(--color-bg-secondary);
   padding: 16px;
   border-radius: 6px;
 }
 
 .evaluation-details h4 {
   margin: 0 0 12px 0;
-  color: var(--color-text-primary, #ffffff);
+  color: var(--color-text);
 }
 
 .evaluation-table {
@@ -219,14 +223,14 @@
 }
 
 .evaluation-table thead {
-  background-color: var(--color-bg-secondary, #1e1e1e);
-  border-bottom: 2px solid var(--color-border, #333333);
+  background-color: var(--color-bg-tertiary);
+  border-bottom: 2px solid var(--color-border);
 }
 
 .evaluation-table th {
   padding: 10px;
   text-align: left;
-  color: var(--color-text-secondary, #888888);
+  color: var(--color-text-secondary);
   text-transform: uppercase;
   letter-spacing: 0.5px;
   font-weight: 600;
@@ -234,23 +238,23 @@
 
 .evaluation-table td {
   padding: 10px;
-  border-bottom: 1px solid var(--color-border, #333333);
-  color: var(--color-text-primary, #ffffff);
+  border-bottom: 1px solid var(--color-border);
+  color: var(--color-text);
 }
 
 .evaluation-table tbody tr.scanned {
-  background-color: rgba(74, 239, 184, 0.05);
+  background-color: rgba(16, 185, 129, 0.05);
 }
 
 .evaluation-table tbody tr.eliminated {
-  background-color: rgba(255, 107, 107, 0.05);
+  background-color: rgba(239, 68, 68, 0.05);
 }
 
 .scan-badge {
   display: inline-block;
   padding: 2px 8px;
-  background-color: #4aefb8;
-  color: #000000;
+  background-color: var(--color-success);
+  color: #ffffff;
   border-radius: 3px;
   font-weight: 600;
   font-size: 11px;
@@ -259,7 +263,7 @@
 .skip-badge {
   display: inline-block;
   padding: 2px 8px;
-  background-color: #ff6b6b;
+  background-color: var(--color-danger);
   color: #ffffff;
   border-radius: 3px;
   font-weight: 600;
@@ -267,20 +271,20 @@
 }
 
 .reason {
-  color: var(--color-text-secondary, #888888);
+  color: var(--color-text-tertiary);
   font-style: italic;
 }
 
 .pushdown-concepts {
-  background-color: var(--color-bg-tertiary, #2a2a2a);
+  background-color: var(--color-bg-secondary);
   padding: 16px;
   border-radius: 6px;
-  border-left: 4px solid #ffb830;
+  border-left: 4px solid var(--color-accent-orange);
 }
 
 .pushdown-concepts h4 {
   margin: 0 0 12px 0;
-  color: #ffb830;
+  color: var(--color-accent-orange);
   font-size: 14px;
   text-transform: uppercase;
   letter-spacing: 0.5px;
@@ -293,7 +297,7 @@
 
 .pushdown-concepts li {
   margin-bottom: 8px;
-  color: var(--color-text-primary, #ffffff);
+  color: var(--color-text);
   font-size: 13px;
   line-height: 1.5;
 }

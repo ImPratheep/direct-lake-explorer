@@ -3,13 +3,13 @@
   flex-direction: column;
   gap: 24px;
   padding: 20px;
-  background-color: var(--color-bg-secondary, #1e1e1e);
+  background-color: var(--color-bg-secondary);
   border-radius: 8px;
-  color: var(--color-text-primary, #ffffff);
+  color: var(--color-text);
 }
 
 .partitioning-header {
-  border-bottom: 1px solid var(--color-border, #333333);
+  border-bottom: 1px solid var(--color-border);
   padding-bottom: 16px;
 }
 
@@ -21,39 +21,39 @@
 
 .partitioning-description {
   margin: 0;
-  color: var(--color-text-secondary, #aaaaaa);
+  color: var(--color-text-secondary);
   font-size: 14px;
 }
 
 .partitioning-explanation {
-  background-color: var(--color-bg-tertiary, #2a2a2a);
+  background-color: var(--color-bg-tertiary);
   padding: 16px;
   border-radius: 6px;
-  border-left: 4px solid #4a9eff;
+  border-left: 4px solid var(--color-accent-blue);
 }
 
 .partitioning-explanation h4 {
   margin: 0 0 8px 0;
-  color: var(--color-text-primary, #ffffff);
+  color: var(--color-text);
   font-size: 14px;
 }
 
 .partitioning-explanation p {
   margin: 0;
-  color: var(--color-text-primary, #ffffff);
+  color: var(--color-text);
   font-size: 13px;
   line-height: 1.6;
 }
 
 .partitioning-controls {
-  background-color: var(--color-bg-tertiary, #2a2a2a);
+  background-color: var(--color-bg-tertiary);
   padding: 16px;
   border-radius: 6px;
 }
 
 .partitioning-controls h4 {
   margin: 0 0 12px 0;
-  color: var(--color-text-primary, #ffffff);
+  color: var(--color-text);
   font-size: 14px;
 }
 
@@ -73,16 +73,16 @@
 .filter-group label {
   font-size: 12px;
   font-weight: 600;
-  color: var(--color-text-secondary, #888888);
+  color: var(--color-text-tertiary);
   text-transform: uppercase;
 }
 
 .filter-group select {
   padding: 8px 12px;
-  border: 1px solid var(--color-border, #333333);
+  border: 1px solid var(--color-border);
   border-radius: 4px;
-  background-color: var(--color-bg-secondary, #1e1e1e);
-  color: var(--color-text-primary, #ffffff);
+  background-color: var(--color-bg-secondary);
+  color: var(--color-text);
   font-size: 13px;
   cursor: pointer;
   transition: border-color 0.2s ease;
@@ -90,12 +90,12 @@
 
 .filter-group select:focus {
   outline: none;
-  border-color: #4a9eff;
+  border-color: var(--color-accent-blue);
 }
 
 .evaluate-button {
   padding: 8px 24px;
-  background-color: #4a9eff;
+  background-color: var(--color-accent-blue);
   color: #ffffff;
   border: none;
   border-radius: 4px;
@@ -110,14 +110,14 @@
 }
 
 .partitioning-results {
-  background-color: var(--color-bg-tertiary, #2a2a2a);
+  background-color: var(--color-bg-tertiary);
   padding: 16px;
   border-radius: 6px;
 }
 
 .partitioning-results h4 {
   margin: 0 0 16px 0;
-  color: var(--color-text-primary, #ffffff);
+  color: var(--color-text);
 }
 
 .partition-metrics {
@@ -132,26 +132,26 @@
   flex-direction: column;
   gap: 6px;
   padding: 12px;
-  background-color: var(--color-bg-secondary, #1e1e1e);
+  background-color: var(--color-bg-secondary);
   border-radius: 4px;
-  border-left: 3px solid #4a9eff;
+  border-left: 3px solid var(--color-accent-blue);
 }
 
 .metric.matched {
-  border-left-color: #4aefb8;
+  border-left-color: var(--color-success);
 }
 
 .metric.pruned {
-  border-left-color: #ff6b6b;
+  border-left-color: var(--color-danger);
 }
 
 .metric.reduction {
-  border-left-color: #ffb830;
+  border-left-color: var(--color-accent-orange);
 }
 
 .metric-label {
   font-size: 12px;
-  color: var(--color-text-secondary, #888888);
+  color: var(--color-text-tertiary);
   text-transform: uppercase;
   letter-spacing: 0.5px;
 }
@@ -162,7 +162,7 @@
 }
 
 .matched-files {
-  background-color: var(--color-bg-secondary, #1e1e1e);
+  background-color: var(--color-bg-secondary);
   padding: 12px;
   border-radius: 4px;
   margin-top: 12px;
@@ -171,7 +171,7 @@
 .matched-files h5 {
   margin: 0 0 12px 0;
   font-size: 13px;
-  color: var(--color-text-primary, #ffffff);
+  color: var(--color-text);
 }
 
 .file-list {
@@ -188,14 +188,14 @@
   align-items: center;
   gap: 12px;
   padding: 8px;
-  background-color: var(--color-bg-tertiary, #2a2a2a);
+  background-color: var(--color-bg-tertiary);
   border-radius: 3px;
-  border-left: 2px solid #4aefb8;
+  border-left: 2px solid var(--color-success);
   font-size: 12px;
 }
 
 .file-path code {
-  color: #6da9ff;
+  color: var(--color-accent-blue);
   font-family: 'Courier New', monospace;
   font-size: 11px;
   word-break: break-all;
@@ -204,21 +204,21 @@
 .file-stats {
   display: flex;
   gap: 12px;
-  color: var(--color-text-secondary, #888888);
+  color: var(--color-text-tertiary);
   font-size: 11px;
   flex-shrink: 0;
 }
 
 .file-more {
   padding: 8px;
-  color: var(--color-text-secondary, #888888);
+  color: var(--color-text-tertiary);
   font-size: 11px;
   font-style: italic;
   text-align: center;
 }
 
 .partition-visualization {
-  background-color: var(--color-bg-secondary, #1e1e1e);
+  background-color: var(--color-bg-secondary);
   padding: 12px;
   border-radius: 4px;
   margin-top: 12px;
@@ -227,14 +227,14 @@
 .partition-visualization h5 {
   margin: 0 0 12px 0;
   font-size: 13px;
-  color: var(--color-text-primary, #ffffff);
+  color: var(--color-text);
 }
 
 .directory-tree {
   font-family: 'Courier New', monospace;
   font-size: 11px;
-  color: var(--color-text-primary, #ffffff);
-  background-color: var(--color-bg-tertiary, #2a2a2a);
+  color: var(--color-text);
+  background-color: var(--color-bg-tertiary);
   padding: 12px;
   border-radius: 3px;
   overflow-x: auto;
@@ -247,7 +247,7 @@
 }
 
 .tree-label {
-  color: #4aefb8;
+  color: var(--color-success);
   font-weight: 600;
 }
 
@@ -259,25 +259,25 @@
 }
 
 .tree-child .tree-label {
-  color: #4a9eff;
+  color: var(--color-accent-blue);
   font-weight: normal;
 }
 
 .tree-child .tree-child .tree-label {
-  color: var(--color-text-secondary, #888888);
+  color: var(--color-text-tertiary);
   font-weight: normal;
 }
 
 .partitioning-concepts {
-  background-color: var(--color-bg-tertiary, #2a2a2a);
+  background-color: var(--color-bg-tertiary);
   padding: 16px;
   border-radius: 6px;
-  border-left: 4px solid #ffb830;
+  border-left: 4px solid var(--color-accent-orange);
 }
 
 .partitioning-concepts h4 {
   margin: 0 0 12px 0;
-  color: #ffb830;
+  color: var(--color-accent-orange);
   font-size: 14px;
   text-transform: uppercase;
   letter-spacing: 0.5px;
@@ -290,13 +290,13 @@
 
 .partitioning-concepts li {
   margin-bottom: 8px;
-  color: var(--color-text-primary, #ffffff);
+  color: var(--color-text);
   font-size: 13px;
   line-height: 1.5;
 }
 
 .partition-schema {
-  background-color: var(--color-bg-tertiary, #2a2a2a);
+  background-color: var(--color-bg-tertiary);
   padding: 16px;
   border-radius: 6px;
   margin-top: 12px;
@@ -304,18 +304,19 @@
 
 .partition-schema h4 {
   margin: 0 0 12px 0;
-  color: var(--color-text-primary, #ffffff);
+  color: var(--color-text);
 }
 
 .schema-text {
-  background-color: var(--color-bg-secondary, #1e1e1e);
-  border: 1px solid var(--color-border, #333333);
+  background-color: var(--color-bg-secondary);
+  border: 1px solid var(--color-border);
   border-radius: 4px;
   padding: 12px;
   font-size: 11px;
   overflow-x: auto;
-  color: #6da9ff;
+  color: var(--color-accent-blue);
   font-family: 'Courier New', monospace;
   margin: 0;
   line-height: 1.4;
 }
+

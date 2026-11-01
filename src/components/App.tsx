@@ -11,6 +11,7 @@ import ParquetExplorer from './ParquetExplorer';
 import PredicatePushdownSimulator from './PredicatePushdownSimulator';
 import PartitioningExplorer from './PartitioningExplorer';
 import SchemaEvolutionExplorer from './SchemaEvolutionExplorer';
+import VertiPaqSimulator from './VertiPaqSimulator';
 
 const App: React.FC = () => {
   const [state, setState] = useState<ApplicationState>({
@@ -174,6 +175,13 @@ const App: React.FC = () => {
           >
             📋 Schema
           </button>
+          <button
+            className={`module-button ${state.activeModule === 'vertipaq' ? 'active' : ''}`}
+            onClick={() => handleModuleChange('vertipaq')}
+            title="VertiPaq Simulator"
+          >
+            ⚙️ VertiPaq
+          </button>
         </div>
 
         <div className="control-group">
@@ -283,6 +291,12 @@ const App: React.FC = () => {
         {state.activeModule === 'schemaEvolution' && (
           <div className="full-width-module">
             <SchemaEvolutionExplorer explanationMode={state.explanationMode} />
+          </div>
+        )}
+
+        {state.activeModule === 'vertipaq' && (
+          <div className="full-width-module">
+            <VertiPaqSimulator explanationMode={state.explanationMode} />
           </div>
         )}
       </main>
