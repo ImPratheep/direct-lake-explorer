@@ -5,19 +5,24 @@ import { evaluatePartitionPruning, generateSyntheticPartitionedTable } from '../
 
 interface PartitioningExplorerProps {
   explanationMode: ExplanationMode;
+  /** UI Review Mode: use these files instead of generating a new random table. */
+  files?: PartitionedFile[];
+  /** UI Review Mode: open with the default filters already evaluated. */
+  startRepresentative?: boolean;
 }
 
 interface PartitionFilter {
   [key: string]: string;
 }
 
-const PartitioningExplorer: React.FC<PartitioningExplorerProps> = ({ explanationMode }) => {
-  const [partitionedFiles] = useState<PartitionedFile[]>(generateSyntheticPartitionedTable());
-  const [filters, setFilters] = useState<PartitionFilter>({
-    Region: 'North',
-    Year: '2024',
-  });
-  const [evaluationResult, setEvaluationResult] = useState<any>(null);
+const DEFAULT_FILTERS: PartitionFilter = { Region: 'North', Year: '2024' };
+
+const PartitioningExplorer: React.FC<PartitioningExplorerProps> = ({ explanationMode, files, startRepresentative = false }) => {
+  const [partitionedFiles] = useState<PartitionedFile[]>(() => files ?? generateSyntheticPartitionedTable());
+  const [filters, setFilters] = useState<PartitionFilter>({ ...DEFAULT_FILTERS });
+  const [evaluationResult, setEvaluationResult] = useState<any>(() =>
+    startRepresentative ? evaluatePartitionPruning(partitionedFiles, { ...DEFAULT_FILTERS }) : null,
+  );
 
   const getUniqueValues = useCallback(
     (partitionName: string): string[] => {

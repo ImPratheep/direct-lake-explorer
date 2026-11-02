@@ -15,9 +15,12 @@ import {
 } from '../data/stage6-scan-simulator';
 import './DictionaryEncodingExplorer.css';
 import './StorageEngineScanSimulator.css';
+import { representativeScanStart } from '../review/reviewFixtures';
 
 interface StorageEngineScanSimulatorProps {
   explanationMode: ExplanationMode;
+  /** UI Review Mode: open with the "Revenue for CustomerID 100 to 200" scenario already run. */
+  startRepresentative?: boolean;
 }
 
 const NULL_PERCENT_OPTIONS = [0, 5, 10, 25, 50, 100];
@@ -74,19 +77,23 @@ const defaultValues = (dataType: string): { operator: EliminationOperator; value
   }
 };
 
-const StorageEngineScanSimulator: React.FC<StorageEngineScanSimulatorProps> = ({ explanationMode }) => {
-  const first = SCAN_SCENARIOS[0].query;
+const StorageEngineScanSimulator: React.FC<StorageEngineScanSimulatorProps> = ({ explanationMode, startRepresentative = false }) => {
+  const [start] = useState(() => (startRepresentative ? representativeScanStart() : null));
+  const startScenario = SCAN_SCENARIOS.find((entry) => entry.id === start?.scenarioId);
+  const first = startScenario?.query ?? SCAN_SCENARIOS[0].query;
   const [settings, setSettings] = useState<LoadingSettings>(DEFAULT_LOADING_SETTINGS);
-  const [session, setSession] = useState<LoadingSession>(() => createLoadingSession(DEFAULT_LOADING_SETTINGS));
-  const [scenarioId, setScenarioId] = useState<string>(SCAN_SCENARIOS[0].id);
+  const [session, setSession] = useState<LoadingSession>(() => start?.session ?? createLoadingSession(DEFAULT_LOADING_SETTINGS));
+  const [scenarioId, setScenarioId] = useState<string>(startScenario?.id ?? SCAN_SCENARIOS[0].id);
   const [aggregation, setAggregation] = useState<AggregationFunction>(first.aggregation);
   const [measureColumn, setMeasureColumn] = useState<string>(first.measureColumn);
-  const [filterColumn, setFilterColumn] = useState<string>('');
-  const [operator, setOperator] = useState<EliminationOperator>('BETWEEN');
-  const [valueText, setValueText] = useState<string>('');
-  const [upperText, setUpperText] = useState<string>('');
-  const [rowOrder, setRowOrder] = useState<SegmentRowOrder>('AS_LOADED');
-  const [result, setResult] = useState<StorageScanResult | null>(null);
+  const [filterColumn, setFilterColumn] = useState<string>(first.filter?.columnName ?? '');
+  const [operator, setOperator] = useState<EliminationOperator>(first.filter?.predicate.operator ?? 'BETWEEN');
+  const [valueText, setValueText] = useState<string>(first.filter ? String(first.filter.predicate.value) : '');
+  const [upperText, setUpperText] = useState<string>(
+    first.filter?.predicate.upperValue === undefined ? '' : String(first.filter.predicate.upperValue),
+  );
+  const [rowOrder, setRowOrder] = useState<SegmentRowOrder>(first.rowOrder);
+  const [result, setResult] = useState<StorageScanResult | null>(start?.result ?? null);
   const [evictTarget, setEvictTarget] = useState<string>('');
   const [notice, setNotice] = useState<string>('');
 
@@ -168,7 +175,7 @@ const StorageEngineScanSimulator: React.FC<StorageEngineScanSimulatorProps> = ({
 
   const reset = (): void => {
     fresh(DEFAULT_LOADING_SETTINGS, 'Simulation reset to its defaults.');
-    loadQuery(first, SCAN_SCENARIOS[0].id);
+    loadQuery(SCAN_SCENARIOS[0].query, SCAN_SCENARIOS[0].id);
     setEvictTarget('');
   };
 

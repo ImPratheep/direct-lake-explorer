@@ -20,7 +20,7 @@ These five documents are the authoritative record of Stage 6. They were written 
 | **[STAGE_6_COMPLETION_SUMMARY.md](./STAGE_6_COMPLETION_SUMMARY.md)** | Objectives, completed modules, shared architecture, results, known limitations, outstanding browser validation, overall status |
 | **[STAGE_6_APPROVAL_CHECKLIST.md](./STAGE_6_APPROVAL_CHECKLIST.md)** | Practical sign-off list. Browser validation and git review are marked pending |
 
-Running work log: **[PROJECT_CHECKPOINT.md](./PROJECT_CHECKPOINT.md)**. Project roadmap: **[DirectLakeExplorer_Development_Roadmap_and_Prompts.md](./DirectLakeExplorer_Development_Roadmap_and_Prompts.md)**.
+Running work log: **[PROJECT_CHECKPOINT.md](../PROJECT_CHECKPOINT.md)**. Project roadmap: **[DirectLakeExplorer_Development_Roadmap_and_Prompts.md](../DirectLakeExplorer_Development_Roadmap_and_Prompts.md)**.
 
 **Current status:** all eight modules are implemented, reachable from the navigation, and covered by 670 passing tests. Browser validation is **pending**, review is **pending**, and Stage 6 is **not yet approved**.
 
@@ -284,7 +284,7 @@ These are the standards Stage 6 was built and checked against. They are statemen
 → See [STAGE_6_IMPLEMENTATION_REPORT.md](./STAGE_6_IMPLEMENTATION_REPORT.md) and [STAGE_6_TECHNICAL_VALIDATION.md](./STAGE_6_TECHNICAL_VALIDATION.md)
 
 ### Day-to-day history and decisions
-→ See [PROJECT_CHECKPOINT.md](./PROJECT_CHECKPOINT.md)
+→ See [PROJECT_CHECKPOINT.md](../PROJECT_CHECKPOINT.md)
 
 ### Historical Module 1 material
 → See the historical documents listed above (for reference only)

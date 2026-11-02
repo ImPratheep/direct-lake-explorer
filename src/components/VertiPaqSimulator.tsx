@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { ExplanationMode } from '../types';
 import DictionaryEncodingExplorer from './DictionaryEncodingExplorer';
 import ValueHashEncodingSimulator from './ValueHashEncodingSimulator';
@@ -15,10 +15,18 @@ interface VertiPaqSimulatorProps {
   explanationMode: ExplanationMode;
   /** Optional tab to show first (used when another page links to a specific module). */
   initialModule?: string;
+  /** Called with the tab id whenever the visible module changes. */
+  onModuleChange?: (moduleId: string) => void;
+  /** UI Review Mode: Modules 6 to 8 open in a representative, already-populated state. */
+  startRepresentative?: boolean;
 }
 
-const VertiPaqSimulator: React.FC<VertiPaqSimulatorProps> = ({ explanationMode, initialModule }) => {
+const VertiPaqSimulator: React.FC<VertiPaqSimulatorProps> = ({ explanationMode, initialModule, onModuleChange, startRepresentative = false }) => {
   const [activeModule, setActiveModule] = useState<string>(initialModule ?? 'dictionary');
+
+  useEffect(() => {
+    onModuleChange?.(activeModule);
+  }, [activeModule, onModuleChange]);
 
   const modules = [
     { id: 'dictionary', name: '📚 Dictionary Encoding', label: 'Dictionary Encoding', icon: 'dictionary' },
@@ -62,9 +70,9 @@ const VertiPaqSimulator: React.FC<VertiPaqSimulatorProps> = ({ explanationMode, 
         {activeModule === 'segment' && <SegmentExplorer explanationMode={explanationMode} />}
         {activeModule === 'elimination' && <SegmentEliminationSimulator explanationMode={explanationMode} />}
         {activeModule === 'compression' && <ColumnCompressionExplorer explanationMode={explanationMode} />}
-        {activeModule === 'loading' && <DirectLakeLoadingSimulator explanationMode={explanationMode} />}
-        {activeModule === 'memory' && <MemoryResidencySimulator explanationMode={explanationMode} />}
-        {activeModule === 'storage' && <StorageEngineScanSimulator explanationMode={explanationMode} />}
+        {activeModule === 'loading' && <DirectLakeLoadingSimulator explanationMode={explanationMode} startRepresentative={startRepresentative} />}
+        {activeModule === 'memory' && <MemoryResidencySimulator explanationMode={explanationMode} startRepresentative={startRepresentative} />}
+        {activeModule === 'storage' && <StorageEngineScanSimulator explanationMode={explanationMode} startRepresentative={startRepresentative} />}
       </div>
 
       <footer className="simulator-footer">

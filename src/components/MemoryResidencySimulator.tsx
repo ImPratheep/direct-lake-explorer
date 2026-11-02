@@ -25,9 +25,12 @@ import {
 } from '../data/stage6-memory-simulator';
 import './DictionaryEncodingExplorer.css';
 import './MemoryResidencySimulator.css';
+import { representativeMemoryStart } from '../review/reviewFixtures';
 
 interface MemoryResidencySimulatorProps {
   explanationMode: ExplanationMode;
+  /** UI Review Mode: open with three columns loaded and Revenue evicted, so the before/after comparison is filled in. */
+  startRepresentative?: boolean;
 }
 
 interface Comparison {
@@ -76,16 +79,17 @@ const EXPLANATIONS: Record<ExplanationMode, string[]> = {
   ],
 };
 
-const MemoryResidencySimulator: React.FC<MemoryResidencySimulatorProps> = ({ explanationMode }) => {
+const MemoryResidencySimulator: React.FC<MemoryResidencySimulatorProps> = ({ explanationMode, startRepresentative = false }) => {
+  const [start] = useState(() => (startRepresentative ? representativeMemoryStart() : null));
   const [settings, setSettings] = useState<LoadingSettings>(DEFAULT_LOADING_SETTINGS);
-  const [session, setSession] = useState<LoadingSession>(() => createLoadingSession(DEFAULT_LOADING_SETTINGS));
+  const [session, setSession] = useState<LoadingSession>(() => start?.session ?? createLoadingSession(DEFAULT_LOADING_SETTINGS));
   const [selection, setSelection] = useState<string[]>([]);
   const [protectedColumns, setProtectedColumns] = useState<string[]>([]);
   const [queryColumns, setQueryColumns] = useState<string[]>(DEFAULT_QUERY_COLUMNS);
   const [budgetText, setBudgetText] = useState<string>(String(DEFAULT_ILLUSTRATIVE_BUDGET_BYTES));
   const [order, setOrder] = useState<MemoryPressureOrder>('LARGEST_FIRST');
-  const [comparison, setComparison] = useState<Comparison | null>(null);
-  const [lastEviction, setLastEviction] = useState<EvictionResult | null>(null);
+  const [comparison, setComparison] = useState<Comparison | null>(start?.comparison ?? null);
+  const [lastEviction, setLastEviction] = useState<EvictionResult | null>(start?.lastEviction ?? null);
   const [lastQuery, setLastQuery] = useState<QueryLoadResult | null>(null);
   const [notice, setNotice] = useState<string>('');
 

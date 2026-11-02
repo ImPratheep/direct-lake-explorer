@@ -21,9 +21,12 @@ import {
 } from '../data/stage6-loading-simulator';
 import './DictionaryEncodingExplorer.css';
 import './DirectLakeLoadingSimulator.css';
+import { representativeLoadingStart } from '../review/reviewFixtures';
 
 interface DirectLakeLoadingSimulatorProps {
   explanationMode: ExplanationMode;
+  /** UI Review Mode: open with CustomerID loaded and a CustomerID + Revenue query already run. */
+  startRepresentative?: boolean;
 }
 
 const NULL_PERCENT_OPTIONS = [0, 5, 10, 25, 50, 100];
@@ -64,12 +67,13 @@ const EXPLANATIONS: Record<ExplanationMode, string[]> = {
   ],
 };
 
-const DirectLakeLoadingSimulator: React.FC<DirectLakeLoadingSimulatorProps> = ({ explanationMode }) => {
+const DirectLakeLoadingSimulator: React.FC<DirectLakeLoadingSimulatorProps> = ({ explanationMode, startRepresentative = false }) => {
+  const [start] = useState(() => (startRepresentative ? representativeLoadingStart() : null));
   const [settings, setSettings] = useState<LoadingSettings>(DEFAULT_LOADING_SETTINGS);
-  const [session, setSession] = useState<LoadingSession>(() => createLoadingSession(DEFAULT_LOADING_SETTINGS));
+  const [session, setSession] = useState<LoadingSession>(() => start?.session ?? createLoadingSession(DEFAULT_LOADING_SETTINGS));
   const [loadSelection, setLoadSelection] = useState<string[]>([]);
-  const [queryColumns, setQueryColumns] = useState<string[]>(DEFAULT_QUERY_COLUMNS);
-  const [lastQuery, setLastQuery] = useState<QueryLoadResult | null>(null);
+  const [queryColumns, setQueryColumns] = useState<string[]>(start?.queryColumns ?? DEFAULT_QUERY_COLUMNS);
+  const [lastQuery, setLastQuery] = useState<QueryLoadResult | null>(start?.lastQuery ?? null);
   const [activeStage, setActiveStage] = useState<string>('COLUMN_ACCESS');
   const [notice, setNotice] = useState<string>('');
 

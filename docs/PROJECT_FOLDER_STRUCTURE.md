@@ -6,7 +6,7 @@
 
 ---
 
-## Root Level (7 Files Only)
+## Root Level (config files only)
 
 ```
 DirectLakeExplorer/
@@ -14,12 +14,14 @@ DirectLakeExplorer/
 ├── .gitignore                ← Git exclusion rules
 ├── index.html                ← HTML entry point (references /src/index.tsx)
 ├── package.json              ← npm configuration & dependencies
+├── package-lock.json         ← Locked dependency versions
 ├── tsconfig.json             ← TypeScript compiler configuration
+├── tsconfig.node.json        ← TypeScript config for the Vite/Vitest config files
 ├── vite.config.ts            ← Vite build tool configuration
 └── vitest.config.ts          ← Vitest test runner configuration
 ```
 
-**Clean root level - no source code or documentation cluttering the root!**
+**Rule:** the root holds configuration only. Stage reports, summaries and checklists go in `docs/stageN/`, never in the root. (`build.log`, `dist/` and `node_modules/` are generated and git-ignored.)
 
 ---
 
@@ -49,6 +51,8 @@ DirectLakeExplorer/
 │   │
 │   ├── 📁 hooks/                            ← Custom React hooks (empty)
 │   │                                        (ready for Stage 5+)
+│   │
+│   ├── 📁 review/                           ← UI Review Mode (screens, fixed-clock fixtures, tests)
 │   │
 │   ├── index.tsx                            ← React entry point (createRoot)
 │   └── vitest.setup.ts                      ← Test configuration
@@ -111,6 +115,7 @@ DirectLakeExplorer/
 │   │   ├── STAGE_4_IMPLEMENTATION_PLAN.md
 │   │   ├── STAGE_4_PLAN.md
 │   │   ├── STAGE_4_REMEDIATION_COMPLETE.md
+│   │   ├── STAGE_4_REMEDIATION_COMPLETE_ROOT_COPY.md   (different report that had the same name in the project root)
 │   │   ├── STAGE_4_REMEDIATION_REPORT.md
 │   │   ├── STAGE_4_SETUP.md
 │   │   ├── STAGE_4_STATUS.md
@@ -118,9 +123,28 @@ DirectLakeExplorer/
 │   │   ├── STAGE_4_TEST_RESULTS.md
 │   │   ├── STAGE_4_VALIDATION_CHECKLIST.md
 │   │   ├── STAGE_4_VALIDATION_FAILURE.md
-│   │   └── (more completion reports)
+│   │   └── (approval, verification and summary reports moved here from the project root)
+│   │
+│   ├── 📁 stage5/                           ← Stage 5 deliverables (Delta Lake & Parquet)
+│   │   ├── STAGE_5_APPROVAL_CHECKLIST.md
+│   │   ├── STAGE_5_COMPLETION_SUMMARY.md
+│   │   ├── STAGE_5_IMPLEMENTATION_REPORT.md
+│   │   ├── STAGE_5_TECHNICAL_VALIDATION.md
+│   │   ├── STAGE_5_TEST_RESULTS.md
+│   │   └── STAGE_5_UI_ACCESSIBILITY_REMEDIATION.md
+│   │
+│   ├── 📁 stage6/                           ← Stage 6 deliverables (VertiPaq Simulator)
+│   │   ├── STAGE_6_DOCUMENTATION_INDEX.md   ← start here
+│   │   ├── STAGE_6_IMPLEMENTATION_REPORT.md
+│   │   ├── STAGE_6_TECHNICAL_VALIDATION.md
+│   │   ├── STAGE_6_TEST_RESULTS.md
+│   │   ├── STAGE_6_COMPLETION_SUMMARY.md
+│   │   ├── STAGE_6_APPROVAL_CHECKLIST.md
+│   │   └── (earlier Module 1 era progress documents, listed as historical in the index)
 │   │
 │   ├── 00_START_HERE.md                     ← Quick start guide
+│   ├── PROJECT_CHECKPOINT.md                ← Running work log (read this first)
+│   ├── DirectLakeExplorer_Development_Roadmap_and_Prompts.md ← Roadmap
 │   ├── AUDIT_REPORT_FINAL.md                ← Final audit
 │   ├── CORRECTIONS_COMPLETED.md             ← Corrections history
 │   ├── CORRECTIONS_SUMMARY.md               ← Summary of fixes

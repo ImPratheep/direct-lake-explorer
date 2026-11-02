@@ -29,7 +29,8 @@ export type IconName =
   | 'chevronLeft'
   | 'pointer'
   | 'book'
-  | 'link';
+  | 'link'
+  | 'review';
 
 const PATHS: Record<IconName, string> = {
   architecture: 'M12 3 3 8l9 5 9-5-9-5Z M3 12l9 5 9-5 M3 16l9 5 9-5',
@@ -56,6 +57,7 @@ const PATHS: Record<IconName, string> = {
   pointer: 'M5 3l14 7-6 2-2 6z',
   book: 'M5 4h11a3 3 0 0 1 3 3v13H8a3 3 0 0 1-3-3z M5 17a3 3 0 0 1 3-3h11',
   link: 'M10 14a4 4 0 0 0 5.66 0l3-3a4 4 0 0 0-5.66-5.66l-1 1 M14 10a4 4 0 0 0-5.66 0l-3 3a4 4 0 0 0 5.66 5.66l1-1',
+  review: 'M2 12s4-7 10-7 10 7 10 7-4 7-10 7S2 12 2 12Z M12 9.5a2.5 2.5 0 1 0 0 5 2.5 2.5 0 0 0 0-5Z',
 };
 
 interface IconProps {

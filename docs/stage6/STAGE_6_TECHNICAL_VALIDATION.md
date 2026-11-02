@@ -9,7 +9,7 @@
 
 Companion documents: [Implementation Report](./STAGE_6_IMPLEMENTATION_REPORT.md), [Test Results](./STAGE_6_TEST_RESULTS.md), [Completion Summary](./STAGE_6_COMPLETION_SUMMARY.md), [Approval Checklist](./STAGE_6_APPROVAL_CHECKLIST.md).
 
-Evidence used: the source files in `src/data/stage6-*.ts` and `src/components`, the 670 automated tests, the Stage 2 research notes ([RESEARCH_SOURCES.md](./RESEARCH_SOURCES.md), [stage2/STAGE_2_RESEARCH_SUMMARY.md](./stage2/STAGE_2_RESEARCH_SUMMARY.md)), and Microsoft Learn pages read during Stage 6 and during this documentation phase (section 9).
+Evidence used: the source files in `src/data/stage6-*.ts` and `src/components`, the 670 automated tests, the Stage 2 research notes ([RESEARCH_SOURCES.md](../RESEARCH_SOURCES.md), [stage2/STAGE_2_RESEARCH_SUMMARY.md](../stage2/STAGE_2_RESEARCH_SUMMARY.md)), and Microsoft Learn pages read during Stage 6 and during this documentation phase (section 9).
 
 ---
 

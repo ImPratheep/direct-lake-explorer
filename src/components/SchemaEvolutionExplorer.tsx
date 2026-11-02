@@ -6,14 +6,16 @@ import { FiChevronDown, FiChevronUp } from 'react-icons/fi';
 
 interface SchemaEvolutionExplorerProps {
   explanationMode: ExplanationMode;
+  /** UI Review Mode: use this history instead of generating one from the current time. */
+  schemaState?: SchemaEvolutionState;
 }
 
 interface ExpandedVersions {
   [key: number]: boolean;
 }
 
-const SchemaEvolutionExplorer: React.FC<SchemaEvolutionExplorerProps> = ({ explanationMode }) => {
-  const [schemaState] = useState<SchemaEvolutionState>(generateSchemaEvolutionHistory());
+const SchemaEvolutionExplorer: React.FC<SchemaEvolutionExplorerProps> = ({ explanationMode, schemaState: providedState }) => {
+  const [schemaState] = useState<SchemaEvolutionState>(() => providedState ?? generateSchemaEvolutionHistory());
   const [expandedVersions, setExpandedVersions] = useState<ExpandedVersions>({
     [schemaState.schemaVersions.length - 1]: true,
   });

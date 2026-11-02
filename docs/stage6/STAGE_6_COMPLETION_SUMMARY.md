@@ -25,7 +25,7 @@ Related: [Implementation Report](./STAGE_6_IMPLEMENTATION_REPORT.md), [Technical
 
 ## 1. Stage 6 objectives
 
-The roadmap ([DirectLakeExplorer_Development_Roadmap_and_Prompts.md](./DirectLakeExplorer_Development_Roadmap_and_Prompts.md)) sets the goal "Teach VertiPaq concepts through a transparent educational model", with accuracy rules: label simulated data and results, do not claim to reproduce the proprietary compression algorithm, and explain the difference between a logical illustration and engine internals. Stage 6 grew into eight modules, and Modules 6 to 8 extend the roadmap prompt to cover Direct Lake column loading, memory and a Storage Engine scan.
+The roadmap ([DirectLakeExplorer_Development_Roadmap_and_Prompts.md](../DirectLakeExplorer_Development_Roadmap_and_Prompts.md)) sets the goal "Teach VertiPaq concepts through a transparent educational model", with accuracy rules: label simulated data and results, do not claim to reproduce the proprietary compression algorithm, and explain the difference between a logical illustration and engine internals. Stage 6 grew into eight modules, and Modules 6 to 8 extend the roadmap prompt to cover Direct Lake column loading, memory and a Storage Engine scan.
 
 ### 1.1 Coverage of the roadmap prompt
 

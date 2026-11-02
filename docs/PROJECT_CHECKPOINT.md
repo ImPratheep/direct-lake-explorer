@@ -12,6 +12,19 @@ Last updated: after the final Stage 6 documentation and consolidated validation 
 
 Stage 6 stays unapproved until browser validation is done and the implementation and final docs are reviewed and approved.
 
+## UI Review Mode
+
+A review aid for visual design reviews. Opens from the **UI Review** button in the header, or from a link such as `/?review=1&screen=loading&viewport=1366x768` (screen ids are in `src/review/reviewScreens.ts`; viewport is `fit`, `1920x1080`, `1600x900` or `1366x768`). It is off by default and normal behaviour is unchanged.
+
+- **Navigation:** 14 screens (Architecture, five Stage 5 modules, eight Stage 6 modules) as grouped buttons, plus Prev/Next. The existing navigation keeps working and the review bar follows it.
+- **Deterministic data:** `withFixedEntropy` (`src/review/deterministic.ts`) runs the Stage 5 generators with a fixed clock (15 June 2024, 12:00 UTC) and a seeded random sequence. The generators themselves are unchanged. Displayed times still use the browser's time zone.
+- **Representative starting states:** Pushdown and Partitioning open with a result; Modules 6, 7 and 8 open with a query run, a column evicted with before/after memory, and a scan scenario run. They are built only by calling each simulator's existing demo functions (`src/review/reviewFixtures.ts`), through an optional `startRepresentative` prop on those modules. Modules 1 to 5 and the other Stage 5 pages are already populated by default.
+- **Reset to default state:** closes dialogs and details, sets Beginner mode, remounts the current screen so it returns to its starting state, and stays on the same screen.
+- **Viewports:** a fixed viewport limits the layout width and draws a dashed line at that height, as a guide. It is not a device emulation. For pixel-exact captures, size the browser window too; the bar says whether the window matches.
+- **Also changed:** the Predicate Pushdown "How This Works" panel was empty once a result existed; it now always shows its explanation text.
+- **Tests:** `src/review/__tests__/review.test.ts` and `components/__tests__/reviewMode.test.tsx`. Validation: lint pass, 23 files / 727 tests pass, build pass.
+- **Browser checks performed** (Vite dev server, one browser): all 14 screens reached with no horizontal overflow at 1366 wide; Modules 6 to 8 and the Stage 5 simulators confirmed populated; reset, exit, URL sync and width emulation confirmed at 1920×1080, 1600×900 and 1366×768 windows; review bar contrast audit had 0 failures. Not done: a visual pass of every screen at all three sizes.
+
 ## UI modernization (light theme redesign)
 
 Presentation-only change. No simulator logic, data model, or `src/data` file was edited.
@@ -238,7 +251,7 @@ Verified by cascade order (not visually): two global class names collided across
 3. Module 6 limitations: the 512 B per step loading rate and the use of Module 5 estimates as memory are teaching assumptions; the flow position of a loading column is a visual aid; framing, memory limits, relationships, measures and query execution are not modelled (eviction is Module 7; scans are Module 8).
 4. Module 5 limitations: estimates use a deliberately simple model (fixed byte sizes, bit-packing, no run-length or other compression), so the ratios are teaching values only; the dictionary model applied to numeric columns is not what Microsoft documents for them (value encoding), which is why both representations are offered and the page says so; the cardinality labels are teaching aids; Boolean columns are not simulated.
 5. `docs/stage2/STAGE_2_RESEARCH_SUMMARY.md` calls value encoding "(dictionary)". Per Microsoft's TOM docs, value and hash are separate encodings. The Stage 2 text should be corrected in a later pass.
-6. Earlier Stage 6 progress docs (`docs/STAGE_6_*.md`) say "approved for production" and make "100%" quality claims. These overstate the state. The five final docs now exist and `STAGE_6_DOCUMENTATION_INDEX.md` lists the older ones as historical and superseded; the older files themselves are unchanged. Further findings D1 to D11 are in `STAGE_6_TECHNICAL_VALIDATION.md`.
+6. Earlier Stage 6 progress docs (`docs/stage6/STAGE_6_*.md`) say "approved for production" and make "100%" quality claims. These overstate the state. The five final docs now exist and `STAGE_6_DOCUMENTATION_INDEX.md` lists the older ones as historical and superseded; the older files themselves are unchanged. Further findings D1 to D11 are in `STAGE_6_TECHNICAL_VALIDATION.md`.
 7. `STAGE_4_*` and `STAGE_5_*` report files still sit in the project root.
 8. The CSS remediation and Modules 1-8 are verified only by jsdom tests and by reading the CSS. Nothing has been checked visually in a browser (including the Module 4 range chart, the Module 5 stacked bars, the Module 6 flow diagram, the Module 7 budget meter and the Module 8 execution sequence and wide segment table). The app header controls change back to their original (Stage 4) layout as a result of the scoping fix; please eyeball them.
 9. Module 2 cites `.../power-bi/enterprise/directlake-overview`, which redirects to the canonical Fabric URL used by Module 3. Harmless; update when Module 2 is next touched.

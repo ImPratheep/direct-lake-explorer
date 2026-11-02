@@ -37,14 +37,14 @@ reachable from the application navigation, and covered by automated
 tests (670 passing). **Browser validation is pending, review is pending,
 and Stage 6 is not yet approved.** The final documentation is:
 
--   [STAGE_6_IMPLEMENTATION_REPORT.md](./STAGE_6_IMPLEMENTATION_REPORT.md)
--   [STAGE_6_TECHNICAL_VALIDATION.md](./STAGE_6_TECHNICAL_VALIDATION.md)
--   [STAGE_6_TEST_RESULTS.md](./STAGE_6_TEST_RESULTS.md)
--   [STAGE_6_COMPLETION_SUMMARY.md](./STAGE_6_COMPLETION_SUMMARY.md)
--   [STAGE_6_APPROVAL_CHECKLIST.md](./STAGE_6_APPROVAL_CHECKLIST.md)
+-   [STAGE_6_IMPLEMENTATION_REPORT.md](./stage6/STAGE_6_IMPLEMENTATION_REPORT.md)
+-   [STAGE_6_TECHNICAL_VALIDATION.md](./stage6/STAGE_6_TECHNICAL_VALIDATION.md)
+-   [STAGE_6_TEST_RESULTS.md](./stage6/STAGE_6_TEST_RESULTS.md)
+-   [STAGE_6_COMPLETION_SUMMARY.md](./stage6/STAGE_6_COMPLETION_SUMMARY.md)
+-   [STAGE_6_APPROVAL_CHECKLIST.md](./stage6/STAGE_6_APPROVAL_CHECKLIST.md)
 
 The index for these is
-[STAGE_6_DOCUMENTATION_INDEX.md](./STAGE_6_DOCUMENTATION_INDEX.md).
+[STAGE_6_DOCUMENTATION_INDEX.md](./stage6/STAGE_6_DOCUMENTATION_INDEX.md).
 
 **Stage 7 (DAX query execution simulator): not started.** Stage 6
 simulates parts of the Storage Engine's work and Direct Lake column
@@ -480,7 +480,7 @@ above to eight modules that also cover column loading, memory and a
 Storage Engine scan; columnar storage is explained in text only; and the
 synthetic dataset has five fixed columns, so the column count is not
 configurable. See
-[STAGE_6_COMPLETION_SUMMARY.md](./STAGE_6_COMPLETION_SUMMARY.md). Browser
+[STAGE_6_COMPLETION_SUMMARY.md](./stage6/STAGE_6_COMPLETION_SUMMARY.md). Browser
 validation and approval are pending.
 
 ------------------------------------------------------------------------

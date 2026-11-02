@@ -7,7 +7,7 @@
 
 > This is an educational simulator. It does **not** reproduce Microsoft's proprietary VertiPaq engine or the Direct Lake implementation. Every size, loading step, eviction and scan in this stage is a simulation calculated from synthetic data, and none of it is a Fabric measurement.
 
-Companion documents: [Technical Validation](./STAGE_6_TECHNICAL_VALIDATION.md), [Test Results](./STAGE_6_TEST_RESULTS.md), [Completion Summary](./STAGE_6_COMPLETION_SUMMARY.md), [Approval Checklist](./STAGE_6_APPROVAL_CHECKLIST.md). The running work log is [PROJECT_CHECKPOINT.md](./PROJECT_CHECKPOINT.md).
+Companion documents: [Technical Validation](./STAGE_6_TECHNICAL_VALIDATION.md), [Test Results](./STAGE_6_TEST_RESULTS.md), [Completion Summary](./STAGE_6_COMPLETION_SUMMARY.md), [Approval Checklist](./STAGE_6_APPROVAL_CHECKLIST.md). The running work log is [PROJECT_CHECKPOINT.md](../PROJECT_CHECKPOINT.md).
 
 How this report was written: from the source code and the tests, not from earlier status reports. The older Stage 6 progress documents (see the [index](./STAGE_6_DOCUMENTATION_INDEX.md)) describe only Module 1 and make claims the implementation does not support, so they were not used as a source.
 

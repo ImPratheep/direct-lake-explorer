@@ -7,16 +7,21 @@ import { FiInfo } from 'react-icons/fi';
 interface PredicatePushdownSimulatorProps {
   explanationMode: ExplanationMode;
   parquetFile: ParquetFileMetadata;
+  /** UI Review Mode: open with the default predicate already evaluated instead of an empty results area. */
+  startRepresentative?: boolean;
 }
 
 const PredicatePushdownSimulator: React.FC<PredicatePushdownSimulatorProps> = ({
   explanationMode,
   parquetFile,
+  startRepresentative = false,
 }) => {
   const [columnName, setColumnName] = useState<string>('CustomerID');
   const [operator, setOperator] = useState<FilterCondition['operator']>('=');
   const [value, setValue] = useState<string>('2500');
-  const [result, setResult] = useState<PredicatePushdownResult | null>(null);
+  const [result, setResult] = useState<PredicatePushdownResult | null>(() =>
+    startRepresentative ? evaluatePredicatePushdown(parquetFile, [{ columnName: 'CustomerID', operator: '=', value: 2500 }]) : null,
+  );
 
   const handleSimulate = useCallback(() => {
     const numValue = parseInt(value, 10);
@@ -33,16 +38,13 @@ const PredicatePushdownSimulator: React.FC<PredicatePushdownSimulatorProps> = ({
   }, [columnName, operator, value, parquetFile]);
 
   const getExplanation = (): string => {
-    if (!result) {
-      if (explanationMode === 'beginner') {
-        return 'Predicate pushdown uses row group statistics to skip data blocks that cannot contain matching rows.';
-      } else if (explanationMode === 'intermediate') {
-        return 'Before scanning row groups, the query engine checks min/max statistics. If a condition cannot be satisfied by any row in a row group, the entire row group is skipped.';
-      } else {
-        return 'Predicate pushdown evaluation: (1) Extract min/max from row group footer; (2) For equality, eliminate if value < min or value > max; (3) For range conditions, eliminate if range is disjoint from [min, max]; (4) Eliminate row groups early without page-level IO.';
-      }
+    if (explanationMode === 'beginner') {
+      return 'Predicate pushdown uses row group statistics to skip data blocks that cannot contain matching rows.';
+    } else if (explanationMode === 'intermediate') {
+      return 'Before scanning row groups, the query engine checks min/max statistics. If a condition cannot be satisfied by any row in a row group, the entire row group is skipped.';
+    } else {
+      return 'Predicate pushdown evaluation: (1) Extract min/max from row group footer; (2) For equality, eliminate if value < min or value > max; (3) For range conditions, eliminate if range is disjoint from [min, max]; (4) Eliminate row groups early without page-level IO.';
     }
-    return '';
   };
 
   const formatRowCount = (count: number): string => {

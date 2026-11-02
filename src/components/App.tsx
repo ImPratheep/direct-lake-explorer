@@ -1,4 +1,4 @@
-import React, { useState, useCallback, useEffect, useRef } from 'react';
+import React, { useState, useCallback, useEffect, useMemo, useRef } from 'react';
 import './App.css';
 import { ExplanationMode, ApplicationState } from '../types';
 import { getArchitectureComponents, getQueryPhases, generateSyntheticDeltaLog, generateSyntheticParquetFile } from '../data';
@@ -13,6 +13,15 @@ import PartitioningExplorer from './PartitioningExplorer';
 import SchemaEvolutionExplorer from './SchemaEvolutionExplorer';
 import VertiPaqSimulator from './VertiPaqSimulator';
 import Icon, { IconName } from './Icon';
+import ReviewPanel from './ReviewPanel';
+import { createReviewFixtures } from '../review/reviewFixtures';
+import {
+  buildReviewSearch,
+  findReviewScreen,
+  parseReviewLocation,
+  REVIEW_VIEWPORTS,
+  screenFor,
+} from '../review/reviewScreens';
 
 const NAV_ITEMS: Array<{ id: string; label: string; title: string; icon: IconName }> = [
   { id: 'architecture', label: 'Architecture', title: 'Architecture Overview', icon: 'architecture' },
@@ -82,6 +91,10 @@ const Modal: React.FC<ModalProps> = ({ label, onClose, className, children }) =>
 };
 
 const App: React.FC = () => {
+  // UI Review Mode can be opened from the header or with ?review=1&screen=<id>&viewport=<id>.
+  const [initialLocation] = useState(() => parseReviewLocation(window.location.search));
+  const initialScreen = initialLocation.review ? findReviewScreen(initialLocation.screenId) : undefined;
+
   const [state, setState] = useState<ApplicationState>({
     selectedComponentId: null,
     explanationMode: 'beginner',
@@ -89,10 +102,64 @@ const App: React.FC = () => {
     showQueryWalkthrough: false,
     showLegend: false,
     hoveredComponentId: null,
-    activeModule: 'architecture',
+    activeModule: initialScreen?.module ?? 'architecture',
   });
 
-  const [vertipaqStart, setVertipaqStart] = useState<string | undefined>(undefined);
+  const [vertipaqStart, setVertipaqStart] = useState<string | undefined>(initialScreen?.tab);
+  const [vertipaqTab, setVertipaqTab] = useState<string | undefined>(initialScreen?.tab);
+  const [reviewOn, setReviewOn] = useState<boolean>(initialLocation.review);
+  const [viewportId, setViewportId] = useState<string>(initialLocation.viewportId);
+  // Bumped to remount the module content, which returns every module to its starting state.
+  const [resetToken, setResetToken] = useState(0);
+
+  const reviewFixtures = useMemo(() => (reviewOn ? createReviewFixtures() : null), [reviewOn]);
+  const activeScreen = screenFor(state.activeModule, vertipaqTab);
+  const viewport = REVIEW_VIEWPORTS.find((entry) => entry.id === viewportId) ?? REVIEW_VIEWPORTS[0];
+  const framed = reviewOn && viewport.width !== null;
+
+  useEffect(() => {
+    const search = buildReviewSearch({ review: reviewOn, screenId: activeScreen.id, viewportId });
+    if (window.location.search !== search) {
+      window.history.replaceState(null, '', `${window.location.pathname}${search}${window.location.hash}`);
+    }
+  }, [reviewOn, activeScreen.id, viewportId]);
+
+  const resetShared = useCallback(() => {
+    setState((prev) => ({
+      ...prev,
+      selectedComponentId: null,
+      explanationMode: 'beginner',
+      currentQueryPhase: 1,
+      showQueryWalkthrough: false,
+      showLegend: false,
+      hoveredComponentId: null,
+    }));
+    setResetToken((token) => token + 1);
+    window.scrollTo({ top: 0 });
+  }, []);
+
+  const toggleReview = useCallback(() => {
+    setVertipaqStart(vertipaqTab);
+    setReviewOn((on) => !on);
+    resetShared();
+  }, [vertipaqTab, resetShared]);
+
+  const selectReviewScreen = useCallback(
+    (screenId: string) => {
+      const screen = findReviewScreen(screenId);
+      if (!screen) return;
+      setVertipaqStart(screen.tab);
+      setVertipaqTab(screen.tab);
+      setState((prev) => ({ ...prev, activeModule: screen.module }));
+      resetShared();
+    },
+    [resetShared],
+  );
+
+  const resetReview = useCallback(() => {
+    setVertipaqStart(activeScreen.tab);
+    resetShared();
+  }, [activeScreen.tab, resetShared]);
 
   const components = getArchitectureComponents();
   const queryPhases = getQueryPhases();
@@ -205,7 +272,13 @@ const App: React.FC = () => {
   );
 
   return (
-    <div className="app" onKeyDown={handleKeyDown} tabIndex={-1}>
+    <div
+      className={`app${framed ? ' review-framed' : ''}`}
+      style={framed ? ({ '--review-frame-width': `${viewport.width}px` } as React.CSSProperties) : undefined}
+      data-review-mode={reviewOn ? 'on' : undefined}
+      onKeyDown={handleKeyDown}
+      tabIndex={-1}
+    >
       <div className="app-chrome">
         <header className="app-brandbar">
           <div className="app-brand">
@@ -219,6 +292,16 @@ const App: React.FC = () => {
           </div>
 
           <div className="app-brandbar-actions">
+            <button
+              type="button"
+              className={`toggle-button ${reviewOn ? 'active' : ''}`}
+              aria-pressed={reviewOn}
+              onClick={toggleReview}
+              title="UI Review Mode: deterministic data, populated starting states, viewport guides"
+            >
+              <Icon name="review" size={16} />
+              UI Review
+            </button>
             <div className="control-group">
               <label htmlFor="mode-selector">Explanation mode</label>
               <select
@@ -253,6 +336,17 @@ const App: React.FC = () => {
         </nav>
 
       </div>
+
+      {reviewOn && (
+        <ReviewPanel
+          activeScreenId={activeScreen.id}
+          viewportId={viewport.id}
+          onSelectScreen={selectReviewScreen}
+          onSelectViewport={setViewportId}
+          onReset={resetReview}
+          onExit={toggleReview}
+        />
+      )}
 
       <main className={`app-main${state.activeModule === 'architecture' && selectedComponent ? ' has-open-details' : ''}`}>
         {state.activeModule === 'architecture' && (
@@ -329,41 +423,57 @@ const App: React.FC = () => {
         )}
 
         {state.activeModule === 'deltaLake' && (
-          <div className="full-width-module">
-            <DeltaLakeExplorer explanationMode={state.explanationMode} transactionLog={generateSyntheticDeltaLog()} />
+          <div className="full-width-module" key={`deltaLake-${resetToken}`}>
+            <DeltaLakeExplorer
+              explanationMode={state.explanationMode}
+              transactionLog={reviewFixtures?.deltaLog ?? generateSyntheticDeltaLog()}
+            />
           </div>
         )}
 
         {state.activeModule === 'parquet' && (
-          <div className="full-width-module">
-            <ParquetExplorer explanationMode={state.explanationMode} parquetFile={generateSyntheticParquetFile()} />
+          <div className="full-width-module" key={`parquet-${resetToken}`}>
+            <ParquetExplorer
+              explanationMode={state.explanationMode}
+              parquetFile={reviewFixtures?.parquetFile ?? generateSyntheticParquetFile()}
+            />
           </div>
         )}
 
         {state.activeModule === 'predicatePushdown' && (
-          <div className="full-width-module">
+          <div className="full-width-module" key={`pushdown-${resetToken}`}>
             <PredicatePushdownSimulator
               explanationMode={state.explanationMode}
-              parquetFile={generateSyntheticParquetFile()}
+              parquetFile={reviewFixtures?.parquetFile ?? generateSyntheticParquetFile()}
+              startRepresentative={reviewOn}
             />
           </div>
         )}
 
         {state.activeModule === 'partitioning' && (
-          <div className="full-width-module">
-            <PartitioningExplorer explanationMode={state.explanationMode} />
+          <div className="full-width-module" key={`partitioning-${resetToken}`}>
+            <PartitioningExplorer
+              explanationMode={state.explanationMode}
+              files={reviewFixtures?.partitionedFiles}
+              startRepresentative={reviewOn}
+            />
           </div>
         )}
 
         {state.activeModule === 'schemaEvolution' && (
-          <div className="full-width-module">
-            <SchemaEvolutionExplorer explanationMode={state.explanationMode} />
+          <div className="full-width-module" key={`schema-${resetToken}`}>
+            <SchemaEvolutionExplorer explanationMode={state.explanationMode} schemaState={reviewFixtures?.schemaState} />
           </div>
         )}
 
         {state.activeModule === 'vertipaq' && (
-          <div className="full-width-module">
-            <VertiPaqSimulator explanationMode={state.explanationMode} initialModule={vertipaqStart} />
+          <div className="full-width-module" key={`vertipaq-${resetToken}`}>
+            <VertiPaqSimulator
+              explanationMode={state.explanationMode}
+              initialModule={vertipaqStart}
+              onModuleChange={setVertipaqTab}
+              startRepresentative={reviewOn}
+            />
           </div>
         )}
       </main>
@@ -390,6 +500,12 @@ const App: React.FC = () => {
         <p>Educational simulation • Local-only operation • No Fabric account required</p>
         <p className="copyright">Direct Lake Explorer • Educational project using synthetic data</p>
       </footer>
+
+      {framed && viewport.height !== null && (
+        <div className="review-fold" style={{ top: viewport.height }} aria-hidden="true" data-testid="review-fold">
+          <span className="review-fold-label">{viewport.height}px fold ({viewport.label})</span>
+        </div>
+      )}
     </div>
   );
 };
