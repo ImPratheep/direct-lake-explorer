@@ -252,7 +252,7 @@ All remediation files verified as **syntactically correct** and **import-compati
 **Error:**
 ```
 npm ERR! EPERM: operation not permitted, mkdir 
-'C:\Users\prath\Projects\DirectLakeExplorer\node_modules\@react-three\fiber'
+'<project-root>\node_modules\@react-three\fiber'
 ```
 
 **Root Cause:** Sandbox filesystem restriction preventing nested directory creation in `node_modules/`

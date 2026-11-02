@@ -205,7 +205,7 @@ DirectLakeExplorer/
 **Error:**
 ```
 npm ERR! EPERM: operation not permitted, mkdir 
-'C:\Users\prath\Projects\DirectLakeExplorer\node_modules\@react-three\fiber'
+'<project-root>\node_modules\@react-three\fiber'
 ```
 
 **Cause:** Sandbox filesystem policy restricts directory creation in nested `node_modules/` subdirectories

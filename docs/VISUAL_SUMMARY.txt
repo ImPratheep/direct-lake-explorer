@@ -28,7 +28,7 @@ AFTER:
 RESULT: 🟢 GitHub Copilot can now find and load security rules automatically
 
 VERIFICATION:
-  ✅ File path: C:\Users\prath\Projects\DirectLakeExplorer\.github\copilot-instructions.md
+  ✅ File path: <project-root>\.github\copilot-instructions.md
   ✅ All 12 security rules preserved
   ✅ No content modified
   ✅ Directory created
@@ -68,7 +68,7 @@ PRESERVED EXCLUSIONS (Still in .gitignore):
 RESULT: 🟢 Team gets reproducible builds with version-controlled dependencies
 
 VERIFICATION:
-  ✅ File path: C:\Users\prath\Projects\DirectLakeExplorer\.gitignore
+  ✅ File path: <project-root>\.gitignore
   ✅ Lockfiles removed from exclusions (lines 19-21 commented)
   ✅ All credential protections preserved
   ✅ All environment protections preserved
@@ -159,7 +159,7 @@ NEW SECTION ADDED: "SECURITY PROTECTIONS - DETAILED CLASSIFICATION"
 RESULT: 🟢 Clear, transparent, accurate security classification
 
 VERIFICATION:
-  ✅ File path: C:\Users\prath\Projects\DirectLakeExplorer\SECURITY_REPORT.md
+  ✅ File path: <project-root>\SECURITY_REPORT.md
   ✅ New classification section added
   ✅ All protections properly categorized
   ✅ Anatomy assessment corrected
@@ -185,18 +185,18 @@ Development Readiness      🟡 OK         ✅ Ready       🟢 ENHANCED
 ================================================================================
 
 ✅ Security Files:
-   • C:\Users\prath\Projects\DirectLakeExplorer\.github\copilot-instructions.md
-   • C:\Users\prath\Projects\DirectLakeExplorer\.gitignore
-   • C:\Users\prath\Projects\DirectLakeExplorer\.env.example
-   • C:\Users\prath\Projects\DirectLakeExplorer\SECURITY.md
+   • <project-root>\.github\copilot-instructions.md
+   • <project-root>\.gitignore
+   • <project-root>\.env.example
+   • <project-root>\SECURITY.md
 
 ✅ Assessment Files:
-   • C:\Users\prath\Projects\DirectLakeExplorer\SECURITY_REPORT.md
-   • C:\Users\prath\Projects\DirectLakeExplorer\CORRECTIONS_COMPLETED.md
-   • C:\Users\prath\Projects\DirectLakeExplorer\CORRECTIONS_SUMMARY.md
+   • <project-root>\SECURITY_REPORT.md
+   • <project-root>\CORRECTIONS_COMPLETED.md
+   • <project-root>\CORRECTIONS_SUMMARY.md
 
 ✅ Repository:
-   • C:\Users\prath\Projects\DirectLakeExplorer\.git\
+   • <project-root>\.git\
 
 
 ================================================================================

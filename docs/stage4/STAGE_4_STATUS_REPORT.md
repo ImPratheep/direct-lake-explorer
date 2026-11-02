@@ -301,7 +301,7 @@ Each component includes:
 - ✅ Network access restrictions acknowledged
 - ✅ No attempt to bypass sandbox
 - ✅ Manual setup instructions provided
-- ✅ All work within `C:\Users\prath\Projects\DirectLakeExplorer\`
+- ✅ All work within `<project-root>\`
 
 ### Data Security
 - ✅ Synthetic data only (no real Fabric data)

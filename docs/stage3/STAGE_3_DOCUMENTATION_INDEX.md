@@ -306,7 +306,7 @@ New Column Can Be Loaded
 - [ ] Known limitations explained
 
 ### Security & Compliance
-- [ ] All work in workspace (C:\Users\prath\Projects\DirectLakeExplorer\)
+- [ ] All work in workspace (<project-root>\)
 - [ ] No external services used
 - [ ] No credentials accessed
 - [ ] .github/copilot-instructions.md rules followed
@@ -344,7 +344,7 @@ New Column Can Be Loaded
 
 ## Agent Status
 
-**Agent ID:** `1b12551d-2a1a-4ca9-a5df-2984e9d9c6d3`  
+**Agent ID:** (removed)  
 **Type:** general-purpose (high-capability model)  
 **Status:** Running  
 **Tool Calls Completed:** 17  

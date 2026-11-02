@@ -217,7 +217,7 @@ npm audit --json
 
 **Workaround:** Run locally after setup:
 ```bash
-cd C:\Users\prath\Projects\DirectLakeExplorer
+cd <project-root>
 npm install
 npm audit
 ```

@@ -32,7 +32,7 @@ Stage 3 has been **successfully completed** with a professional, production-read
 ### Primary Output
 **File:** `direct-lake-architecture.html` (18.7 KB)
 - **Type:** Standalone HTML with embedded SVG
-- **Location:** `C:\Users\prath\Projects\DirectLakeExplorer\direct-lake-architecture.html`
+- **Location:** `<project-root>\direct-lake-architecture.html`
 - **Ready:** Yes, open directly in any browser
 - **Theme:** Professional dark (#0a0a0a background)
 - **Responsive:** Works at 390px-1200px widths
@@ -401,7 +401,7 @@ Dictionary Encoder | VertiPaq | Container | [SIMULATION]
 ## 🔐 SECURITY VERIFICATION
 
 ### ✅ Workspace Isolation
-- All work within: `C:\Users\prath\Projects\DirectLakeExplorer\`
+- All work within: `<project-root>\`
 - No files accessed outside workspace
 - No system directories touched
 

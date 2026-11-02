@@ -14,11 +14,11 @@
 
 | File | Size | Purpose |
 |------|------|---------|
-| [`.gitignore`](./C:\Users\prath\Projects\DirectLakeExplorer\.gitignore) | 1 KB | Prevents committing credentials, keys, logs, node_modules |
-| [`.env.example`](./C:\Users\prath\Projects\DirectLakeExplorer\.env.example) | 2 KB | Template for local development (NO real credentials) |
-| [`SECURITY.md`](./C:\Users\prath\Projects\DirectLakeExplorer\SECURITY.md) | 5.5 KB | Complete security guidelines and procedures |
-| [`github-copilot-instructions.md`](./C:\Users\prath\Projects\DirectLakeExplorer\github-copilot-instructions.md) | 7.9 KB | 12-rule AI agent security enforcement |
-| [`SECURITY_REPORT.md`](./C:\Users\prath\Projects\DirectLakeExplorer\SECURITY_REPORT.md) | 12 KB | This comprehensive security assessment |
+| [`.gitignore`](../.gitignore) | 1 KB | Prevents committing credentials, keys, logs, node_modules |
+| [`.env.example`](../.env.example) | 2 KB | Template for local development (NO real credentials) |
+| [`SECURITY.md`](./security/SECURITY.md) | 5.5 KB | Complete security guidelines and procedures |
+| [`copilot-instructions.md`](../.github/copilot-instructions.md) | 7.9 KB | 12-rule AI agent security enforcement |
+| [`SECURITY_REPORT.md`](./security/SECURITY_REPORT.md) | 12 KB | This comprehensive security assessment |
 
 ---
 
@@ -120,7 +120,7 @@ DirectLakeExplorer/
 
 ### Step 1: Initialize Git ⏳ (When Ready)
 ```bash
-cd C:\Users\prath\Projects\DirectLakeExplorer
+cd <project-root>
 git init
 git add .gitignore SECURITY.md .env.example github-copilot-instructions.md
 git commit -m "Initial commit: Security configuration"
@@ -188,7 +188,7 @@ npm init -y
 
 Before starting development, verify:
 
-- [x] **Workspace is isolated** - Only access `C:\Users\prath\Projects\DirectLakeExplorer\`
+- [x] **Workspace is isolated** - Only access `<project-root>\`
 - [x] **`.gitignore` created** - Will prevent credential commits
 - [x] **`.env.example` created** - Template with NO real values
 - [x] **Security guidelines created** - `SECURITY.md` has full procedures

@@ -22,7 +22,7 @@ The Stage 4 remediation created all required files and corrected import paths. H
 
 ```
 npm ERR! EPERM: operation not permitted, mkdir 
-'C:\Users\prath\Projects\DirectLakeExplorer\node_modules\@react-three\fiber'
+'<project-root>\node_modules\@react-three\fiber'
 ```
 
 This is a **sandbox policy restriction**, not a code defect or configuration error.
@@ -110,7 +110,7 @@ Code structure verified as **correct without compilation**:
 **Command:** `npm install`  
 **Error:** `EPERM: operation not permitted, mkdir '...\node_modules\@react-three\fiber'`  
 **Error Type:** Sandbox filesystem restriction  
-**Path blocked:** `C:\Users\prath\Projects\DirectLakeExplorer\node_modules\` (and nested subdirectories)
+**Path blocked:** `<project-root>\node_modules\` (and nested subdirectories)
 
 The sandbox is preventing directory creation beyond the first level, which blocks npm's nested dependency installation.
 

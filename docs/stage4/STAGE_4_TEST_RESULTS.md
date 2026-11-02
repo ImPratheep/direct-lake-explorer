@@ -410,7 +410,7 @@ error TS2307: Cannot find module './types'
 
 ✘ [ERROR] Failed to resolve import "./types"
 
-  The file "/C:/Users/prath/Projects/DirectLakeExplorer/App.tsx" tried to 
+  The file "/<project-root>/App.tsx" tried to 
   import from "./types", but the file doesn't exist.
 ```
 

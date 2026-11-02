@@ -219,7 +219,7 @@ OneLake Parquet → Delta Metadata → Framing → Column Selection
 
 ## 📁 FILE LOCATIONS
 
-All in workspace root: `C:\Users\prath\Projects\DirectLakeExplorer\`
+All in workspace root: `<project-root>\`
 
 **Main Output:**
 - ✅ `direct-lake-architecture.html` - THE ILLUSTRATION

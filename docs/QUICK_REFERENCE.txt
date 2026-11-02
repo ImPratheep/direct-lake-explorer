@@ -83,19 +83,19 @@
 ╚════════════════════════════════════════════════════════════════════════════╝
 
 Security Files:
-  ✅ C:\Users\prath\Projects\DirectLakeExplorer\.github\copilot-instructions.md
-  ✅ C:\Users\prath\Projects\DirectLakeExplorer\.gitignore
-  ✅ C:\Users\prath\Projects\DirectLakeExplorer\.env.example
-  ✅ C:\Users\prath\Projects\DirectLakeExplorer\SECURITY.md
+  ✅ <project-root>\.github\copilot-instructions.md
+  ✅ <project-root>\.gitignore
+  ✅ <project-root>\.env.example
+  ✅ <project-root>\SECURITY.md
 
 Assessment Files:
-  ✅ C:\Users\prath\Projects\DirectLakeExplorer\SECURITY_REPORT.md
-  ✅ C:\Users\prath\Projects\DirectLakeExplorer\CORRECTIONS_COMPLETED.md
-  ✅ C:\Users\prath\Projects\DirectLakeExplorer\CORRECTIONS_SUMMARY.md
-  ✅ C:\Users\prath\Projects\DirectLakeExplorer\EXECUTIVE_REPORT.md
+  ✅ <project-root>\SECURITY_REPORT.md
+  ✅ <project-root>\CORRECTIONS_COMPLETED.md
+  ✅ <project-root>\CORRECTIONS_SUMMARY.md
+  ✅ <project-root>\EXECUTIVE_REPORT.md
 
 Repository:
-  ✅ C:\Users\prath\Projects\DirectLakeExplorer\.git\
+  ✅ <project-root>\.git\
 
 ╔════════════════════════════════════════════════════════════════════════════╗
 ║                         WHAT REMAINS UNCHANGED                             ║

@@ -43,7 +43,7 @@ Stage 3 has been successfully completed. A **professional, production-ready isom
 ### 1. PRIMARY DELIVERABLE: Isometric Architecture Illustration
 
 **File:** `direct-lake-architecture.html`  
-**Location:** `C:\Users\prath\Projects\DirectLakeExplorer\direct-lake-architecture.html`  
+**Location:** `<project-root>\direct-lake-architecture.html`  
 **Status:** Production-ready, verified, standalone
 
 **Technical Specifications:**

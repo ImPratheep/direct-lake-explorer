@@ -10,12 +10,12 @@ CORRECTION 1: COPILOT INSTRUCTIONS LOCATION
 
 BEFORE:
   File: github-copilot-instructions.md
-  Path: C:\Users\prath\Projects\DirectLakeExplorer\github-copilot-instructions.md
+  Path: <project-root>\github-copilot-instructions.md
   Status: ❌ Wrong location (GitHub Copilot won't find it)
 
 AFTER:
   File: copilot-instructions.md
-  Path: C:\Users\prath\Projects\DirectLakeExplorer\.github\copilot-instructions.md
+  Path: <project-root>\.github\copilot-instructions.md
   Status: ✅ Correct location (GitHub Copilot auto-discovery enabled)
 
 VERIFICATION:
@@ -115,18 +115,18 @@ FINAL FILE LOCATIONS
 ================================================================================
 
 Security Configuration Files:
-  ✅ C:\Users\prath\Projects\DirectLakeExplorer\.github\copilot-instructions.md
-  ✅ C:\Users\prath\Projects\DirectLakeExplorer\.gitignore
-  ✅ C:\Users\prath\Projects\DirectLakeExplorer\.env.example
-  ✅ C:\Users\prath\Projects\DirectLakeExplorer\SECURITY.md
+  ✅ <project-root>\.github\copilot-instructions.md
+  ✅ <project-root>\.gitignore
+  ✅ <project-root>\.env.example
+  ✅ <project-root>\SECURITY.md
 
 Documentation Files:
-  ✅ C:\Users\prath\Projects\DirectLakeExplorer\SECURITY_REPORT.md
-  ✅ C:\Users\prath\Projects\DirectLakeExplorer\CORRECTIONS_COMPLETED.md
-  ✅ C:\Users\prath\Projects\DirectLakeExplorer\VERIFICATION_SUMMARY.txt
+  ✅ <project-root>\SECURITY_REPORT.md
+  ✅ <project-root>\CORRECTIONS_COMPLETED.md
+  ✅ <project-root>\VERIFICATION_SUMMARY.txt
 
 Repository:
-  ✅ C:\Users\prath\Projects\DirectLakeExplorer\.git\ (INITIALIZED)
+  ✅ <project-root>\.git\ (INITIALIZED)
 
 ================================================================================
 VERIFICATION CHECKLIST

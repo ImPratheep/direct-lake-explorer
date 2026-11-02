@@ -260,7 +260,7 @@ These files from Stage 2 are the foundation - they remain unchanged:
 ## SECURITY NOTES
 
 ✅ **This project is secure because:**
-- All work done within `C:\Users\prath\Projects\DirectLakeExplorer\`
+- All work done within `<project-root>\`
 - No credentials or sensitive data accessed
 - No external services contacted
 - No system modifications made

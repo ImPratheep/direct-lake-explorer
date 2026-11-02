@@ -21,7 +21,7 @@
 ### Project Structure
 
 ```
-C:\Users\prath\Projects\DirectLakeExplorer\
+<project-root>\
 ├── src/
 │   ├── components/
 │   │   ├── ArchitectureExplorer/

@@ -611,7 +611,7 @@ All from npm registry (OSS)
 ## FILES READY FOR DOWNLOAD
 
 All 22 files are in the project workspace:
-- `/C:/Users/prath/Projects/DirectLakeExplorer/`
+- `<project-root>/`
 
 Ready for delivery to user. ✅
 

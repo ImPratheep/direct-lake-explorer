@@ -2,7 +2,7 @@
 
 ## Development Roadmap and GitHub Copilot Agent Prompts
 
-**Project workspace:** `C:\Users\prath\Projects\DirectLakeExplorer`\
+**Project workspace:** `<project-root>`\
 **Initial operating model:** Local-only, using synthetic data\
 **Primary development assistant:** GitHub Copilot Agent\
 **Visualization skill:**

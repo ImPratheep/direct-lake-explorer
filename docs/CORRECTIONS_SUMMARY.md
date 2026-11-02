@@ -17,7 +17,7 @@
 
 **Verification:**
 ```
-Path: C:\Users\prath\Projects\DirectLakeExplorer\.github\copilot-instructions.md
+Path: <project-root>\.github\copilot-instructions.md
 Status: ✅ VERIFIED - File present, content intact, 12 rules preserved
 ```
 
@@ -35,7 +35,7 @@ Status: ✅ VERIFIED - File present, content intact, 12 rules preserved
 
 **Verification:**
 ```
-File: C:\Users\prath\Projects\DirectLakeExplorer\.gitignore
+File: <project-root>\.gitignore
 Lines 18-21: Lockfiles commented (no longer excluded)
 Credential lines (6-15): ✅ Still present
 Environment lines (1-5): ✅ Still present
@@ -113,7 +113,7 @@ Status: ✅ VERIFIED
 
 **Verification:**
 ```
-File: C:\Users\prath\Projects\DirectLakeExplorer\SECURITY_REPORT.md
+File: <project-root>\SECURITY_REPORT.md
 New section: SECURITY PROTECTIONS - DETAILED CLASSIFICATION
 Status: ✅ VERIFIED - Clear, accurate, transparent
 ```
@@ -138,7 +138,7 @@ Status: ✅ VERIFIED - Clear, accurate, transparent
 ```
 ✅ CORRECT STRUCTURE:
 
-C:\Users\prath\Projects\DirectLakeExplorer\
+<project-root>\
 │
 ├── .github/
 │   └── copilot-instructions.md          [✅ CORRECT LOCATION]

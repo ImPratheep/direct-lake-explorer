@@ -123,7 +123,7 @@ The application code structure is correct and ready to compile. The only blocker
 
 ```
 Error: EPERM: operation not permitted, mkdir 
-'C:\Users\prath\Projects\DirectLakeExplorer\node_modules\@react-three\fiber'
+'<project-root>\node_modules\@react-three\fiber'
 ```
 
 This is a **sandbox policy issue**, not a code issue.

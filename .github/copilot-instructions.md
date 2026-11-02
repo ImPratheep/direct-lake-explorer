@@ -7,7 +7,7 @@
 ## 1. Workspace Boundaries
 
 ✅ **Work within this workspace:**
-- `C:\Users\prath\Projects\DirectLakeExplorer\` and all subdirectories
+- `<project-root>\` and all subdirectories
 - `.github/` for configuration files
 - `src/`, `data/`, `tests/` directories
 
@@ -266,7 +266,7 @@ Example documentation:
 
 Before any action, ask yourself:
 
-1. ✅ Am I working within `C:\Users\prath\Projects\DirectLakeExplorer\`?
+1. ✅ Am I working within `<project-root>\`?
 2. ✅ Could this expose credentials or secrets?
 3. ✅ Does this require user approval per the rules above?
 4. ✅ Could this modify system settings?

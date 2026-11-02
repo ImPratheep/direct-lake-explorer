@@ -144,7 +144,7 @@ $ npm run test
 > direct-lake-explorer@1.0.0 test
 > vitest
 
- DEV  v0.34.6 C:/Users/prath/Projects/DirectLakeExplorer
+ DEV  v0.34.6 <project-root>
 
 include: **/*.{test,spec}.?(c|m)[jt]s?(x)
 exclude:  **/node_modules/**, **/dist/**, **/cypress/**, **/.{idea,git,cache,output,temp}/**...

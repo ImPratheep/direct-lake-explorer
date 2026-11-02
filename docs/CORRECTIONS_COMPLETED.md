@@ -18,13 +18,13 @@
 
 **Before:**
 ```
-C:\Users\prath\Projects\DirectLakeExplorer\
+<project-root>\
 ├── github-copilot-instructions.md    [WRONG LOCATION]
 ```
 
 **After:**
 ```
-C:\Users\prath\Projects\DirectLakeExplorer\
+<project-root>\
 ├── .github/
 │   └── copilot-instructions.md    [CORRECT LOCATION] ✅
 ```
@@ -32,7 +32,7 @@ C:\Users\prath\Projects\DirectLakeExplorer\
 ### File Integrity
 - ✅ All existing instructions preserved
 - ✅ 12 security rules intact
-- ✅ File path verified: `C:\Users\prath\Projects\DirectLakeExplorer\.github\copilot-instructions.md`
+- ✅ File path verified: `<project-root>\.github\copilot-instructions.md`
 - ✅ GitHub Copilot will now auto-discover this file
 
 ### Impact
@@ -101,7 +101,7 @@ pnpm-lock.yaml
 
 ### File Verification
 ```
-Path: C:\Users\prath\Projects\DirectLakeExplorer\.gitignore
+Path: <project-root>\.gitignore
 Lines 18-20: ✅ Dependency lines commented (no longer excluded)
 Credential lines: ✅ Preserved (lines 6-15)
 Environment lines: ✅ Preserved (lines 1-3)
@@ -196,7 +196,7 @@ Status: ✅ ACCURATE - Based on known behavior and static output
 
 ### File Verification
 ```
-Path: C:\Users\prath\Projects\DirectLakeExplorer\SECURITY_REPORT.md
+Path: <project-root>\SECURITY_REPORT.md
 Updated: ✅ YES
 Sections Added:
   ✅ Git Status clarification
@@ -224,7 +224,7 @@ Status: ✅ VERIFIED
 ### Directory Structure
 
 ```
-C:\Users\prath\Projects\DirectLakeExplorer\
+<project-root>\
 ├── .github/
 │   └── copilot-instructions.md          ✅ CORRECT LOCATION
 ├── .git/                                ✅ GIT INITIALIZED

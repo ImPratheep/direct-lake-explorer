@@ -210,7 +210,7 @@ npm run dev           # Must start at http://localhost:3000
 All audit documents have been created in the project root:
 
 ```
-C:\Users\prath\Projects\DirectLakeExplorer\
+<project-root>\
 ├── STAGE_4_AUDIT_EXECUTIVE_SUMMARY.md (START HERE)
 ├── STAGE_4_FINAL_QUALITY_AUDIT.md (Detailed issues)
 ├── STAGE_4_DEPENDENCY_AUDIT.md (Dependency review)

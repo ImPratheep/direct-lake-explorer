@@ -28,7 +28,7 @@ Moved file to `.github/copilot-instructions.md` - the standard location where Gi
 
 ### Verification
 ```
-✅ File: C:\Users\prath\Projects\DirectLakeExplorer\.github\copilot-instructions.md
+✅ File: <project-root>\.github\copilot-instructions.md
 ✅ All 12 security rules preserved
 ✅ .github/ directory created
 ✅ GitHub Copilot auto-discovery enabled
@@ -69,7 +69,7 @@ Removed dependency lockfiles from `.gitignore` so they are now tracked in Git, e
 
 ### Verification
 ```
-✅ File: C:\Users\prath\Projects\DirectLakeExplorer\.gitignore
+✅ File: <project-root>\.gitignore
 ✅ Lines 18-21: Lockfiles commented (no longer excluded)
 ✅ Credentials still protected
 ✅ Syntax valid
@@ -127,7 +127,7 @@ Documented in `.github/copilot-instructions.md`, dependent on compliance:
 
 ### Verification
 ```
-✅ File: C:\Users\prath\Projects\DirectLakeExplorer\SECURITY_REPORT.md
+✅ File: <project-root>\SECURITY_REPORT.md
 ✅ Classification section added with clear categories
 ✅ All protections documented
 ✅ Anatomy assessment corrected
@@ -152,18 +152,18 @@ Documented in `.github/copilot-instructions.md`, dependent on compliance:
 
 ```
 ✅ Security Configuration:
-   C:\Users\prath\Projects\DirectLakeExplorer\.github\copilot-instructions.md
-   C:\Users\prath\Projects\DirectLakeExplorer\.gitignore
-   C:\Users\prath\Projects\DirectLakeExplorer\.env.example
-   C:\Users\prath\Projects\DirectLakeExplorer\SECURITY.md
+   <project-root>\.github\copilot-instructions.md
+   <project-root>\.gitignore
+   <project-root>\.env.example
+   <project-root>\SECURITY.md
 
 ✅ Documentation:
-   C:\Users\prath\Projects\DirectLakeExplorer\SECURITY_REPORT.md
-   C:\Users\prath\Projects\DirectLakeExplorer\CORRECTIONS_COMPLETED.md
-   C:\Users\prath\Projects\DirectLakeExplorer\CORRECTIONS_SUMMARY.md
+   <project-root>\SECURITY_REPORT.md
+   <project-root>\CORRECTIONS_COMPLETED.md
+   <project-root>\CORRECTIONS_SUMMARY.md
 
 ✅ Repository:
-   C:\Users\prath\Projects\DirectLakeExplorer\.git\
+   <project-root>\.git\
 ```
 
 ---

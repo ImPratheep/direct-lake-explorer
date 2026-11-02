@@ -12,7 +12,7 @@
 ### Direct Lake Architecture Illustration
 
 **File:** `direct-lake-architecture.html`  
-**Location:** `C:\Users\prath\Projects\DirectLakeExplorer\direct-lake-architecture.html`  
+**Location:** `<project-root>\direct-lake-architecture.html`  
 **Size:** 18.7 KB  
 **Format:** Standalone HTML with embedded SVG and CSS  
 **Type:** Production-ready, no external dependencies  
@@ -32,7 +32,7 @@
 
 ## STAGE 3 DOCUMENTATION FILES
 
-All files located in: `C:\Users\prath\Projects\DirectLakeExplorer\`
+All files located in: `<project-root>\`
 
 ### Core Documentation
 
@@ -58,7 +58,7 @@ All files located in: `C:\Users\prath\Projects\DirectLakeExplorer\`
 
 ## SUPPORTING RESEARCH FILES (Stage 2 - Do Not Modify)
 
-Located in: `C:\Users\prath\Projects\DirectLakeExplorer\`
+Located in: `<project-root>\`
 
 | File | Size | Purpose | Status |
 |------|------|---------|--------|
@@ -75,21 +75,21 @@ Located in: `C:\Users\prath\Projects\DirectLakeExplorer\`
 
 ## SECURITY & CONFIGURATION FILES
 
-Located in: `C:\Users\prath\Projects\DirectLakeExplorer\`
+Located in: `<project-root>\`
 
 | File | Location | Purpose | Status |
 |------|----------|---------|--------|
 | **copilot-instructions.md** | `.github/copilot-instructions.md` | 12 security rules, local-only, no Fabric access | ✅ VERIFIED |
-| **SECURITY.md** | `C:\Users\prath\Projects\DirectLakeExplorer\SECURITY.md` | Comprehensive security guidelines | ✅ VERIFIED |
-| **.env.example** | `C:\Users\prath\Projects\DirectLakeExplorer\.env.example` | Environment template (no real credentials) | ✅ VERIFIED |
-| **.gitignore** | `C:\Users\prath\Projects\DirectLakeExplorer\.gitignore` | Git exclusions (credentials, node_modules, etc.) | ✅ VERIFIED |
+| **SECURITY.md** | `<project-root>\SECURITY.md` | Comprehensive security guidelines | ✅ VERIFIED |
+| **.env.example** | `<project-root>\.env.example` | Environment template (no real credentials) | ✅ VERIFIED |
+| **.gitignore** | `<project-root>\.gitignore` | Git exclusions (credentials, node_modules, etc.) | ✅ VERIFIED |
 
 ---
 
 ## COMPLETE DIRECTORY STRUCTURE
 
 ```
-C:\Users\prath\Projects\DirectLakeExplorer\
+<project-root>\
 │
 ├── 📄 direct-lake-architecture.html ................ [18.7 KB] ✅ PRIMARY DELIVERABLE
 │
@@ -161,35 +161,35 @@ C:\Users\prath\Projects\DirectLakeExplorer\
 
 **Step 1: View the Illustration**
 ```
-Open: C:\Users\prath\Projects\DirectLakeExplorer\direct-lake-architecture.html
+Open: <project-root>\direct-lake-architecture.html
 Action: Double-click or open in web browser
 Result: Professional isometric illustration with 121 components across 5 layers
 ```
 
 **Step 2: Read Executive Summary**
 ```
-Open: C:\Users\prath\Projects\DirectLakeExplorer\STAGE_3_EXECUTIVE_SUMMARY.md
+Open: <project-root>\STAGE_3_EXECUTIVE_SUMMARY.md
 Content: Comprehensive summary of deliverables, metrics, verification results
 Time: ~10 minutes to read
 ```
 
 **Step 3: Review Component Mapping**
 ```
-Open: C:\Users\prath\Projects\DirectLakeExplorer\STAGE_3_COMPONENT_MAPPING.md
+Open: <project-root>\STAGE_3_COMPONENT_MAPPING.md
 Content: All 121 components with source references
 Time: ~15 minutes to scan
 ```
 
 **Step 4: Check Verification Report**
 ```
-Open: C:\Users\prath\Projects\DirectLakeExplorer\STAGE_3_FINAL_VERIFICATION.md
+Open: <project-root>\STAGE_3_FINAL_VERIFICATION.md
 Content: Quality metrics, classification breakdown, verification checklist
 Time: ~10 minutes to review
 ```
 
 **Step 5: Use Quick Reference**
 ```
-Open: C:\Users\prath\Projects\DirectLakeExplorer\README_STAGE3.md
+Open: <project-root>\README_STAGE3.md
 Content: Quick facts, key metrics, quick reference card
 Time: ~5 minutes
 ```

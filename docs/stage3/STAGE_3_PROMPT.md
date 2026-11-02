@@ -263,7 +263,7 @@ const html = pageHtml({ ...svg... });
 
 ## Security & Workspace Compliance
 
-✅ Work only in: `C:\Users\prath\Projects\DirectLakeExplorer\`  
+✅ Work only in: `<project-root>\`  
 ✅ Output files to: `docs/illustrations/` or project root  
 ✅ No external service calls  
 ✅ No credential access required  

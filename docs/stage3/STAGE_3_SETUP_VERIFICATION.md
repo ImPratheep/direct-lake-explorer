@@ -39,7 +39,7 @@
 - [x] SECURITY.md - Security guidelines established
 
 **Workspace Isolation:**
-- [x] All work within C:\Users\prath\Projects\DirectLakeExplorer\
+- [x] All work within <project-root>\
 - [x] No external services required
 - [x] No credentials or secrets needed
 - [x] Synthetic data only (no real Fabric access)
@@ -209,7 +209,7 @@
 
 ### Existing (Pre-Stage 3)
 ```
-C:\Users\prath\Projects\DirectLakeExplorer\
+<project-root>\
 ├── .github/
 │   └── copilot-instructions.md (12 security rules)
 ├── .gitignore (updated, lockfiles tracked)
@@ -225,7 +225,7 @@ C:\Users\prath\Projects\DirectLakeExplorer\
 
 ### Stage 3 Output (Expected)
 ```
-C:\Users\prath\Projects\DirectLakeExplorer\
+<project-root>\
 ├── docs/
 │   └── illustrations/
 │       └── direct-lake-architecture.html (or .svg)
@@ -239,7 +239,7 @@ C:\Users\prath\Projects\DirectLakeExplorer\
 
 ## Execution Timeline
 
-**Agent Task:** `1b12551d-2a1a-4ca9-a5df-2984e9d9c6d3`
+**Agent Task:** (removed)
 
 ### Phases
 1. **Concept & Planning** (30 min) - HERO classification, parts organization

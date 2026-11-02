@@ -54,13 +54,13 @@ You requested:
 ### 2. ✅ EXACT LOCATION OF STANDALONE SVG
 
 **File:** `direct-lake-architecture.html`  
-**Full Path:** `C:\Users\prath\Projects\DirectLakeExplorer\direct-lake-architecture.html`  
+**Full Path:** `<project-root>\direct-lake-architecture.html`  
 **Size:** 18.7 KB  
 **Format:** Standalone HTML with embedded SVG and CSS  
 **Status:** Production-ready, no external dependencies
 
 **How to View:**
-1. Navigate to: `C:\Users\prath\Projects\DirectLakeExplorer\`
+1. Navigate to: `<project-root>\`
 2. Double-click: `direct-lake-architecture.html`
 3. Opens in default browser
 4. All 121 components visible in dark theme

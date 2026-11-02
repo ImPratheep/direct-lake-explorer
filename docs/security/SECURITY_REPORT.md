@@ -9,7 +9,7 @@
 ## PHASE 1: WORKSPACE INSPECTION ✅ COMPLETE
 
 ### Workspace Assessment
-- **Location:** `C:\Users\prath\Projects\DirectLakeExplorer`
+- **Location:** `<project-root>`
 - **Status:** Empty, dedicated project directory
 - **Initialization:** Fresh start (no existing files)
 - **Security Baseline:** Safe - no pre-existing sensitive files detected

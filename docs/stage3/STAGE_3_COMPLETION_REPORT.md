@@ -71,7 +71,7 @@ All components trace to Stage 2 research deliverables:
 
 ### Component Mapping
 
-**See:** [STAGE_3_COMPONENT_MAPPING.md](/C:/Users/prath/Projects/DirectLakeExplorer/STAGE_3_COMPONENT_MAPPING.md)
+**See:** STAGE_3_COMPONENT_MAPPING.md (in this folder)
 
 - All 100-150+ components listed with source
 - Classification: [DOCUMENTED] (85-90%), [SIMULATION] (8-10%), [INFERRED] (2-4%)
@@ -341,7 +341,7 @@ All components trace to Stage 2 research deliverables:
 - [ ] No fabricated implementation details
 
 ### Compliance & Security
-- [ ] All work within workspace (C:\Users\prath\Projects\DirectLakeExplorer\)
+- [ ] All work within workspace (<project-root>\)
 - [ ] No external services called
 - [ ] No credentials accessed
 - [ ] No package installations

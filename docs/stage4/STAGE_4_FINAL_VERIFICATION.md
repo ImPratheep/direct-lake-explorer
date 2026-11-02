@@ -11,7 +11,7 @@
 **Result**: ✅ PASS
 **Output**: 
 ```
-DEV v0.34.6 C:/Users/prath/Projects/DirectLakeExplorer
+DEV v0.34.6 <project-root>
 No test files found, exiting with code 1
 ```
 

@@ -11,35 +11,35 @@
 
 ### **Step 1: View the Illustration** ⏱️ 2 minutes
 ```
-File: C:\Users\prath\Projects\DirectLakeExplorer\direct-lake-architecture.html
+File: <project-root>\direct-lake-architecture.html
 Action: Double-click or open in web browser
 Result: Professional 121-component isometric illustration with dark theme
 ```
 
 ### **Step 2: Executive Summary** ⏱️ 10 minutes
 ```
-File: C:\Users\prath\Projects\DirectLakeExplorer\STAGE_3_EXECUTIVE_SUMMARY.md
+File: <project-root>\STAGE_3_EXECUTIVE_SUMMARY.md
 Content: Complete overview, all metrics, verification results
 Read this first for comprehensive understanding
 ```
 
 ### **Step 3: Component Verification** ⏱️ 15 minutes
 ```
-File: C:\Users\prath\Projects\DirectLakeExplorer\STAGE_3_COMPONENT_MAPPING.md
+File: <project-root>\STAGE_3_COMPONENT_MAPPING.md
 Content: All 121 components with source document references
 Confirms traceability to Stage 2 research
 ```
 
 ### **Step 4: Sources Verification** ⏱️ 10 minutes
 ```
-File: C:\Users\prath\Projects\DirectLakeExplorer\STAGE_3_SOURCES_VERIFICATION.md
+File: <project-root>\STAGE_3_SOURCES_VERIFICATION.md
 Content: All 19 Microsoft Learn sources verified and documented
 Proves no proprietary reverse-engineering
 ```
 
 ### **Step 5: Quality Verification** ⏱️ 10 minutes
 ```
-File: C:\Users\prath\Projects\DirectLakeExplorer\STAGE_3_FINAL_VERIFICATION.md
+File: <project-root>\STAGE_3_FINAL_VERIFICATION.md
 Content: Design metrics, classification breakdown, quality checklist
 Professional appearance verified
 ```
@@ -52,7 +52,7 @@ Professional appearance verified
 
 ### Direct Lake Architecture Illustration
 - **File:** `direct-lake-architecture.html` (18.7 KB)
-- **Location:** `C:\Users\prath\Projects\DirectLakeExplorer\`
+- **Location:** `<project-root>\`
 - **Format:** Standalone HTML with embedded SVG + CSS
 - **Status:** ✅ Production-ready
 
@@ -95,7 +95,7 @@ Professional appearance verified
 | **STAGE_3_SETUP_VERIFICATION.md** | 10.6 KB | Prerequisites | ✅ Complete |
 
 **Total Documentation: ~131 KB**  
-**All files:** `C:\Users\prath\Projects\DirectLakeExplorer\`
+**All files:** `<project-root>\`
 
 ---
 
@@ -213,7 +213,7 @@ All verified against the 19 Microsoft Learn sources and Stage 2 research:
 - File-based operations only
 
 ### ✅ Workspace Isolation
-- All work within: `C:\Users\prath\Projects\DirectLakeExplorer\`
+- All work within: `<project-root>\`
 - No files accessed outside workspace
 - No system-level modifications
 - Sandbox restrictions maintained

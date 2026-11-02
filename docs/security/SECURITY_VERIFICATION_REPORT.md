@@ -22,7 +22,7 @@
 
 ### File Inventory
 ```
-C:\Users\prath\Projects\DirectLakeExplorer\
+<project-root>\
 ├── .gitignore                          [GIT PROTECTION]
 ├── .env.example                        [CONFIG TEMPLATE]
 ├── SECURITY.md                         [GUIDELINES]
@@ -43,7 +43,7 @@ C:\Users\prath\Projects\DirectLakeExplorer\
 **Status:** ❌ NOT IN CORRECT LOCATION
 
 **Details:**
-- File exists in workspace root: `C:\Users\prath\Projects\DirectLakeExplorer\github-copilot-instructions.md`
+- File exists in workspace root: `<project-root>\github-copilot-instructions.md`
 - File was created in root because `.github/` directory could not be created via workspace file API
 - GitHub Copilot expects this file at: `.github/copilot-instructions.md`
 - Current location is a fallback but may not be automatically recognized by GitHub Copilot

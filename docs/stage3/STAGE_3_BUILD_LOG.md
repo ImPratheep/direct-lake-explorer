@@ -3,7 +3,7 @@
 **Project:** Microsoft Fabric Direct Lake Explorer  
 **Stage:** 3 - Create Isometric Architecture Illustration  
 **Start Date:** November 1, 2026  
-**Agent ID:** 1b12551d-2a1a-4ca9-a5df-2984e9d9c6d3  
+**Agent ID:** (removed)  
 **Status:** IN PROGRESS  
 
 ---
@@ -292,7 +292,7 @@
 
 ## Agent Interaction Log
 
-**Agent ID:** 1b12551d-2a1a-4ca9-a5df-2984e9d9c6d3  
+**Agent ID:** (removed)  
 **Type:** general-purpose  
 **Initial Turn Count:** 0  
 **Tool Calls:** 17 (as of last check)  

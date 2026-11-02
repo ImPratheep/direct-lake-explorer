@@ -64,7 +64,7 @@ The following file patterns are excluded by `.gitignore`:
 
 ## File Access Restrictions
 
-✅ **DO:** Work only within `C:\Users\prath\Projects\DirectLakeExplorer\`
+✅ **DO:** Work only within `<project-root>\`
 
 ❌ **DO NOT:**
 - Access user home directories
