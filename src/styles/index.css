@@ -1,0 +1,441 @@
+/*
+  Global styles and DESIGN TOKENS for Direct Lake Explorer.
+
+  This is the single source of truth for tokens. Component stylesheets must use
+  var(--token) and must not redefine :root or hard-code colours.
+
+  One designed light theme. The previous setup defined tokens twice (here and in
+  App.css) and switched them with prefers-color-scheme, while four Stage 4
+  stylesheets hard-coded dark-theme values. On a light OS that produced grey
+  panels with near-white text. Token meaning is unchanged: bg < secondary
+  (surface, white) and tertiary (tinted panel).
+
+  Contrast (WCAG 2.2, measured): text, text-secondary and text-tertiary are
+  at least 5.1:1 on every surface; white on accent fills is 4.6:1 or better;
+  --color-border-strong is at least 3:1 on every surface (form controls).
+*/
+
+:root {
+  color-scheme: light;
+
+  /* Surfaces */
+  --color-bg: #f3f6fb;
+  --color-bg-secondary: #ffffff;
+  --color-bg-tertiary: #edf2f9;
+  --color-bg-sunken: #e3eaf4;
+
+  /* Text */
+  --color-text: #10203a;
+  --color-text-secondary: #34445f;
+  --color-text-tertiary: #52627d;
+  --color-text-on-accent: #ffffff;
+
+  /* Borders: decorative, and strong (for form control boundaries, 3:1) */
+  --color-border: #d3dbe8;
+  --color-border-strong: #7d8aa3;
+
+  /* Brand and accents. Blue and orange are used as TEXT in places, so they are at least 5:1 on every surface. */
+  --color-accent-blue: #0c5db1;
+  --color-accent-blue-hover: #084a8f;
+  --color-accent-blue-soft: #e5f0fb;
+  --color-accent-orange: #955000;
+  --color-accent-green: #107c41;
+  --color-accent-red: #c4262e;
+  --color-accent-purple: #6b4fbb;
+  --color-accent-teal: #0e7c86;
+
+  /* Status: fill (borders, chart parts), text-safe, soft background */
+  --color-success: #107c41;
+  --color-success-text: #0e6b2e;
+  --color-success-bg: #e6f4ec;
+  --color-warning: #d97706;
+  --color-warning-text: #8a4b00;
+  --color-warning-bg: #fff4e0;
+  --color-danger: #c4262e;
+  --color-danger-text: #b3202a;
+  --color-danger-bg: #fdeceb;
+  --color-info: #0c5db1;
+  --color-info-text: #0b5cad;
+  --color-info-bg: #e5f0fb;
+
+  /* Architecture areas: conceptual groupings, not physical layers. Each has a
+     fill (stripes, icons), a text-safe colour and a soft background. */
+  --area-storage: #0c5db1;
+  --area-storage-text: #0b5cad;
+  --area-storage-bg: #e5f0fb;
+  --area-semantic: #b45f06;
+  --area-semantic-text: #8a4b00;
+  --area-semantic-bg: #fff1dc;
+  --area-vertipaq: #107c41;
+  --area-vertipaq-text: #0e6b2e;
+  --area-vertipaq-bg: #e6f4ec;
+  --area-query: #c4262e;
+  --area-query-text: #b3202a;
+  --area-query-bg: #fdeceb;
+  --area-memory: #6b4fbb;
+  --area-memory-text: #5b3fa8;
+  --area-memory-bg: #efeafa;
+
+  /* Technical labels used across the app */
+  --label-documented-text: #0e6b2e;
+  --label-documented-bg: #e6f4ec;
+  --label-simulation-text: #8a4b00;
+  --label-simulation-bg: #fff1dc;
+  --label-simplified-text: #0b5cad;
+  --label-simplified-bg: #e5f0fb;
+  --label-proprietary-text: #5b3fa8;
+  --label-proprietary-bg: #efeafa;
+  --label-inferred-text: #34445f;
+  --label-inferred-bg: #e3eaf4;
+
+  /* Typography: system stack only, nothing downloaded */
+  --font-sans: 'Segoe UI Variable Text', 'Segoe UI', system-ui, -apple-system, BlinkMacSystemFont, Roboto,
+    'Helvetica Neue', Arial, sans-serif;
+  --font-mono: ui-monospace, 'Cascadia Mono', 'Cascadia Code', Consolas, 'SFMono-Regular', Menlo, monospace;
+  --text-xs: 0.75rem;
+  --text-sm: 0.8125rem;
+  --text-base: 0.9375rem;
+  --text-md: 1rem;
+  --text-lg: 1.125rem;
+  --text-xl: 1.375rem;
+  --text-2xl: 1.75rem;
+  --weight-regular: 400;
+  --weight-medium: 500;
+  --weight-semibold: 600;
+  --weight-bold: 700;
+
+  /* Spacing */
+  --spacing-xs: 0.25rem;
+  --spacing-sm: 0.5rem;
+  --spacing-md: 1rem;
+  --spacing-lg: 1.5rem;
+  --spacing-xl: 2rem;
+  --spacing-2xl: 3rem;
+
+  /* Border radius */
+  --radius-sm: 4px;
+  --radius-md: 6px;
+  --border-radius: 0.5rem;
+  --border-radius-lg: 0.75rem;
+
+  /* Transitions */
+  --transition-fast: 0.15s;
+  --transition-normal: 0.25s;
+  --transition-slow: 0.4s;
+
+  /* Shadows (navy tinted, subtle) */
+  --shadow-sm: 0 1px 2px rgba(16, 32, 58, 0.06);
+  --shadow-md: 0 2px 6px rgba(16, 32, 58, 0.08), 0 1px 2px rgba(16, 32, 58, 0.05);
+  --shadow-lg: 0 14px 32px rgba(16, 32, 58, 0.16), 0 2px 6px rgba(16, 32, 58, 0.06);
+
+  /* Focus indicator */
+  --focus-ring: 2px solid var(--color-accent-blue);
+  --focus-offset: 2px;
+
+  /* Layout */
+  --content-max: 1480px;
+  --page-gutter: 1.5rem;
+}
+
+@media (max-width: 768px) {
+  :root {
+    --page-gutter: 1rem;
+  }
+}
+
+@media (max-width: 480px) {
+  :root {
+    --page-gutter: 0.75rem;
+  }
+}
+
+/* Reset & Defaults */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html,
+body,
+#root {
+  width: 100%;
+  min-height: 100%;
+}
+
+body {
+  background-color: var(--color-bg);
+  color: var(--color-text);
+  font-family: var(--font-sans);
+  font-size: var(--text-base);
+  line-height: 1.5;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  /* The page scrolls normally. The old fixed-height body with overflow:hidden forced nested scrollbars. */
+  overflow-x: hidden;
+}
+
+#root {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+}
+
+/* Typography */
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  font-weight: var(--weight-semibold);
+  margin: 0;
+  color: var(--color-text);
+  line-height: 1.3;
+}
+
+p {
+  margin: 0;
+  line-height: 1.6;
+}
+
+/* Links */
+a {
+  color: var(--color-info-text);
+  text-decoration: none;
+  transition: color var(--transition-fast);
+}
+
+a:hover {
+  color: var(--color-accent-blue-hover);
+  text-decoration: underline;
+}
+
+/* Buttons */
+button {
+  font-family: inherit;
+  font-size: inherit;
+  cursor: pointer;
+  transition: background-color var(--transition-fast), border-color var(--transition-fast),
+    color var(--transition-fast), box-shadow var(--transition-fast);
+}
+
+button:disabled {
+  cursor: not-allowed;
+  opacity: 0.5;
+}
+
+/* Form Inputs: borders use the strong border colour so control boundaries meet 3:1 */
+input,
+select,
+textarea {
+  font-family: inherit;
+  font-size: inherit;
+  color: var(--color-text);
+  background-color: var(--color-bg-secondary);
+  border: 1px solid var(--color-border-strong);
+  padding: 0.5rem;
+  border-radius: var(--border-radius);
+  transition: border-color var(--transition-fast), box-shadow var(--transition-fast);
+}
+
+input:hover:not(:disabled),
+select:hover:not(:disabled),
+textarea:hover:not(:disabled) {
+  border-color: var(--color-accent-blue);
+}
+
+input:disabled,
+select:disabled,
+textarea:disabled {
+  opacity: 0.55;
+  cursor: not-allowed;
+}
+
+input[type='checkbox'],
+input[type='radio'] {
+  padding: 0;
+  accent-color: var(--color-accent-blue);
+}
+
+input[type='range'] {
+  padding: 0;
+  accent-color: var(--color-accent-blue);
+}
+
+/* Scrollbar Styling */
+::-webkit-scrollbar {
+  width: 10px;
+  height: 10px;
+}
+
+::-webkit-scrollbar-track {
+  background-color: var(--color-bg-tertiary);
+}
+
+::-webkit-scrollbar-thumb {
+  background-color: var(--color-border-strong);
+  border-radius: 5px;
+  border: 2px solid var(--color-bg-tertiary);
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background-color: var(--color-text-tertiary);
+}
+
+/* Code Blocks */
+
+/*
+  Many component stylesheets declare font-family: 'Courier New', monospace, which renders as a thin
+  serif-like face on Windows. Alias that name to locally installed modern monospace fonts (nothing
+  is downloaded). If none is installed the browser falls back to the generic monospace family.
+*/
+@font-face {
+  font-family: 'Courier New';
+  font-weight: 400;
+  src: local('Cascadia Mono'), local('Consolas'), local('Menlo Regular'), local('Menlo-Regular'),
+    local('DejaVu Sans Mono'), local('Roboto Mono');
+}
+
+@font-face {
+  font-family: 'Courier New';
+  font-weight: 700;
+  src: local('Cascadia Mono Bold'), local('Consolas Bold'), local('Menlo Bold'), local('Menlo-Bold'),
+    local('DejaVu Sans Mono Bold'), local('Roboto Mono Bold');
+}
+code {
+  font-family: var(--font-mono);
+  background-color: var(--color-bg-tertiary);
+  color: var(--color-text);
+  padding: 0.15rem 0.4rem;
+  border-radius: var(--radius-sm);
+  font-size: 0.9em;
+}
+
+pre {
+  background-color: var(--color-bg-tertiary);
+  padding: 1rem;
+  border-radius: var(--border-radius);
+  overflow-x: auto;
+  line-height: 1.4;
+}
+
+pre code {
+  background: none;
+  padding: 0;
+}
+
+/* Lists */
+ul,
+ol {
+  padding-left: 1.5rem;
+}
+
+li {
+  margin: 0.5rem 0;
+}
+
+/*
+  Shared technical-label badges: [DOCUMENTED], [SIMULATION], [SIMPLIFIED MODEL],
+  [PROPRIETARY INTERNAL], [INFERRED]. The label text is always shown, so colour is never
+  the only signal. Text and background pairs are the --label-* tokens (at least 5.4:1).
+*/
+.label-badge {
+  display: inline-block;
+  padding: 0.0625rem 0.5rem;
+  border-radius: var(--radius-sm);
+  font-family: var(--font-sans);
+  font-size: var(--text-xs);
+  font-weight: var(--weight-bold);
+  line-height: 1.5;
+  letter-spacing: 0.02em;
+  white-space: nowrap;
+  vertical-align: baseline;
+  background-color: var(--label-inferred-bg);
+  color: var(--label-inferred-text);
+}
+
+.label-badge.label-documented {
+  background-color: var(--label-documented-bg);
+  color: var(--label-documented-text);
+}
+
+.label-badge.label-simulation {
+  background-color: var(--label-simulation-bg);
+  color: var(--label-simulation-text);
+}
+
+.label-badge.label-simplified {
+  background-color: var(--label-simplified-bg);
+  color: var(--label-simplified-text);
+}
+
+.label-badge.label-proprietary {
+  background-color: var(--label-proprietary-bg);
+  color: var(--label-proprietary-text);
+}
+
+.label-badge.label-inferred {
+  background-color: var(--label-inferred-bg);
+  color: var(--label-inferred-text);
+}
+
+/* Focus Visible (accessibility): one consistent indicator for keyboard users */
+:focus-visible {
+  outline: var(--focus-ring);
+  outline-offset: var(--focus-offset);
+}
+
+/* Selection */
+::selection {
+  background-color: var(--color-accent-blue);
+  color: white;
+}
+
+::-moz-selection {
+  background-color: var(--color-accent-blue);
+  color: white;
+}
+
+/* Reduced Motion Support */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
+
+/* Mobile Responsiveness */
+@media (max-width: 768px) {
+  :root {
+    font-size: 0.95rem;
+  }
+}
+
+@media (max-width: 390px) {
+  :root {
+    font-size: 0.9rem;
+  }
+}
+
+/* Print Styles */
+@media print {
+  body {
+    background: white;
+    color: black;
+  }
+
+  a {
+    text-decoration: underline;
+  }
+
+  button,
+  input,
+  select {
+    display: none;
+  }
+}

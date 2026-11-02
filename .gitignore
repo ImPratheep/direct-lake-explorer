@@ -1,0 +1,83 @@
+# Environment variables
+.env
+.env.local
+.env.*.local
+
+# API keys and credentials
+*.key
+*.pem
+*.pfx
+*.p12
+credentials.json
+secrets.json
+.credentials
+
+# Node modules
+node_modules/
+
+# Dependency lock files - keep tracked
+# package-lock.json
+# yarn.lock
+# pnpm-lock.yaml
+
+# Build output
+dist/
+build/
+out/
+*.tsbuildinfo
+.next/
+
+# IDE and editor
+.vscode/settings.json
+.vscode/launch.json
+.vscode/tasks.json
+.idea/
+*.swp
+*.swo
+*~
+*.sublime-project
+*.sublime-workspace
+
+# OS
+.DS_Store
+Thumbs.db
+*.log
+logs/
+
+# Temporary files and directories
+*.tmp
+tmp/
+temp/
+.temp/
+*.cache
+
+# Local development
+.env.development.local
+.env.test.local
+.local/
+.cache/
+
+# Database files (development/testing only)
+*.db
+*.sqlite
+*.sqlite3
+
+# Generated data
+data/generated/
+**/synthetic-data/
+*.parquet.backup
+
+# IDE Python cache
+__pycache__/
+*.py[cod]
+*$py.class
+.pytest_cache/
+
+# Jupyter Notebook
+.ipynb_checkpoints/
+*.ipynb
+
+# Local test results
+test-results/
+coverage/
+.nyc_output/

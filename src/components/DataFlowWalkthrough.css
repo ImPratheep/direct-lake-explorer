@@ -1,0 +1,345 @@
+/*
+  Query pipeline walkthrough (modal content). Token-based. Every selector is scoped under
+  .data-flow-walkthrough because generic names such as .mode-indicator, .sources-list and
+  .source-link are also used by other components.
+*/
+
+.data-flow-walkthrough {
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-lg);
+  padding: var(--spacing-lg);
+}
+
+.data-flow-walkthrough .walkthrough-header {
+  padding-right: 3rem;
+}
+
+.data-flow-walkthrough .walkthrough-header h2 {
+  font-size: var(--text-xl);
+  font-weight: var(--weight-bold);
+  letter-spacing: -0.01em;
+}
+
+.data-flow-walkthrough .walkthrough-subtitle {
+  margin-top: 0.25rem;
+  font-size: var(--text-sm);
+  color: var(--color-text-secondary);
+}
+
+/* STEPPER: completed phases show a check, the current phase is filled, pending phases are outlined */
+.data-flow-walkthrough .phase-progress {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 1.25rem 1.5rem;
+  padding: var(--spacing-sm) 0;
+}
+
+.data-flow-walkthrough .phase-dot {
+  position: relative;
+  display: grid;
+  place-items: center;
+  width: 38px;
+  height: 38px;
+  padding: 0;
+  background-color: var(--color-bg-secondary);
+  color: var(--color-text-secondary);
+  border: 2px solid var(--color-border-strong);
+  border-radius: 50%;
+  font-size: var(--text-sm);
+  font-weight: var(--weight-bold);
+  cursor: pointer;
+}
+
+.data-flow-walkthrough .phase-dot:not(:last-child)::after {
+  content: '';
+  position: absolute;
+  left: calc(100% + 2px);
+  top: 50%;
+  width: 1.5rem;
+  height: 2px;
+  margin-top: -1px;
+  background-color: var(--color-border-strong);
+}
+
+.data-flow-walkthrough .phase-dot:hover {
+  border-color: var(--color-accent-blue);
+  color: var(--color-accent-blue-hover);
+}
+
+.data-flow-walkthrough .phase-dot.completed {
+  background-color: var(--color-accent-blue-soft);
+  border-color: var(--color-accent-blue);
+  color: var(--color-accent-blue-hover);
+}
+
+.data-flow-walkthrough .phase-dot.completed:not(:last-child)::after {
+  background-color: var(--color-accent-blue);
+}
+
+.data-flow-walkthrough .phase-dot.active {
+  background-color: var(--color-accent-blue);
+  border-color: var(--color-accent-blue);
+  color: var(--color-text-on-accent);
+  box-shadow: 0 0 0 4px var(--color-accent-blue-soft);
+}
+
+/* CONTENT */
+.data-flow-walkthrough .phase-content {
+  display: grid;
+  grid-template-columns: minmax(0, 1.5fr) minmax(0, 1fr);
+  gap: var(--spacing-lg);
+  align-items: start;
+}
+
+.data-flow-walkthrough .phase-info {
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-md);
+  min-width: 0;
+}
+
+.data-flow-walkthrough .phase-name {
+  font-size: var(--text-lg);
+  font-weight: var(--weight-bold);
+}
+
+.data-flow-walkthrough .phase-description {
+  font-size: var(--text-base);
+  color: var(--color-text-secondary);
+}
+
+.data-flow-walkthrough .phase-details {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+  gap: var(--spacing-sm);
+}
+
+.data-flow-walkthrough .detail-section {
+  padding: 0.75rem;
+  background-color: var(--color-bg-tertiary);
+  border: 1px solid var(--color-border);
+  border-radius: var(--border-radius);
+}
+
+.data-flow-walkthrough .detail-section h4,
+.data-flow-walkthrough .phase-sources h4,
+.data-flow-walkthrough .related-components h4 {
+  margin-bottom: 0.375rem;
+  font-size: var(--text-xs);
+  font-weight: var(--weight-bold);
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+  color: var(--color-text-secondary);
+}
+
+.data-flow-walkthrough .detail-list {
+  margin: 0;
+  padding-left: 1.125rem;
+}
+
+.data-flow-walkthrough .detail-list li {
+  margin: 0.25rem 0;
+  font-size: var(--text-sm);
+  line-height: 1.45;
+  color: var(--color-text);
+}
+
+.data-flow-walkthrough .mode-content {
+  padding: 0.75rem 1rem;
+  background-color: var(--color-accent-blue-soft);
+  border-left: 4px solid var(--color-accent-blue);
+  border-radius: var(--border-radius);
+}
+
+.data-flow-walkthrough .mode-indicator {
+  margin-bottom: 0.25rem;
+  font-size: var(--text-xs);
+  font-weight: var(--weight-semibold);
+  color: var(--color-text-secondary);
+}
+
+.data-flow-walkthrough .mode-indicator strong {
+  color: var(--color-info-text);
+}
+
+.data-flow-walkthrough .mode-explanation {
+  font-size: var(--text-base);
+  line-height: 1.6;
+  color: var(--color-text);
+}
+
+.data-flow-walkthrough .sources-list {
+  margin: 0;
+  padding-left: 1.125rem;
+}
+
+.data-flow-walkthrough .sources-list li {
+  margin: 0.25rem 0;
+  font-size: var(--text-sm);
+}
+
+.data-flow-walkthrough .source-link {
+  color: var(--color-info-text);
+  font-weight: var(--weight-medium);
+  text-decoration: underline;
+  text-underline-offset: 2px;
+}
+
+.data-flow-walkthrough .component-tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.375rem;
+}
+
+.data-flow-walkthrough .component-tag {
+  padding: 0.125rem 0.5rem;
+  background-color: var(--color-bg-tertiary);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-sm);
+  font-size: var(--text-xs);
+  font-weight: var(--weight-medium);
+  color: var(--color-text-secondary);
+}
+
+/* CONCEPTUAL DIAGRAM */
+.data-flow-walkthrough .visualization {
+  position: sticky;
+  top: 0;
+}
+
+.data-flow-walkthrough .phase-diagram {
+  padding: var(--spacing-md);
+  background-color: var(--color-bg-tertiary);
+  border: 1px solid var(--color-border);
+  border-radius: var(--border-radius-lg);
+}
+
+.data-flow-walkthrough .diagram-label {
+  margin-bottom: var(--spacing-sm);
+  font-size: var(--text-xs);
+  font-weight: var(--weight-bold);
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+  color: var(--color-text-secondary);
+}
+
+.data-flow-walkthrough .diagram-steps {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  counter-reset: none;
+}
+
+.data-flow-walkthrough .diagram-step {
+  position: relative;
+  display: flex;
+  align-items: center;
+  gap: 0.625rem;
+  margin: 0;
+  padding: 0.625rem 0.75rem;
+  background-color: var(--color-bg-secondary);
+  border: 1px solid var(--color-border-strong);
+  border-radius: var(--border-radius);
+  font-size: var(--text-sm);
+  font-weight: var(--weight-semibold);
+  color: var(--color-text);
+}
+
+.data-flow-walkthrough .diagram-step:not(:last-child)::after {
+  content: '';
+  position: absolute;
+  left: 1.375rem;
+  top: 100%;
+  width: 2px;
+  height: 0.5rem;
+  background-color: var(--color-border-strong);
+}
+
+.data-flow-walkthrough .diagram-step-number {
+  display: grid;
+  place-items: center;
+  flex: none;
+  width: 22px;
+  height: 22px;
+  border-radius: 50%;
+  background-color: var(--color-accent-blue);
+  color: var(--color-text-on-accent);
+  font-size: var(--text-xs);
+  font-weight: var(--weight-bold);
+}
+
+/* CONTROLS */
+.data-flow-walkthrough .walkthrough-controls {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--spacing-md);
+  padding-top: var(--spacing-md);
+  border-top: 1px solid var(--color-border);
+}
+
+.data-flow-walkthrough .nav-button {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.375rem;
+  padding: 0.4375rem 0.875rem;
+  background-color: var(--color-accent-blue);
+  color: var(--color-text-on-accent);
+  border: 1px solid var(--color-accent-blue);
+  border-radius: var(--border-radius);
+  font-size: var(--text-sm);
+  font-weight: var(--weight-semibold);
+  cursor: pointer;
+}
+
+.data-flow-walkthrough .nav-button:hover:not(:disabled) {
+  background-color: var(--color-accent-blue-hover);
+  border-color: var(--color-accent-blue-hover);
+}
+
+.data-flow-walkthrough .nav-button:disabled {
+  background-color: var(--color-bg-tertiary);
+  border-color: var(--color-border-strong);
+  color: var(--color-text-secondary);
+  opacity: 0.7;
+}
+
+.data-flow-walkthrough .phase-counter {
+  font-size: var(--text-sm);
+  font-weight: var(--weight-semibold);
+  color: var(--color-text-secondary);
+}
+
+.data-flow-walkthrough .walkthrough-hints p {
+  font-size: var(--text-xs);
+  color: var(--color-text-tertiary);
+}
+
+/* RESPONSIVE */
+@media (max-width: 768px) {
+  .data-flow-walkthrough {
+    padding: var(--spacing-md);
+    gap: var(--spacing-md);
+  }
+
+  .data-flow-walkthrough .phase-content {
+    grid-template-columns: minmax(0, 1fr);
+  }
+
+  .data-flow-walkthrough .visualization {
+    position: static;
+  }
+
+  .data-flow-walkthrough .phase-progress {
+    gap: 1rem 1.25rem;
+  }
+
+  .data-flow-walkthrough .phase-dot:not(:last-child)::after {
+    width: 1.25rem;
+  }
+}

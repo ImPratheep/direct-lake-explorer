@@ -1,0 +1,304 @@
+.predicate-pushdown-simulator {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+  padding: 20px;
+  background-color: var(--color-bg);
+  border-radius: 8px;
+  color: var(--color-text);
+}
+
+.simulator-header {
+  border-bottom: 1px solid var(--color-border);
+  padding-bottom: 16px;
+}
+
+.simulator-header h2 {
+  margin: 0 0 8px 0;
+  font-size: 24px;
+  font-weight: 600;
+  color: var(--color-text);
+}
+
+.simulator-description {
+  margin: 0;
+  color: var(--color-text-secondary);
+  font-size: 14px;
+}
+
+.simulator-controls {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+  gap: 16px;
+  padding: 16px;
+  background-color: var(--color-bg-secondary);
+  border-radius: 6px;
+  align-items: end;
+}
+
+/* Scoped to this module: App.css uses .control-group for the app header controls. */
+.predicate-pushdown-simulator .control-group {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.predicate-pushdown-simulator .control-group label {
+  font-size: 12px;
+  font-weight: 600;
+  color: var(--color-text-secondary);
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.predicate-pushdown-simulator .control-group select,
+.predicate-pushdown-simulator .control-group input {
+  padding: 8px 12px;
+  border: 1px solid var(--color-border);
+  border-radius: 4px;
+  background-color: var(--color-bg-secondary);
+  color: var(--color-text);
+  font-size: 13px;
+  transition: border-color 0.2s ease;
+}
+
+.predicate-pushdown-simulator .control-group select:focus,
+.predicate-pushdown-simulator .control-group input:focus {
+  outline: none;
+  border-color: var(--color-accent-blue);
+  box-shadow: 0 0 0 2px rgba(31, 119, 180, 0.2);
+}
+
+.simulate-button {
+  padding: 8px 24px;
+  background-color: var(--color-accent-blue);
+  color: #ffffff;
+  border: none;
+  border-radius: 4px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  font-size: 13px;
+}
+
+.simulate-button:hover {
+  background-color: var(--color-accent-blue-hover);
+  box-shadow: var(--shadow-md);
+}
+
+.simulate-button:active {
+  transform: scale(0.98);
+}
+
+.simulator-explanation {
+  display: flex;
+  gap: 12px;
+  padding: 16px;
+  background-color: var(--color-bg-secondary);
+  border-radius: 6px;
+  border-left: 4px solid var(--color-accent-orange);
+}
+
+.info-icon {
+  flex-shrink: 0;
+  color: var(--color-accent-orange);
+  font-size: 20px;
+  margin-top: 2px;
+}
+
+.simulator-explanation h4 {
+  margin: 0 0 8px 0;
+  color: var(--color-text);
+  font-size: 14px;
+}
+
+.simulator-explanation p {
+  margin: 0;
+  color: var(--color-text-secondary);
+  font-size: 13px;
+  line-height: 1.6;
+}
+
+.simulator-results {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.results-summary {
+  background-color: var(--color-bg-secondary);
+  padding: 16px;
+  border-radius: 6px;
+}
+
+.results-summary h4 {
+  margin: 0 0 16px 0;
+  color: var(--color-text);
+  font-size: 14px;
+}
+
+.metrics-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+  gap: 12px;
+  margin-bottom: 16px;
+}
+
+.metric {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  padding: 12px;
+  background-color: var(--color-bg-tertiary);
+  border-radius: 4px;
+  border-left: 3px solid var(--color-accent-blue);
+}
+
+.metric.scanned {
+  border-left-color: var(--color-success);
+}
+
+.metric.skipped {
+  border-left-color: var(--color-danger);
+}
+
+.metric.reduction {
+  border-left-color: var(--color-accent-orange);
+}
+
+.metric-label {
+  font-size: 12px;
+  color: var(--color-text-tertiary);
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.metric-value {
+  font-size: 18px;
+  font-weight: 700;
+  color: var(--color-text);
+}
+
+.row-metrics {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 12px;
+}
+
+.row-metric {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 12px;
+  background-color: var(--color-bg-tertiary);
+  border-radius: 4px;
+  border: 1px solid var(--color-border);
+  color: var(--color-text);
+}
+
+.row-metric.scanned {
+  border-color: var(--color-success);
+  background-color: var(--color-success-bg);
+}
+
+.row-metric.skipped {
+  border-color: var(--color-danger);
+  background-color: var(--color-danger-bg);
+}
+
+.evaluation-details {
+  background-color: var(--color-bg-secondary);
+  padding: 16px;
+  border-radius: 6px;
+}
+
+.evaluation-details h4 {
+  margin: 0 0 12px 0;
+  color: var(--color-text);
+}
+
+.evaluation-table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 12px;
+}
+
+.evaluation-table thead {
+  background-color: var(--color-bg-tertiary);
+  border-bottom: 2px solid var(--color-border);
+}
+
+.evaluation-table th {
+  padding: 10px;
+  text-align: left;
+  color: var(--color-text-secondary);
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  font-weight: 600;
+}
+
+.evaluation-table td {
+  padding: 10px;
+  border-bottom: 1px solid var(--color-border);
+  color: var(--color-text);
+}
+
+.evaluation-table tbody tr.scanned {
+  background-color: var(--color-success-bg);
+}
+
+.evaluation-table tbody tr.eliminated {
+  background-color: var(--color-danger-bg);
+}
+
+.scan-badge {
+  display: inline-block;
+  padding: 2px 8px;
+  background-color: var(--color-success);
+  color: #ffffff;
+  border-radius: 3px;
+  font-weight: 600;
+  font-size: 11px;
+}
+
+.skip-badge {
+  display: inline-block;
+  padding: 2px 8px;
+  background-color: var(--color-danger);
+  color: #ffffff;
+  border-radius: 3px;
+  font-weight: 600;
+  font-size: 11px;
+}
+
+.reason {
+  color: var(--color-text-tertiary);
+  font-style: italic;
+}
+
+.pushdown-concepts {
+  background-color: var(--color-bg-secondary);
+  padding: 16px;
+  border-radius: 6px;
+  border-left: 4px solid var(--color-accent-orange);
+}
+
+.pushdown-concepts h4 {
+  margin: 0 0 12px 0;
+  color: var(--color-accent-orange);
+  font-size: 14px;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.pushdown-concepts ul {
+  margin: 0;
+  padding-left: 20px;
+}
+
+.pushdown-concepts li {
+  margin-bottom: 8px;
+  color: var(--color-text);
+  font-size: 13px;
+  line-height: 1.5;
+}

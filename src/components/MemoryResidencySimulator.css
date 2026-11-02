@@ -1,0 +1,336 @@
+/* Module 7 additions. Shared panels (explorer header, explanation, controls, metric cards,
+   concepts, limitations) come from DictionaryEncodingExplorer.css, scoped under .dictionary-explorer.
+   Every new class here is prefixed memory- and uses existing theme variables only.
+   Residency is always shown as text and a symbol as well as colour. */
+
+.memory-controls-head {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  margin-bottom: 8px;
+}
+
+.memory-controls-title {
+  margin: 0;
+  color: var(--color-text);
+  font-size: 13px;
+}
+
+.memory-controls {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(230px, 1fr));
+  gap: 4px 16px;
+}
+
+.memory-select,
+.memory-input {
+  padding: 8px 10px;
+  background-color: var(--color-bg-secondary);
+  color: var(--color-text);
+  border: 1px solid var(--color-border);
+  border-radius: 4px;
+  font-size: 13px;
+}
+
+.memory-input[aria-invalid='true'] {
+  border-color: var(--color-warning);
+  border-width: 2px;
+}
+
+.memory-button {
+  padding: 6px 14px;
+  background-color: var(--color-accent-blue);
+  color: #ffffff;
+  border: 1px solid var(--color-accent-blue);
+  border-radius: 4px;
+  font-weight: 600;
+  font-size: 12px;
+  cursor: pointer;
+}
+
+.memory-button-secondary {
+  background-color: var(--color-bg-secondary);
+  color: var(--color-text);
+  border-color: var(--color-border);
+}
+
+.memory-button:hover:not(:disabled) {
+  opacity: 0.9;
+}
+
+.memory-button:disabled {
+  cursor: not-allowed;
+  opacity: 0.5;
+}
+
+.memory-select:focus-visible,
+.memory-input:focus-visible,
+.memory-button:focus-visible,
+.memory-explorer .control-group input[type='range']:focus-visible,
+.memory-explorer .memory-table input[type='checkbox']:focus-visible,
+.memory-check input:focus-visible,
+.memory-table-scroll:focus-visible,
+.memory-log:focus-visible,
+.memory-sources a:focus-visible {
+  outline: 2px solid var(--color-accent-blue);
+  outline-offset: 2px;
+}
+
+.memory-explorer .explanation-panel p + p {
+  margin-top: 8px;
+}
+
+.memory-note {
+  margin: 8px 0;
+  font-size: 12px;
+  line-height: 1.5;
+  color: var(--color-text-secondary);
+}
+
+.memory-empty,
+.memory-example-intro,
+.memory-summary,
+.memory-budget-status {
+  margin: 8px 0;
+  color: var(--color-text);
+  font-size: 13px;
+  line-height: 1.5;
+}
+
+.memory-notice {
+  margin: 8px 0;
+  padding: 10px 12px;
+  background-color: var(--color-bg-tertiary);
+  border-left: 4px solid var(--color-warning);
+  border-radius: 4px;
+  color: var(--color-text);
+  font-size: 13px;
+}
+
+.memory-facts {
+  background-color: var(--color-bg-tertiary);
+  padding: 16px;
+  border-radius: 6px;
+  margin-bottom: 12px;
+}
+
+.memory-facts h3,
+.memory-section h3,
+.memory-sources h3 {
+  margin: 0 0 12px 0;
+  color: var(--color-text);
+  font-size: 14px;
+}
+
+.memory-facts dl {
+  display: grid;
+  grid-template-columns: minmax(150px, auto) 1fr;
+  gap: 6px 16px;
+  margin: 0;
+  font-size: 12px;
+}
+
+.memory-facts dt {
+  color: var(--color-text-secondary);
+  font-family: 'Courier New', monospace;
+  font-weight: 700;
+}
+
+.memory-facts dd {
+  margin: 0;
+  color: var(--color-text);
+  line-height: 1.5;
+}
+
+.memory-section {
+  background-color: var(--color-bg-tertiary);
+  padding: 16px;
+  border-radius: 6px;
+  margin-bottom: 12px;
+}
+
+.memory-groups p {
+  margin: 0 0 4px 0;
+  color: var(--color-text);
+  font-size: 13px;
+}
+
+.memory-badge {
+  display: inline-block;
+  padding: 2px 8px;
+  border-radius: 10px;
+  border: 1px solid var(--color-border);
+  background-color: var(--color-bg-secondary);
+  color: var(--color-text);
+  font-size: 12px;
+  font-weight: 600;
+  white-space: nowrap;
+}
+
+.memory-badge-absent {
+  border-style: dashed;
+}
+
+.memory-badge-loading {
+  border-color: var(--color-warning);
+}
+
+.memory-badge-resident {
+  border-color: var(--color-success);
+  border-width: 2px;
+}
+
+.memory-table-scroll {
+  max-height: 420px;
+  overflow: auto;
+  border: 1px solid var(--color-border);
+  border-radius: 4px;
+  margin-bottom: 12px;
+}
+
+.memory-table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 12px;
+  color: var(--color-text);
+}
+
+.memory-table caption {
+  caption-side: top;
+  text-align: left;
+  padding: 8px;
+  color: var(--color-text-secondary);
+}
+
+.memory-table th,
+.memory-table td {
+  padding: 5px 8px;
+  border-bottom: 1px solid var(--color-border);
+  text-align: left;
+  vertical-align: middle;
+  white-space: nowrap;
+}
+
+.memory-table thead th {
+  position: sticky;
+  top: 0;
+  background-color: var(--color-bg-secondary);
+  font-weight: 600;
+}
+
+.memory-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin: 8px 0;
+}
+
+.memory-meter {
+  display: flex;
+  height: 14px;
+  margin: 8px 0;
+  background-color: var(--color-bg-secondary);
+  border: 1px solid var(--color-border);
+  border-radius: 4px;
+  overflow: hidden;
+}
+
+.memory-meter-fill {
+  display: block;
+  background-color: var(--color-success);
+}
+
+.memory-meter-over {
+  background-color: var(--color-warning);
+}
+
+.memory-fieldset {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px 16px;
+  margin: 8px 0;
+  padding: 8px 12px;
+  border: 1px solid var(--color-border);
+  border-radius: 4px;
+  color: var(--color-text);
+  font-size: 13px;
+}
+
+.memory-fieldset legend {
+  padding: 0 6px;
+  color: var(--color-text-secondary);
+  font-size: 12px;
+}
+
+.memory-check {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+}
+
+.memory-plan,
+.memory-result ul {
+  margin: 8px 0;
+  padding-left: 20px;
+}
+
+.memory-plan li,
+.memory-result li,
+.memory-sources li,
+.memory-log li {
+  color: var(--color-text);
+  font-size: 13px;
+  line-height: 1.5;
+  margin-bottom: 4px;
+}
+
+.memory-result {
+  margin-top: 8px;
+  padding: 10px 12px;
+  background-color: var(--color-bg-secondary);
+  border-left: 4px solid var(--color-success);
+  border-radius: 4px;
+}
+
+.memory-result h4 {
+  margin: 0 0 6px 0;
+  color: var(--color-text);
+  font-size: 13px;
+}
+
+.memory-log {
+  max-height: 260px;
+  margin: 0;
+  padding: 8px 8px 8px 28px;
+  overflow: auto;
+  background-color: var(--color-bg-secondary);
+  border: 1px solid var(--color-border);
+  border-radius: 4px;
+}
+
+.memory-log-tick {
+  font-family: 'Courier New', monospace;
+  color: var(--color-text-secondary);
+}
+
+.memory-sources {
+  background-color: var(--color-bg-tertiary);
+  padding: 16px;
+  border-radius: 6px;
+}
+
+.memory-sources ul {
+  margin: 0;
+  padding-left: 20px;
+}
+
+.memory-sources a {
+  color: var(--color-accent-blue);
+}
+
+@media (max-width: 768px) {
+  .memory-facts dl {
+    grid-template-columns: 1fr;
+  }
+}
