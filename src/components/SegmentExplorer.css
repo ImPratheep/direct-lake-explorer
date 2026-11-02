@@ -1,0 +1,229 @@
+/* Module 3 additions. Shared panels (explorer header, explanation, controls, metric cards,
+   concepts, limitations) come from DictionaryEncodingExplorer.css, scoped under .dictionary-explorer.
+   Every new class here is prefixed seg- and uses existing theme variables from App.css only. */
+
+.seg-controls {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(230px, 1fr));
+  gap: 4px 16px;
+}
+
+.seg-select {
+  padding: 8px 10px;
+  background-color: var(--color-bg-secondary);
+  color: var(--color-text);
+  border: 1px solid var(--color-border);
+  border-radius: 4px;
+  font-size: 13px;
+}
+
+.seg-select:focus-visible,
+.seg-explorer .control-group input[type='range']:focus-visible,
+.seg-tile:focus-visible,
+.seg-table-scroll:focus-visible,
+.seg-sources a:focus-visible {
+  outline: 2px solid var(--color-accent-blue);
+  outline-offset: 2px;
+}
+
+.seg-explorer .explanation-panel p + p {
+  margin-top: 8px;
+}
+
+.seg-order-line,
+.seg-empty,
+.seg-lineage {
+  margin: 0 0 12px 0;
+  color: var(--color-text);
+  font-size: 13px;
+  line-height: 1.5;
+}
+
+.seg-section {
+  background-color: var(--color-bg-tertiary);
+  padding: 16px;
+  border-radius: 6px;
+  margin-bottom: 12px;
+}
+
+.seg-section h3,
+.seg-sources h3 {
+  margin: 0 0 12px 0;
+  color: var(--color-text);
+  font-size: 14px;
+}
+
+.seg-strip {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+  gap: 8px;
+}
+
+.seg-tile {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  width: 100%;
+  padding: 10px;
+  text-align: left;
+  font: inherit;
+  font-size: 12px;
+  color: var(--color-text);
+  background-color: var(--color-bg-secondary);
+  border: 1px solid var(--color-border);
+  border-left-width: 4px;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+.seg-tile:hover {
+  background-color: var(--color-bg);
+}
+
+.seg-tile-clear {
+  border-left-color: var(--color-info);
+}
+
+.seg-tile-overlap {
+  border-left-color: var(--color-warning);
+}
+
+.seg-tile-selected {
+  border-color: var(--color-accent-blue);
+  border-left-width: 4px;
+  box-shadow: 0 0 0 2px var(--color-accent-blue);
+}
+
+.seg-tile-title {
+  font-weight: 700;
+  font-size: 13px;
+}
+
+.seg-tile-rows,
+.seg-tile-flag {
+  color: var(--color-text-secondary);
+}
+
+.seg-tile-range {
+  font-family: 'Courier New', monospace;
+  word-break: break-word;
+}
+
+.seg-tile-bar {
+  display: block;
+  height: 6px;
+  background-color: var(--color-bg-tertiary);
+  border: 1px solid var(--color-border);
+  border-radius: 3px;
+  overflow: hidden;
+}
+
+.seg-tile-bar-fill {
+  display: block;
+  height: 100%;
+  background-color: var(--color-info);
+}
+
+.seg-facts {
+  display: grid;
+  grid-template-columns: minmax(180px, auto) 1fr;
+  gap: 6px 16px;
+  margin: 0;
+  font-size: 12px;
+}
+
+.seg-facts dt {
+  color: var(--color-text-secondary);
+}
+
+.seg-facts dd {
+  margin: 0;
+  color: var(--color-text);
+  font-weight: 600;
+  font-family: 'Courier New', monospace;
+}
+
+.seg-table-scroll {
+  max-height: 360px;
+  overflow: auto;
+  border: 1px solid var(--color-border);
+  border-radius: 4px;
+}
+
+.seg-table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 12px;
+  color: var(--color-text);
+}
+
+.seg-table caption {
+  caption-side: top;
+  text-align: left;
+  padding: 8px;
+  color: var(--color-text-secondary);
+}
+
+.seg-table th,
+.seg-table td {
+  padding: 4px 8px;
+  border-bottom: 1px solid var(--color-border);
+  text-align: left;
+  font-family: 'Courier New', monospace;
+  white-space: nowrap;
+}
+
+.seg-table thead th {
+  position: sticky;
+  top: 0;
+  background-color: var(--color-bg-secondary);
+  color: var(--color-text);
+  font-weight: 600;
+}
+
+.seg-table tr[aria-current='true'] th,
+.seg-table tr[aria-current='true'] td {
+  background-color: var(--color-bg-secondary);
+  font-weight: 700;
+}
+
+.seg-insights ul {
+  margin: 0 0 8px 0;
+  padding-left: 20px;
+}
+
+.seg-insights li,
+.seg-sources li {
+  color: var(--color-text);
+  font-size: 13px;
+  line-height: 1.5;
+  margin-bottom: 6px;
+}
+
+.seg-sources {
+  background-color: var(--color-bg-tertiary);
+  padding: 16px;
+  border-radius: 6px;
+}
+
+.seg-sources ul {
+  margin: 0;
+  padding-left: 20px;
+}
+
+.seg-sources a {
+  color: var(--color-accent-blue);
+}
+
+@media (max-width: 768px) {
+  .seg-strip {
+    grid-template-columns: repeat(auto-fill, minmax(130px, 1fr));
+  }
+
+  .seg-facts {
+    grid-template-columns: 1fr;
+  }
+}

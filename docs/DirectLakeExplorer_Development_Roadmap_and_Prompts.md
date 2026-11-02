@@ -28,6 +28,29 @@ Run the stages in order. Review each stage's deliverables before moving
 to the next. Use Opus only when a difficult architectural or debugging
 problem warrants it and the model is available.
 
+### Current progress
+
+Stages 3, 4 and 5 were accepted (see `PROJECT_CHECKPOINT.md`).
+
+**Stage 6 (VertiPaq simulator): all eight modules are implemented**,
+reachable from the application navigation, and covered by automated
+tests (670 passing). **Browser validation is pending, review is pending,
+and Stage 6 is not yet approved.** The final documentation is:
+
+-   [STAGE_6_IMPLEMENTATION_REPORT.md](./STAGE_6_IMPLEMENTATION_REPORT.md)
+-   [STAGE_6_TECHNICAL_VALIDATION.md](./STAGE_6_TECHNICAL_VALIDATION.md)
+-   [STAGE_6_TEST_RESULTS.md](./STAGE_6_TEST_RESULTS.md)
+-   [STAGE_6_COMPLETION_SUMMARY.md](./STAGE_6_COMPLETION_SUMMARY.md)
+-   [STAGE_6_APPROVAL_CHECKLIST.md](./STAGE_6_APPROVAL_CHECKLIST.md)
+
+The index for these is
+[STAGE_6_DOCUMENTATION_INDEX.md](./STAGE_6_DOCUMENTATION_INDEX.md).
+
+**Stage 7 (DAX query execution simulator): not started.** Stage 6
+simulates parts of the Storage Engine's work and Direct Lake column
+loading, and deliberately does not simulate the Formula Engine or
+evaluate DAX.
+
 ## 2. Project-wide instructions
 
 Apply these requirements throughout development:
@@ -447,6 +470,18 @@ Deliverables:
 -   Reproducible examples.
 -   Tests for the simulator's own algorithms.
 -   Documentation of assumptions and limitations.
+
+**Implementation status (added after Stage 6 was built):** all eight
+modules are implemented (Dictionary Encoding, Value vs Hash Encoding,
+Segment Explorer, Segment Elimination, Column Compression, Direct Lake
+Column Loading, Memory Residency and Eviction, Storage Engine Scan).
+Differences from this prompt: the scope grew from the eleven topics
+above to eight modules that also cover column loading, memory and a
+Storage Engine scan; columnar storage is explained in text only; and the
+synthetic dataset has five fixed columns, so the column count is not
+configurable. See
+[STAGE_6_COMPLETION_SUMMARY.md](./STAGE_6_COMPLETION_SUMMARY.md). Browser
+validation and approval are pending.
 
 ------------------------------------------------------------------------
 

@@ -1,0 +1,402 @@
+/* Module 6 additions. Shared panels (explorer header, explanation, controls, metric cards,
+   concepts, limitations) come from DictionaryEncodingExplorer.css, scoped under .dictionary-explorer.
+   Every new class here is prefixed loading- and uses existing theme variables only.
+   State is always shown as text and a symbol as well as colour. */
+
+.loading-controls-head {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  margin-bottom: 8px;
+}
+
+.loading-controls-title {
+  margin: 0;
+  color: var(--color-text);
+  font-size: 13px;
+}
+
+.loading-controls {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(230px, 1fr));
+  gap: 4px 16px;
+}
+
+.loading-select {
+  padding: 8px 10px;
+  background-color: var(--color-bg-secondary);
+  color: var(--color-text);
+  border: 1px solid var(--color-border);
+  border-radius: 4px;
+  font-size: 13px;
+}
+
+.loading-button {
+  padding: 6px 14px;
+  background-color: var(--color-accent-blue);
+  color: #ffffff;
+  border: 1px solid var(--color-accent-blue);
+  border-radius: 4px;
+  font-weight: 600;
+  font-size: 12px;
+  cursor: pointer;
+}
+
+.loading-button-secondary {
+  background-color: var(--color-bg-secondary);
+  color: var(--color-text);
+  border-color: var(--color-border);
+}
+
+.loading-button:hover:not(:disabled) {
+  opacity: 0.9;
+}
+
+.loading-button:disabled {
+  cursor: not-allowed;
+  opacity: 0.5;
+}
+
+.loading-select:focus-visible,
+.loading-button:focus-visible,
+.loading-flow-stage:focus-visible,
+.loading-explorer .control-group input[type='range']:focus-visible,
+.loading-explorer .loading-table input[type='checkbox']:focus-visible,
+.loading-check input:focus-visible,
+.loading-table-scroll:focus-visible,
+.loading-log:focus-visible,
+.loading-sources a:focus-visible {
+  outline: 2px solid var(--color-accent-blue);
+  outline-offset: 2px;
+}
+
+.loading-explorer .explanation-panel p + p {
+  margin-top: 8px;
+}
+
+.loading-note {
+  margin: 8px 0;
+  font-size: 12px;
+  line-height: 1.5;
+  color: var(--color-text-secondary);
+}
+
+.loading-empty,
+.loading-example-intro {
+  margin: 8px 0;
+  color: var(--color-text);
+  font-size: 13px;
+  line-height: 1.5;
+}
+
+.loading-notice {
+  margin: 8px 0;
+  padding: 10px 12px;
+  background-color: var(--color-bg-tertiary);
+  border-left: 4px solid var(--color-warning);
+  border-radius: 4px;
+  color: var(--color-text);
+  font-size: 13px;
+}
+
+.loading-section {
+  background-color: var(--color-bg-tertiary);
+  padding: 16px;
+  border-radius: 6px;
+  margin-bottom: 12px;
+}
+
+.loading-section h3,
+.loading-sources h3 {
+  margin: 0 0 12px 0;
+  color: var(--color-text);
+  font-size: 14px;
+}
+
+/* Conceptual flow */
+.loading-flow {
+  display: grid;
+  grid-template-columns: repeat(6, minmax(110px, 1fr));
+  gap: 8px;
+  margin: 0 0 12px 0;
+  padding: 0;
+  list-style: none;
+  overflow-x: auto;
+  max-width: 100%;
+  min-width: 0;
+}
+
+.loading-flow-item {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  position: relative;
+}
+
+.loading-flow-item:not(:last-child) .loading-flow-stage::after {
+  content: '→';
+  position: absolute;
+  top: 12px;
+  right: -9px;
+  color: var(--color-text-secondary);
+  font-weight: 700;
+}
+
+.loading-flow-stage {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  min-height: 84px;
+  padding: 8px;
+  text-align: left;
+  background-color: var(--color-bg-secondary);
+  color: var(--color-text);
+  border: 1px solid var(--color-border);
+  border-radius: 6px;
+  cursor: pointer;
+}
+
+.loading-flow-stage-active {
+  border: 2px solid var(--color-accent-blue);
+  padding: 7px;
+}
+
+.loading-flow-number {
+  font-family: 'Courier New', monospace;
+  font-size: 11px;
+  color: var(--color-text-secondary);
+}
+
+.loading-flow-label {
+  font-size: 13px;
+  font-weight: 700;
+}
+
+.loading-flow-summary {
+  font-size: 11px;
+  line-height: 1.4;
+  color: var(--color-text-secondary);
+}
+
+.loading-flow-columns {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  min-height: 24px;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.loading-chip,
+.loading-badge {
+  display: inline-block;
+  padding: 2px 8px;
+  border-radius: 10px;
+  border: 1px solid var(--color-border);
+  background-color: var(--color-bg-secondary);
+  color: var(--color-text);
+  font-size: 12px;
+  font-weight: 600;
+  white-space: nowrap;
+}
+
+.loading-badge-unloaded {
+  border-style: dashed;
+}
+
+.loading-badge-loading {
+  border-color: var(--color-warning);
+}
+
+.loading-badge-loaded {
+  border-color: var(--color-success);
+  border-width: 2px;
+}
+
+.loading-stage-detail {
+  padding: 10px 12px;
+  background-color: var(--color-bg-secondary);
+  border-radius: 4px;
+}
+
+.loading-stage-detail h4 {
+  margin: 0 0 6px 0;
+  color: var(--color-text);
+  font-size: 13px;
+}
+
+.loading-stage-detail p {
+  margin: 0 0 6px 0;
+  color: var(--color-text);
+  font-size: 12px;
+  line-height: 1.5;
+}
+
+/* Tables */
+.loading-table-scroll {
+  max-height: 420px;
+  overflow: auto;
+  border: 1px solid var(--color-border);
+  border-radius: 4px;
+  margin-bottom: 12px;
+}
+
+.loading-table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 12px;
+  color: var(--color-text);
+}
+
+.loading-table caption {
+  caption-side: top;
+  text-align: left;
+  padding: 8px;
+  color: var(--color-text-secondary);
+}
+
+.loading-table th,
+.loading-table td {
+  padding: 5px 8px;
+  border-bottom: 1px solid var(--color-border);
+  text-align: left;
+  vertical-align: middle;
+  white-space: nowrap;
+}
+
+.loading-table thead th {
+  position: sticky;
+  top: 0;
+  background-color: var(--color-bg-secondary);
+  font-weight: 600;
+}
+
+.loading-progress {
+  display: block;
+  width: 120px;
+  height: 8px;
+  margin-top: 4px;
+}
+
+.loading-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin: 8px 0;
+}
+
+/* Memory meter */
+.loading-meter {
+  display: flex;
+  height: 14px;
+  margin: 8px 0;
+  background-color: var(--color-bg-secondary);
+  border: 1px solid var(--color-border);
+  border-radius: 4px;
+  overflow: hidden;
+}
+
+.loading-meter-resident {
+  display: block;
+  background-color: var(--color-success);
+}
+
+.loading-meter-progress {
+  display: block;
+  background-color: var(--color-warning);
+}
+
+/* Query */
+.loading-fieldset {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px 16px;
+  margin: 0 0 12px 0;
+  padding: 8px 12px;
+  border: 1px solid var(--color-border);
+  border-radius: 4px;
+  color: var(--color-text);
+  font-size: 13px;
+}
+
+.loading-fieldset legend {
+  padding: 0 6px;
+  color: var(--color-text-secondary);
+  font-size: 12px;
+}
+
+.loading-check {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+}
+
+.loading-plan,
+.loading-result ul {
+  margin: 8px 0;
+  padding-left: 20px;
+}
+
+.loading-plan li,
+.loading-result li,
+.loading-sources li,
+.loading-log li {
+  color: var(--color-text);
+  font-size: 13px;
+  line-height: 1.5;
+  margin-bottom: 4px;
+}
+
+.loading-result {
+  margin-top: 8px;
+  padding: 10px 12px;
+  background-color: var(--color-bg-secondary);
+  border-left: 4px solid var(--color-success);
+  border-radius: 4px;
+}
+
+.loading-result h4 {
+  margin: 0 0 6px 0;
+  color: var(--color-text);
+  font-size: 13px;
+}
+
+/* Event log */
+.loading-log {
+  max-height: 260px;
+  margin: 0;
+  padding: 8px 8px 8px 28px;
+  overflow: auto;
+  background-color: var(--color-bg-secondary);
+  border: 1px solid var(--color-border);
+  border-radius: 4px;
+}
+
+.loading-log-tick {
+  font-family: 'Courier New', monospace;
+  color: var(--color-text-secondary);
+}
+
+.loading-sources {
+  background-color: var(--color-bg-tertiary);
+  padding: 16px;
+  border-radius: 6px;
+}
+
+.loading-sources ul {
+  margin: 0;
+  padding-left: 20px;
+}
+
+.loading-sources a {
+  color: var(--color-accent-blue);
+}
+
+@media (max-width: 768px) {
+  .loading-flow {
+    grid-template-columns: repeat(6, 130px);
+  }
+}

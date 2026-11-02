@@ -1,87 +1,71 @@
 import React, { useState } from 'react';
 import { ExplanationMode } from '../types';
 import DictionaryEncodingExplorer from './DictionaryEncodingExplorer';
+import ValueHashEncodingSimulator from './ValueHashEncodingSimulator';
+import SegmentExplorer from './SegmentExplorer';
+import SegmentEliminationSimulator from './SegmentEliminationSimulator';
+import ColumnCompressionExplorer from './ColumnCompressionExplorer';
+import DirectLakeLoadingSimulator from './DirectLakeLoadingSimulator';
+import MemoryResidencySimulator from './MemoryResidencySimulator';
+import StorageEngineScanSimulator from './StorageEngineScanSimulator';
+import Icon from './Icon';
 import './VertiPaqSimulator.css';
 
 interface VertiPaqSimulatorProps {
   explanationMode: ExplanationMode;
+  /** Optional tab to show first (used when another page links to a specific module). */
+  initialModule?: string;
 }
 
-const VertiPaqSimulator: React.FC<VertiPaqSimulatorProps> = ({ explanationMode }) => {
-  const [activeModule, setActiveModule] = useState<string>('dictionary');
+const VertiPaqSimulator: React.FC<VertiPaqSimulatorProps> = ({ explanationMode, initialModule }) => {
+  const [activeModule, setActiveModule] = useState<string>(initialModule ?? 'dictionary');
 
   const modules = [
-    { id: 'dictionary', name: '📚 Dictionary Encoding', icon: '📚' },
-    { id: 'encoding', name: '🔄 Value vs Hash Encoding', icon: '🔄' },
-    { id: 'segment', name: '📊 Segment Explorer', icon: '📊' },
-    { id: 'elimination', name: '🔍 Segment Elimination', icon: '🔍' },
-    { id: 'compression', name: '📦 Column Compression', icon: '📦' },
-    { id: 'loading', name: '⬆️ Direct Lake Loading', icon: '⬆️' },
-    { id: 'memory', name: '💾 Memory Residency', icon: '💾' },
-    { id: 'storage', name: '⚙️ Storage Engine Scan', icon: '⚙️' },
-  ];
+    { id: 'dictionary', name: '📚 Dictionary Encoding', label: 'Dictionary Encoding', icon: 'dictionary' },
+    { id: 'encoding', name: '🔄 Value vs Hash Encoding', label: 'Value vs Hash Encoding', icon: 'encoding' },
+    { id: 'segment', name: '📊 Segment Explorer', label: 'Segment Explorer', icon: 'segment' },
+    { id: 'elimination', name: '🔍 Segment Elimination', label: 'Segment Elimination', icon: 'elimination' },
+    { id: 'compression', name: '📦 Column Compression', label: 'Column Compression', icon: 'compression' },
+    { id: 'loading', name: '⬆️ Direct Lake Loading', label: 'Direct Lake Loading', icon: 'loading' },
+    { id: 'memory', name: '💾 Memory Residency', label: 'Memory Residency', icon: 'memory' },
+    { id: 'storage', name: '⚙️ Storage Engine Scan', label: 'Storage Engine Scan', icon: 'scan' },
+  ] as const;
 
   return (
     <div className="vertipaq-simulator">
       <header className="simulator-header">
-        <h1>VertiPaq Simulator</h1>
+        <h2>VertiPaq Simulator</h2>
         <p className="simulator-subtitle">
           Learn how Microsoft Fabric Direct Lake uses VertiPaq storage internals for fast query execution
         </p>
       </header>
 
-      <div className="modules-nav">
+      <div className="modules-nav" role="group" aria-label="VertiPaq simulator modules">
         {modules.map((module) => (
           <button
             key={module.id}
+            type="button"
             className={`module-tab ${activeModule === module.id ? 'active' : ''}`}
             onClick={() => setActiveModule(module.id)}
             title={module.name}
+            aria-pressed={activeModule === module.id}
           >
-            <span className="module-icon">{module.icon}</span>
-            <span className="module-label">{module.name}</span>
+            <Icon name={module.icon} size={16} className="module-icon" />
+            <span className="module-label">{module.label}</span>
           </button>
         ))}
       </div>
 
-      <main className="module-content">
+      <div className="module-content">
         {activeModule === 'dictionary' && <DictionaryEncodingExplorer explanationMode={explanationMode} />}
-        {activeModule === 'encoding' && (
-          <div className="placeholder-module">
-            <p>Value vs Hash Encoding Simulator - Coming Soon</p>
-          </div>
-        )}
-        {activeModule === 'segment' && (
-          <div className="placeholder-module">
-            <p>Segment Explorer - Coming Soon</p>
-          </div>
-        )}
-        {activeModule === 'elimination' && (
-          <div className="placeholder-module">
-            <p>Segment Elimination Simulator - Coming Soon</p>
-          </div>
-        )}
-        {activeModule === 'compression' && (
-          <div className="placeholder-module">
-            <p>Column Compression Explorer - Coming Soon</p>
-          </div>
-        )}
-        {activeModule === 'loading' && (
-          <div className="placeholder-module">
-            <p>Direct Lake Column Loading Simulator - Coming Soon</p>
-          </div>
-        )}
-        {activeModule === 'memory' && (
-          <div className="placeholder-module">
-            <p>Memory Residency and Eviction Simulator - Coming Soon</p>
-          </div>
-        )}
-        {activeModule === 'storage' && (
-          <div className="placeholder-module">
-            <p>Storage Engine Scan Simulator - Coming Soon</p>
-          </div>
-        )}
-      </main>
+        {activeModule === 'encoding' && <ValueHashEncodingSimulator explanationMode={explanationMode} />}
+        {activeModule === 'segment' && <SegmentExplorer explanationMode={explanationMode} />}
+        {activeModule === 'elimination' && <SegmentEliminationSimulator explanationMode={explanationMode} />}
+        {activeModule === 'compression' && <ColumnCompressionExplorer explanationMode={explanationMode} />}
+        {activeModule === 'loading' && <DirectLakeLoadingSimulator explanationMode={explanationMode} />}
+        {activeModule === 'memory' && <MemoryResidencySimulator explanationMode={explanationMode} />}
+        {activeModule === 'storage' && <StorageEngineScanSimulator explanationMode={explanationMode} />}
+      </div>
 
       <footer className="simulator-footer">
         <p>

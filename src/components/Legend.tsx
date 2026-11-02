@@ -1,4 +1,5 @@
 import React from 'react';
+import Icon from './Icon';
 import './Legend.css';
 
 const Legend: React.FC = () => {
@@ -62,12 +63,15 @@ const Legend: React.FC = () => {
       </section>
 
       <section className="legend-section">
-        <h3>Architectural Layers</h3>
-        <p className="section-description">Direct Lake Explorer organizes components into 5 layers:</p>
+        <h3>Architectural Areas</h3>
+        <p className="section-description">
+          Direct Lake Explorer groups components into five conceptual areas. They are a teaching organization, not five
+          independent physical layers:
+        </p>
 
         <div className="layers-guide">
           <div className="layer-item storage-layer">
-            <h4>🗄️ Storage Layer</h4>
+            <h4>Storage</h4>
             <p>
               The data foundation: OneLake, Lakehouse, Delta Lake, and Parquet files. This is where
               data physically resides.
@@ -75,7 +79,7 @@ const Legend: React.FC = () => {
           </div>
 
           <div className="layer-item semantic-layer">
-            <h4>🔗 Semantic Layer</h4>
+            <h4>Semantic</h4>
             <p>
               The Direct Lake semantic model configuration that maps storage data to business
               concepts and measures.
@@ -83,7 +87,7 @@ const Legend: React.FC = () => {
           </div>
 
           <div className="layer-item vertipaq-layer">
-            <h4>💫 VertiPaq Layer</h4>
+            <h4>VertiPaq</h4>
             <p>
               The in-memory columnar engine that loads and manages data: framing, column loading,
               encoding, and compression.
@@ -91,7 +95,7 @@ const Legend: React.FC = () => {
           </div>
 
           <div className="layer-item query-layer">
-            <h4>🔍 Query Layer</h4>
+            <h4>Query</h4>
             <p>
               Query execution engines: Formula Engine (calculations), Storage Engine (data access),
               and xmSQL (internal query language).
@@ -99,7 +103,7 @@ const Legend: React.FC = () => {
           </div>
 
           <div className="layer-item memory-layer">
-            <h4>💾 Memory Layer</h4>
+            <h4>Memory</h4>
             <p>
               Memory management: column residency, caching strategies, and cache eviction policies.
             </p>
@@ -166,7 +170,7 @@ const Legend: React.FC = () => {
         <h3>Important Disclaimers</h3>
         <div className="disclaimers">
           <div className="disclaimer-item">
-            <span className="disclaimer-icon">⚠️</span>
+            <span className="disclaimer-icon" aria-hidden="true"><Icon name="info" size={18} /></span>
             <p>
               <strong>This is an Educational Simulation:</strong> This application is a
               conceptual visualization and learning tool. It does NOT implement actual Microsoft
@@ -176,7 +180,7 @@ const Legend: React.FC = () => {
           </div>
 
           <div className="disclaimer-item">
-            <span className="disclaimer-icon">🔒</span>
+            <span className="disclaimer-icon" aria-hidden="true"><Icon name="info" size={18} /></span>
             <p>
               <strong>Local-Only Operation:</strong> This application runs entirely on your local
               machine. No data is sent to Microsoft or external services. No Fabric account is
@@ -185,7 +189,7 @@ const Legend: React.FC = () => {
           </div>
 
           <div className="disclaimer-item">
-            <span className="disclaimer-icon">📊</span>
+            <span className="disclaimer-icon" aria-hidden="true"><Icon name="info" size={18} /></span>
             <p>
               <strong>Synthetic Data:</strong> All data in this application is synthetic and
               created for demonstration purposes. It does not represent actual Fabric data or
@@ -194,7 +198,7 @@ const Legend: React.FC = () => {
           </div>
 
           <div className="disclaimer-item">
-            <span className="disclaimer-icon">📚</span>
+            <span className="disclaimer-icon" aria-hidden="true"><Icon name="info" size={18} /></span>
             <p>
               <strong>For Accurate Documentation:</strong> Refer to official Microsoft Learn
               articles and documentation. Links to authoritative sources are provided for each

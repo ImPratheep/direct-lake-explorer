@@ -36,13 +36,14 @@
   align-items: end;
 }
 
-.control-group {
+/* Scoped to this module: App.css uses .control-group for the app header controls. */
+.predicate-pushdown-simulator .control-group {
   display: flex;
   flex-direction: column;
   gap: 8px;
 }
 
-.control-group label {
+.predicate-pushdown-simulator .control-group label {
   font-size: 12px;
   font-weight: 600;
   color: var(--color-text-secondary);
@@ -50,8 +51,8 @@
   letter-spacing: 0.5px;
 }
 
-.control-group select,
-.control-group input {
+.predicate-pushdown-simulator .control-group select,
+.predicate-pushdown-simulator .control-group input {
   padding: 8px 12px;
   border: 1px solid var(--color-border);
   border-radius: 4px;
@@ -61,8 +62,8 @@
   transition: border-color 0.2s ease;
 }
 
-.control-group select:focus,
-.control-group input:focus {
+.predicate-pushdown-simulator .control-group select:focus,
+.predicate-pushdown-simulator .control-group input:focus {
   outline: none;
   border-color: var(--color-accent-blue);
   box-shadow: 0 0 0 2px rgba(31, 119, 180, 0.2);
@@ -81,8 +82,8 @@
 }
 
 .simulate-button:hover {
-  background-color: #1a5fa0;
-  box-shadow: 0 2px 8px rgba(31, 119, 180, 0.3);
+  background-color: var(--color-accent-blue-hover);
+  box-shadow: var(--shadow-md);
 }
 
 .simulate-button:active {
@@ -197,12 +198,12 @@
 
 .row-metric.scanned {
   border-color: var(--color-success);
-  background-color: rgba(16, 185, 129, 0.05);
+  background-color: var(--color-success-bg);
 }
 
 .row-metric.skipped {
   border-color: var(--color-danger);
-  background-color: rgba(239, 68, 68, 0.05);
+  background-color: var(--color-danger-bg);
 }
 
 .evaluation-details {
@@ -243,11 +244,11 @@
 }
 
 .evaluation-table tbody tr.scanned {
-  background-color: rgba(16, 185, 129, 0.05);
+  background-color: var(--color-success-bg);
 }
 
 .evaluation-table tbody tr.eliminated {
-  background-color: rgba(239, 68, 68, 0.05);
+  background-color: var(--color-danger-bg);
 }
 
 .scan-badge {

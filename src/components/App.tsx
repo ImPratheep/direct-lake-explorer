@@ -1,4 +1,4 @@
-import React, { useState, useCallback } from 'react';
+import React, { useState, useCallback, useEffect, useRef } from 'react';
 import './App.css';
 import { ExplanationMode, ApplicationState } from '../types';
 import { getArchitectureComponents, getQueryPhases, generateSyntheticDeltaLog, generateSyntheticParquetFile } from '../data';
@@ -12,6 +12,74 @@ import PredicatePushdownSimulator from './PredicatePushdownSimulator';
 import PartitioningExplorer from './PartitioningExplorer';
 import SchemaEvolutionExplorer from './SchemaEvolutionExplorer';
 import VertiPaqSimulator from './VertiPaqSimulator';
+import Icon, { IconName } from './Icon';
+
+const NAV_ITEMS: Array<{ id: string; label: string; title: string; icon: IconName }> = [
+  { id: 'architecture', label: 'Architecture', title: 'Architecture Overview', icon: 'architecture' },
+  { id: 'deltaLake', label: 'Delta Lake', title: 'Delta Lake Explorer', icon: 'deltaLake' },
+  { id: 'parquet', label: 'Parquet', title: 'Parquet Explorer', icon: 'parquet' },
+  { id: 'predicatePushdown', label: 'Pushdown', title: 'Predicate Pushdown Simulator', icon: 'pushdown' },
+  { id: 'partitioning', label: 'Partitions', title: 'Partitioning Explorer', icon: 'partitions' },
+  { id: 'schemaEvolution', label: 'Schema', title: 'Schema Evolution Explorer', icon: 'schema' },
+  { id: 'vertipaq', label: 'VertiPaq', title: 'VertiPaq Simulator', icon: 'vertipaq' },
+];
+
+interface ModalProps {
+  label: string;
+  onClose: () => void;
+  className?: string;
+  children: React.ReactNode;
+}
+
+/** Accessible modal: labelled dialog, focus moves in on open, Tab stays inside, focus returns on close. */
+const Modal: React.FC<ModalProps> = ({ label, onClose, className, children }) => {
+  const dialogRef = useRef<HTMLDivElement>(null);
+  const closeRef = useRef<HTMLButtonElement>(null);
+
+  useEffect(() => {
+    const previous = document.activeElement as HTMLElement | null;
+    closeRef.current?.focus();
+    return () => {
+      previous?.focus?.();
+    };
+  }, []);
+
+  const keepFocusInside = (event: React.KeyboardEvent): void => {
+    if (event.key !== 'Tab' || !dialogRef.current) return;
+    const focusable = Array.from(
+      dialogRef.current.querySelectorAll<HTMLElement>('a[href], button:not(:disabled), input:not(:disabled), select:not(:disabled), [tabindex]:not([tabindex="-1"])'),
+    );
+    if (focusable.length === 0) return;
+    const first = focusable[0];
+    const last = focusable[focusable.length - 1];
+    if (event.shiftKey && document.activeElement === first) {
+      last.focus();
+      event.preventDefault();
+    } else if (!event.shiftKey && document.activeElement === last) {
+      first.focus();
+      event.preventDefault();
+    }
+  };
+
+  return (
+    <div className="modal-overlay" onClick={onClose}>
+      <div
+        ref={dialogRef}
+        className={`modal-content${className ? ` ${className}` : ''}`}
+        role="dialog"
+        aria-modal="true"
+        aria-label={label}
+        onClick={(e) => e.stopPropagation()}
+        onKeyDown={keepFocusInside}
+      >
+        <button ref={closeRef} className="modal-close" onClick={onClose} aria-label={`Close ${label.toLowerCase()}`}>
+          <Icon name="close" size={16} />
+        </button>
+        {children}
+      </div>
+    </div>
+  );
+};
 
 const App: React.FC = () => {
   const [state, setState] = useState<ApplicationState>({
@@ -23,6 +91,8 @@ const App: React.FC = () => {
     hoveredComponentId: null,
     activeModule: 'architecture',
   });
+
+  const [vertipaqStart, setVertipaqStart] = useState<string | undefined>(undefined);
 
   const components = getArchitectureComponents();
   const queryPhases = getQueryPhases();
@@ -80,6 +150,16 @@ const App: React.FC = () => {
     }));
   }, []);
 
+  /** Opens a learning module from the Architecture Explorer, optionally a specific VertiPaq tab. */
+  const openLearningModule = useCallback(
+    (module: string, vertipaqTab?: string) => {
+      setVertipaqStart(module === 'vertipaq' ? vertipaqTab : undefined);
+      handleModuleChange(module);
+      window.scrollTo({ top: 0 });
+    },
+    [handleModuleChange],
+  );
+
   const handleKeyDown = useCallback(
     (event: React.KeyboardEvent) => {
       switch (event.key) {
@@ -125,135 +205,122 @@ const App: React.FC = () => {
   );
 
   return (
-    <div className="app" onKeyDown={handleKeyDown} tabIndex={0} role="application">
-      <header className="app-header">
-        <h1>Microsoft Fabric Direct Lake Explorer</h1>
-        <p className="subtitle">Interactive visualization of Direct Lake with Delta Lake and Parquet storage</p>
-      </header>
+    <div className="app" onKeyDown={handleKeyDown} tabIndex={-1}>
+      <div className="app-chrome">
+        <header className="app-brandbar">
+          <div className="app-brand">
+            <span className="app-brand-mark" aria-hidden="true">
+              <Icon name="vertipaq" size={20} />
+            </span>
+            <div className="app-title">
+              <h1>Microsoft Fabric Direct Lake Explorer</h1>
+              <p className="subtitle">Interactive visualization of Direct Lake with Delta Lake and Parquet storage</p>
+            </div>
+          </div>
 
-      <nav className="app-controls">
-        <div className="module-selector">
-          <button
-            className={`module-button ${state.activeModule === 'architecture' ? 'active' : ''}`}
-            onClick={() => handleModuleChange('architecture')}
-            title="Architecture Overview"
-          >
-            🏗️ Architecture
-          </button>
-          <button
-            className={`module-button ${state.activeModule === 'deltaLake' ? 'active' : ''}`}
-            onClick={() => handleModuleChange('deltaLake')}
-            title="Delta Lake Explorer"
-          >
-            📜 Delta Lake
-          </button>
-          <button
-            className={`module-button ${state.activeModule === 'parquet' ? 'active' : ''}`}
-            onClick={() => handleModuleChange('parquet')}
-            title="Parquet Explorer"
-          >
-            📦 Parquet
-          </button>
-          <button
-            className={`module-button ${state.activeModule === 'predicatePushdown' ? 'active' : ''}`}
-            onClick={() => handleModuleChange('predicatePushdown')}
-            title="Predicate Pushdown Simulator"
-          >
-            🔍 Pushdown
-          </button>
-          <button
-            className={`module-button ${state.activeModule === 'partitioning' ? 'active' : ''}`}
-            onClick={() => handleModuleChange('partitioning')}
-            title="Partitioning Explorer"
-          >
-            📂 Partitions
-          </button>
-          <button
-            className={`module-button ${state.activeModule === 'schemaEvolution' ? 'active' : ''}`}
-            onClick={() => handleModuleChange('schemaEvolution')}
-            title="Schema Evolution Explorer"
-          >
-            📋 Schema
-          </button>
-          <button
-            className={`module-button ${state.activeModule === 'vertipaq' ? 'active' : ''}`}
-            onClick={() => handleModuleChange('vertipaq')}
-            title="VertiPaq Simulator"
-          >
-            ⚙️ VertiPaq
-          </button>
-        </div>
-
-        <div className="control-group">
-          <label htmlFor="mode-selector">Explanation Mode:</label>
-          <select
-            id="mode-selector"
-            value={state.explanationMode}
-            onChange={(e) => handleExplanationModeChange(e.target.value as ExplanationMode)}
-            className="mode-selector"
-          >
-            <option value="beginner">Beginner</option>
-            <option value="intermediate">Intermediate</option>
-            <option value="advanced">Advanced</option>
-          </select>
-        </div>
-
-        {state.activeModule === 'architecture' && (
-          <>
+          <div className="app-brandbar-actions">
             <div className="control-group">
-              <button
-                className={`toggle-button ${state.showQueryWalkthrough ? 'active' : ''}`}
-                onClick={toggleQueryWalkthrough}
-                aria-pressed={state.showQueryWalkthrough}
-                title="Ctrl+W: Show query execution pipeline"
+              <label htmlFor="mode-selector">Explanation mode</label>
+              <select
+                id="mode-selector"
+                value={state.explanationMode}
+                onChange={(e) => handleExplanationModeChange(e.target.value as ExplanationMode)}
+                className="mode-selector"
               >
-                📊 Query Pipeline
-              </button>
+                <option value="beginner">Beginner</option>
+                <option value="intermediate">Intermediate</option>
+                <option value="advanced">Advanced</option>
+              </select>
             </div>
+          </div>
+        </header>
 
-            <div className="control-group">
+        <nav className="app-controls" aria-label="Main sections">
+          <div className="module-selector">
+            {NAV_ITEMS.map((item) => (
               <button
-                className={`toggle-button ${state.showLegend ? 'active' : ''}`}
-                onClick={toggleLegend}
-                aria-pressed={state.showLegend}
-                title="Ctrl+H: Show documentation legend"
+                key={item.id}
+                className={`module-button ${state.activeModule === item.id ? 'active' : ''}`}
+                onClick={() => handleModuleChange(item.id)}
+                title={item.title}
+                aria-current={state.activeModule === item.id ? 'page' : undefined}
               >
-                📋 Legend
+                <Icon name={item.icon} size={16} />
+                {item.label}
               </button>
-            </div>
+            ))}
+          </div>
+        </nav>
 
-            <div className="control-group info">
-              <span>{components.length} components • {queryPhases.length}-phase pipeline</span>
-            </div>
-          </>
-        )}
-      </nav>
+      </div>
 
-      <main className="app-main">
+      <main className={`app-main${state.activeModule === 'architecture' && selectedComponent ? ' has-open-details' : ''}`}>
         {state.activeModule === 'architecture' && (
           <>
             <div className="explorer-section">
+              <div className="page-toolbar">
+                <div className="page-toolbar-text">
+                  <h2>Architecture overview</h2>
+                  <p>
+                    Select a component to read what it does, how it connects and where it is documented. The five
+                    areas below group components for learning; they are a conceptual organization, not five
+                    independent physical layers.
+                  </p>
+                </div>
+                <div className="page-toolbar-actions">
+                  <span className="meta-chip">
+                    {components.length} components • {queryPhases.length}-phase pipeline
+                  </span>
+                  <button
+                    className={`toggle-button ${state.showQueryWalkthrough ? 'active' : ''}`}
+                    onClick={toggleQueryWalkthrough}
+                    aria-pressed={state.showQueryWalkthrough}
+                    title="Ctrl+W: Show query execution pipeline"
+                  >
+                    <Icon name="pipeline" size={16} />
+                    Query Pipeline
+                  </button>
+                  <button
+                    className={`toggle-button ${state.showLegend ? 'active' : ''}`}
+                    onClick={toggleLegend}
+                    aria-pressed={state.showLegend}
+                    title="Ctrl+H: Show documentation legend"
+                  >
+                    <Icon name="info" size={16} />
+                    Legend
+                  </button>
+                </div>
+              </div>
+
               <ArchitectureExplorer
                 components={components}
                 selectedComponentId={state.selectedComponentId}
                 hoveredComponentId={state.hoveredComponentId}
                 onSelectComponent={handleSelectComponent}
                 onHoverComponent={handleHoverComponent}
+                onOpenModule={openLearningModule}
               />
             </div>
 
-            <aside className="details-section">
+            <aside className={`details-section${selectedComponent ? '' : ' is-empty'}`} aria-label="Selected component">
               {selectedComponent ? (
                 <DetailPanel
+                  key={selectedComponent.id}
                   component={selectedComponent}
                   mode={state.explanationMode}
+                  components={components}
+                  onSelectComponent={(id) => setState((prev) => ({ ...prev, selectedComponentId: id }))}
+                  onOpenModule={openLearningModule}
                   onClose={() => setState((prev) => ({ ...prev, selectedComponentId: null }))}
                 />
               ) : (
                 <div className="empty-state">
-                  <p>👆 Click a component to view details</p>
+                  <span className="empty-state-icon" aria-hidden="true">
+                    <Icon name="pointer" size={20} />
+                  </span>
+                  <p className="empty-state-title">Click a component to view details</p>
                   <p className="hint">
-                    Press <kbd>Ctrl+H</kbd> for legend • <kbd>Ctrl+W</kbd> for query pipeline
+                    <kbd>Ctrl</kbd>+<kbd>H</kbd> legend • <kbd>Ctrl</kbd>+<kbd>W</kbd> query pipeline • <kbd>Esc</kbd> close
                   </p>
                 </div>
               )}
@@ -296,42 +363,32 @@ const App: React.FC = () => {
 
         {state.activeModule === 'vertipaq' && (
           <div className="full-width-module">
-            <VertiPaqSimulator explanationMode={state.explanationMode} />
+            <VertiPaqSimulator explanationMode={state.explanationMode} initialModule={vertipaqStart} />
           </div>
         )}
       </main>
 
       {state.showQueryWalkthrough && (
-        <div className="modal-overlay" onClick={toggleQueryWalkthrough}>
-          <div className="modal-content" onClick={(e) => e.stopPropagation()}>
-            <button className="modal-close" onClick={toggleQueryWalkthrough} aria-label="Close query pipeline">
-              ✕
-            </button>
-            <DataFlowWalkthrough phase={state.currentQueryPhase} onPhaseChange={handleQueryPhaseChange} mode={state.explanationMode} />
-          </div>
-        </div>
+        <Modal label="Query pipeline" onClose={toggleQueryWalkthrough}>
+          <DataFlowWalkthrough phase={state.currentQueryPhase} onPhaseChange={handleQueryPhaseChange} mode={state.explanationMode} />
+        </Modal>
       )}
 
       {state.showLegend && (
-        <div className="modal-overlay" onClick={toggleLegend}>
-          <div className="modal-content legend-modal" onClick={(e) => e.stopPropagation()}>
-            <button className="modal-close" onClick={toggleLegend} aria-label="Close legend">
-              ✕
-            </button>
-            <Legend />
-          </div>
-        </div>
+        <Modal label="Legend" onClose={toggleLegend} className="legend-modal">
+          <Legend />
+        </Modal>
       )}
 
       <footer className="app-footer">
         <p>
-          📚 All components reference{' '}
+          All components reference{' '}
           <a href="https://learn.microsoft.com/en-us/fabric/" target="_blank" rel="noopener noreferrer">
             Microsoft Learn
           </a>
         </p>
-        <p>🎓 Educational simulation • 🔒 Local-only operation • 🆓 No Fabric account required</p>
-        <p className="copyright">Stage 4-5 Deliverable • Microsoft Fabric Direct Lake Explorer</p>
+        <p>Educational simulation • Local-only operation • No Fabric account required</p>
+        <p className="copyright">Direct Lake Explorer • Educational project using synthetic data</p>
       </footer>
     </div>
   );

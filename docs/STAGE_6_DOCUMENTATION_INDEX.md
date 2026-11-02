@@ -3,13 +3,34 @@
 **Project:** Microsoft Fabric Direct Lake Explorer  
 **Stage:** 6 (VertiPaq Simulator)  
 **Created:** 2025-01-17  
-**Status:** Module 1 Complete • Ready for Modules 2–8  
+**Status:** All eight modules implemented and tested. Implementation review pending. Browser validation pending. Stage 6 is not yet approved.  
+**Last updated:** after the final Stage 6 documentation and consolidated validation (see `STAGE_6_TEST_RESULTS.md`)  
 
 ---
 
-## 📋 Documentation Files
+## ✅ Final Stage 6 documentation (current)
 
-### Start Here
+These five documents are the authoritative record of Stage 6. They were written from the source code and the tests, and they supersede the older Module 1 era documents listed further down.
+
+| Document | What it covers |
+|---|---|
+| **[STAGE_6_IMPLEMENTATION_REPORT.md](./STAGE_6_IMPLEMENTATION_REPORT.md)** | All eight modules: objective, functionality, shared data and dependencies, assumptions, documented versus simulated, source files; the connected learning journey; drafts removed |
+| **[STAGE_6_TECHNICAL_VALIDATION.md](./STAGE_6_TECHNICAL_VALIDATION.md)** | Architecture, data flow between modules, the Direct Lake, VertiPaq, Storage Engine and Formula Engine boundaries, the labelled claims register, the source register, and findings and discrepancies D1 to D11 |
+| **[STAGE_6_TEST_RESULTS.md](./STAGE_6_TEST_RESULTS.md)** | Actual lint, test and build results, per-file counts, coverage of behaviour, mutation checks, validation limits |
+| **[STAGE_6_COMPLETION_SUMMARY.md](./STAGE_6_COMPLETION_SUMMARY.md)** | Objectives, completed modules, shared architecture, results, known limitations, outstanding browser validation, overall status |
+| **[STAGE_6_APPROVAL_CHECKLIST.md](./STAGE_6_APPROVAL_CHECKLIST.md)** | Practical sign-off list. Browser validation and git review are marked pending |
+
+Running work log: **[PROJECT_CHECKPOINT.md](./PROJECT_CHECKPOINT.md)**. Project roadmap: **[DirectLakeExplorer_Development_Roadmap_and_Prompts.md](./DirectLakeExplorer_Development_Roadmap_and_Prompts.md)**.
+
+**Current status:** all eight modules are implemented, reachable from the navigation, and covered by 670 passing tests. Browser validation is **pending**, review is **pending**, and Stage 6 is **not yet approved**.
+
+---
+
+## 🗄️ Historical documents (Module 1 era, superseded)
+
+> **Warning.** The documents below were written when only Module 1 existed. They describe Modules 2 to 8 as pending, give outdated file lists and line counts, and several make claims the implementation does not support (for example "APPROVED FOR PRODUCTION" and "100%" type and documentation coverage). Stage 6 is **not** approved. Use the five documents above instead. These files are kept unchanged for history.
+
+### Quick Start (historical)
 **→ [STAGE_6_QUICK_START.md](./STAGE_6_QUICK_START.md)** (7 KB)
 - Quick reference for developers
 - Current state overview
@@ -18,7 +39,7 @@
 - Integration checklist
 - Estimated timelines
 
-### Session Overview
+### Session Overview (historical)
 **→ [STAGE_6_SESSION_COMPLETION_SUMMARY.md](./STAGE_6_SESSION_COMPLETION_SUMMARY.md)** (14 KB)
 - What was accomplished
 - Files created and modified
@@ -27,7 +48,7 @@
 - Remaining work
 - Approval status
 
-### Progress Tracking
+### Progress Tracking (historical)
 **→ [STAGE_6_PROGRESS.md](./STAGE_6_PROGRESS.md)** (13 KB)
 - Executive summary
 - Implementation summary
@@ -39,7 +60,7 @@
 - Remaining work overview
 - Appendix: Type definitions
 
-### Build Verification
+### Build Verification (historical)
 **→ [STAGE_6_BUILD_VERIFICATION.md](./STAGE_6_BUILD_VERIFICATION.md)** (11 KB)
 - Build summary
 - TypeScript compilation results
@@ -53,7 +74,7 @@
 - Testing coverage
 - Quality assurance checklist
 
-### Module 1 Details
+### Module 1 Details (historical)
 **→ [STAGE_6_MODULE_1_IMPLEMENTATION.md](./STAGE_6_MODULE_1_IMPLEMENTATION.md)** (13 KB)
 - Module 1 features
 - Files created
@@ -65,9 +86,9 @@
 - Testing status
 - Quality checklist
 
-### Pending Modules Specifications
+### Pending Modules Specifications (historical)
 **→ [STAGE_6_PENDING_MODULES.md](./STAGE_6_PENDING_MODULES.md)** (25 KB)
-- **Detailed specifications for all 7 remaining modules**
+- **Original specifications for Modules 2–8** (written before implementation; all eight modules are now implemented and the implementation differs in places, so use the Implementation Report)
 - Module 2: Value vs Hash Encoding Simulator
 - Module 3: Segment Explorer
 - Module 4: Segment Elimination Simulator
@@ -92,271 +113,202 @@
 
 ## 📁 Project Structure
 
-### Component Files
+### Components (`src/components/`)
 ```
-src/components/
-├── VertiPaqSimulator.tsx             ← Main container (120 lines)
-├── VertiPaqSimulator.css             ← Container styling (80 lines)
-├── DictionaryEncodingExplorer.tsx    ← Module 1 (190 lines)
-└── DictionaryEncodingExplorer.css    ← Module 1 styling (150 lines)
+VertiPaqSimulator.tsx / .css            ← Container: eight tabs, shared explanation mode
+DictionaryEncodingExplorer.tsx / .css   ← Module 1 (also holds the shared panel styles, scoped under .dictionary-explorer)
+ValueHashEncodingSimulator.tsx / .css   ← Module 2 (vh-)
+SegmentExplorer.tsx / .css              ← Module 3 (seg-)
+SegmentEliminationSimulator.tsx / .css  ← Module 4 (elim-)
+ColumnCompressionExplorer.tsx / .css    ← Module 5 (compression-)
+DirectLakeLoadingSimulator.tsx / .css   ← Module 6 (loading-)
+MemoryResidencySimulator.tsx / .css     ← Module 7 (memory-)
+StorageEngineScanSimulator.tsx / .css   ← Module 8 (scan-)
 ```
 
-### Data & Types
+### Data and types
 ```
 src/data/
-└── stage6-vertipaq-simulator.ts      ← All 8 simulator functions (650 lines)
+├── stage6-synthetic-dataset.ts     ← Shared Customer dataset
+├── stage6-vertipaq-simulator.ts    ← Module 1 dictionary encoding + a source list
+├── stage6-encoding-simulator.ts    ← Module 2 (and the shared size model)
+├── stage6-segment-simulator.ts     ← Module 3
+├── stage6-elimination-simulator.ts ← Module 4
+├── stage6-compression-simulator.ts ← Module 5
+├── stage6-loading-simulator.ts     ← Module 6 (the LoadingSession)
+├── stage6-memory-simulator.ts      ← Module 7
+└── stage6-scan-simulator.ts        ← Module 8
 
 src/types/
-├── stage6-vertipaq.ts                ← All 8 module types (250 lines)
-└── index.ts                          ← Re-exports (added 30 lines)
+├── stage6-vertipaq.ts              ← Types for all eight modules
+└── index.ts                        ← Re-exports
 ```
 
-### Application Integration
+### Tests
 ```
-src/components/
-└── App.tsx                           ← Navigation + rendering (added 15 lines)
+src/data/__tests__/         ← 9 logic test files
+src/components/__tests__/   ← 10 component, container and CSS-scoping test files
+```
+
+### Application integration
+```
+src/components/App.tsx      ← "VertiPaq" button renders VertiPaqSimulator
 ```
 
 ---
 
 ## 📊 Statistics
 
-### Code Files
-| File | Lines | Purpose |
-|------|-------|---------|
-| stage6-vertipaq.ts | 250 | Type definitions for all 8 modules |
-| stage6-vertipaq-simulator.ts | 650 | Simulation logic for all 8 modules |
-| VertiPaqSimulator.tsx | 120 | Main container with tabs |
-| VertiPaqSimulator.css | 80 | Container styling |
-| DictionaryEncodingExplorer.tsx | 190 | Module 1 component |
-| DictionaryEncodingExplorer.css | 150 | Module 1 styling |
-| **Total New** | **1,440** | **Complete Stage 6 infrastructure** |
-| Modifications to index.ts | 30 | Type re-exports |
-| Modifications to App.tsx | 15 | Integration points |
-| **Total Modified** | **45** | **Non-breaking additions** |
+Counts below are from the final validation run (see [STAGE_6_TEST_RESULTS.md](./STAGE_6_TEST_RESULTS.md)).
+
+| Item | Value |
+|------|-------|
+| Modules implemented | 8 of 8 |
+| Test files | 19 |
+| Tests | 670 (all passing) |
+| `npm run lint` (`tsc --noEmit`, a TypeScript compile check, not ESLint) | passing |
+| `npm run build` | passing |
+| Browser validation | **pending** |
+| Approval | **pending** |
 
 ### Documentation
-| File | Size | Purpose |
-|------|------|---------|
-| STAGE_6_QUICK_START.md | 7 KB | Quick reference guide |
-| STAGE_6_SESSION_COMPLETION_SUMMARY.md | 14 KB | Session overview |
-| STAGE_6_PROGRESS.md | 13 KB | Progress tracking |
-| STAGE_6_BUILD_VERIFICATION.md | 11 KB | Build verification report |
-| docs/STAGE_6_MODULE_1_IMPLEMENTATION.md | 13 KB | Module 1 details |
-| STAGE_6_PENDING_MODULES.md | 25 KB | Modules 2–8 specifications |
-| STAGE_6_DOCUMENTATION_INDEX.md | This file | Documentation roadmap |
-| **Total Documentation** | **83 KB** | **Comprehensive coverage** |
-
-### Build Results
-- **TypeScript Errors:** 0
-- **TypeScript Warnings:** 0
-- **Build Size:** 235.60 KB (69.72 KB gzipped)
-- **Build Time:** 2.43 seconds
-- **Modules:** 63 total
+| File | Status |
+|------|--------|
+| STAGE_6_IMPLEMENTATION_REPORT.md | Current |
+| STAGE_6_TECHNICAL_VALIDATION.md | Current |
+| STAGE_6_TEST_RESULTS.md | Current |
+| STAGE_6_COMPLETION_SUMMARY.md | Current |
+| STAGE_6_APPROVAL_CHECKLIST.md | Current |
+| PROJECT_CHECKPOINT.md | Current (running work log) |
+| STAGE_6_QUICK_START.md, STAGE_6_SESSION_COMPLETION_SUMMARY.md, STAGE_6_PROGRESS.md, STAGE_6_BUILD_VERIFICATION.md, STAGE_6_MODULE_1_IMPLEMENTATION.md, STAGE_6_PENDING_MODULES.md | Historical (Module 1 era), superseded |
+| STAGE_6_DOCUMENTATION_INDEX.md | This file |
 
 ---
 
 ## ✅ Verification Checklist
 
-### Code Quality
-- [x] TypeScript strict mode
-- [x] 100% type coverage
-- [x] No implicit 'any'
-- [x] 100% JSDoc documentation
-- [x] All assumptions clearly labeled
-
-### Build Quality
-- [x] TypeScript compilation (0 errors)
-- [x] Production build (0 warnings)
-- [x] Dev server operational
-- [x] Asset sizes optimized
-- [x] No breaking changes
-
-### Application Quality
-- [x] Navigation integrated
-- [x] Styling consistent
-- [x] WCAG 2.1 AA accessible
-- [x] No regressions
-- [x] Performance excellent
-
-### Documentation Quality
-- [x] Architecture documented
-- [x] Assumptions clear
-- [x] Limitations stated
-- [x] Implementation plan detailed
-- [x] Quality standards defined
+The practical sign-off list is **[STAGE_6_APPROVAL_CHECKLIST.md](./STAGE_6_APPROVAL_CHECKLIST.md)**. The earlier checklist in this index (written for Module 1) has been removed because it made claims that do not apply to the finished stage, such as "100% type coverage", "WCAG 2.1 AA accessible" and "Performance excellent". None of those was measured.
 
 ---
 
 ## 🚀 Getting Started
 
-### For Development
-1. Read: [STAGE_6_QUICK_START.md](./STAGE_6_QUICK_START.md)
-2. Run: `npm run dev`
-3. Navigate to: http://localhost:3001
-4. Click: ⚙️ VertiPaq button to see Module 1
+### To understand what was built
+1. Read: [STAGE_6_COMPLETION_SUMMARY.md](./STAGE_6_COMPLETION_SUMMARY.md) for the status and limitations
+2. Read: [STAGE_6_IMPLEMENTATION_REPORT.md](./STAGE_6_IMPLEMENTATION_REPORT.md) for each module
+3. Read: [STAGE_6_TECHNICAL_VALIDATION.md](./STAGE_6_TECHNICAL_VALIDATION.md) for the architecture and what is documented versus simulated
 
-### For Understanding Architecture
-1. Read: [STAGE_6_PROGRESS.md](./STAGE_6_PROGRESS.md)
-2. Review: [STAGE_6_MODULE_1_IMPLEMENTATION.md](./STAGE_6_MODULE_1_IMPLEMENTATION.md)
-3. Study: [STAGE_6_BUILD_VERIFICATION.md](./STAGE_6_BUILD_VERIFICATION.md)
+### To run and check the application
+1. Run: `npm run dev`
+2. Open the local address that Vite prints
+3. Click the ⚙️ VertiPaq button, then each of the eight tabs
+4. Record browser findings against [STAGE_6_APPROVAL_CHECKLIST.md](./STAGE_6_APPROVAL_CHECKLIST.md)
 
-### For Implementing Modules 2–8
-1. Read: [STAGE_6_PENDING_MODULES.md](./STAGE_6_PENDING_MODULES.md)
-2. Find: Module specification (e.g., Module 2 section)
-3. Follow: Implementation checklist
-4. Reference: DictionaryEncodingExplorer component
-5. Test: Following quality checklist
-
-### For Project Management
-1. Read: [STAGE_6_SESSION_COMPLETION_SUMMARY.md](./STAGE_6_SESSION_COMPLETION_SUMMARY.md)
-2. Track: Phases in [STAGE_6_PENDING_MODULES.md](./STAGE_6_PENDING_MODULES.md)
-3. Update: Progress in each documentation file
+### To review for approval
+1. Work through [STAGE_6_APPROVAL_CHECKLIST.md](./STAGE_6_APPROVAL_CHECKLIST.md)
+2. Decide on the findings D1 to D11 in [STAGE_6_TECHNICAL_VALIDATION.md](./STAGE_6_TECHNICAL_VALIDATION.md#10-findings-and-discrepancies)
 
 ---
 
 ## 📈 Implementation Roadmap
 
-### ✅ Phase 0: Foundation (Complete)
+### ✅ Implementation: complete
 - [x] Module 1: Dictionary Encoding Explorer
-- [x] Type system (all 22 types)
-- [x] Simulator functions (all 8)
-- [x] Container component
-- [x] Application integration
-- [x] Comprehensive documentation
+- [x] Module 2: Value vs Hash Encoding Simulator
+- [x] Module 3: Segment Explorer
+- [x] Module 4: Segment Elimination Simulator
+- [x] Module 5: Column Compression Explorer
+- [x] Module 6: Direct Lake Column Loading Simulator
+- [x] Module 7: Memory Residency and Eviction Simulator
+- [x] Module 8: Storage Engine Scan Simulator
+- [x] Automated tests, lint and production build
+- [x] Final documentation (the five documents above)
 
-### ➡️ Phase 1: Modules 2–4
-**Timeline:** 6 hours  
-**Deliverables:**
-- [ ] Module 2: Value vs Hash Encoding Simulator
-- [ ] Module 3: Segment Explorer
-- [ ] Module 4: Segment Elimination Simulator
-- [ ] Add unit tests for simulator functions
-- [ ] Update documentation
+### ➡️ Remaining before approval
+- [ ] Browser validation (not yet performed)
+- [ ] Review of findings D1 to D11
+- [ ] Git review and commit decision
+- [ ] Approval of Stage 6
 
-### ➡️ Phase 2: Modules 5–8
-**Timeline:** 10 hours  
-**Deliverables:**
-- [ ] Module 5: Column Compression Explorer
-- [ ] Module 6: Direct Lake Column Loading Simulator
-- [ ] Module 7: Memory Residency and Eviction Simulator
-- [ ] Module 8: Storage Engine Scan Simulator
-- [ ] Add component tests
-
-### ➡️ Phase 3: Testing & Documentation
-**Timeline:** 3 hours  
-**Deliverables:**
-- [ ] Full test suite
-- [ ] Technical validation
-- [ ] Final documentation
-- [ ] Completion report
-
-**Total Estimated Time: 19 hours**
+The next stage in the project roadmap is Stage 7, the DAX query execution simulator.
 
 ---
 
 ## 🔧 Key Commands
 
 ```bash
-# Development
-npm run dev              # Start dev server (http://localhost:3001)
-npm run build           # Production build
-npm run test            # Run tests (when available)
-npx tsc --noEmit        # Type check only
-
-# Verification
-npm run build           # Verify build (should see "✓ built in X.XXs")
+npm run dev             # Start the dev server (Vite prints the address)
+npm run lint            # TypeScript compile check (tsc --noEmit). Not ESLint.
+npm run test:run        # Run all tests once
+npm test                # Run tests in watch mode
+npm run build           # tsc && vite build (production build)
 ```
 
 ---
 
 ## 📚 Reference Information
 
-### Type System
-- **Location:** `src/types/stage6-vertipaq.ts`
-- **Count:** 22 types defined
-- **Status:** All types complete and exported
-- **Coverage:** All 8 modules
+### Type system
+- **Location:** `src/types/stage6-vertipaq.ts` (re-exported from `src/types/index.ts`)
+- **Coverage:** all eight modules
 
-### Simulator Functions
-- **Location:** `src/data/stage6-vertipaq-simulator.ts`
-- **Count:** 8 functions (one per module)
-- **Status:** All functions complete and pre-written
-- **Coverage:** Ready for component integration
+### Simulation logic
+- **Location:** `src/data/stage6-*.ts`, one file per module plus the shared dataset (see Project Structure)
+- **Properties:** pure functions, deterministic, no `Math.random`, `Date.now` or timers
 
 ### Components
 - **Container:** `src/components/VertiPaqSimulator.tsx`
-- **Module 1:** `src/components/DictionaryEncodingExplorer.tsx`
-- **Modules 2–8:** Placeholder UI ready for implementation
+- **Modules 1 to 8:** see Project Structure
 
 ---
 
 ## 🎯 Quality Standards
 
-### TypeScript
-- Strict mode enforced
-- 100% of code properly typed
-- No implicit 'any'
-- Explicit return types on all functions
+These are the standards Stage 6 was built and checked against. They are statements of method, not claims of measured scores.
 
-### Accessibility
-- WCAG 2.1 AA compliance
-- Proper color contrast
-- Keyboard navigation
-- Screen reader friendly
-
-### Styling
-- Global CSS variables only (no hardcodes)
-- Dark theme consistent
-- Responsive layouts
-- No CSS conflicts
-
-### Documentation
-- JSDoc on all functions
-- Assumptions clearly labeled
-- Limitations documented
-- Implementation patterns explained
+- **TypeScript:** strict mode, no unused locals or parameters (enforced by `npm run lint`)
+- **Labelling:** `[DOCUMENTED]`, `[SIMULATION]`, `[SIMPLIFIED MODEL]`, `[PROPRIETARY INTERNAL]` on every module
+- **Determinism:** no randomness or wall-clock time in Stage 6 source
+- **Styling:** per-module CSS prefixes and scoped shared selectors, guarded by tests
+- **Accessibility:** text plus symbol for status, labelled controls, table headers, live regions (structural checks only; no browser or screen-reader testing yet)
+- **Accuracy:** no claim to reproduce VertiPaq, Direct Lake, xmSQL or Fabric performance
 
 ---
 
 ## 🆘 Troubleshooting
 
-### Build Errors
-→ See [STAGE_6_BUILD_VERIFICATION.md](./STAGE_6_BUILD_VERIFICATION.md)
+### Tests, lint or build failures
+→ Run the commands above and compare with [STAGE_6_TEST_RESULTS.md](./STAGE_6_TEST_RESULTS.md)
 
-### Implementation Questions
-→ See [STAGE_6_PENDING_MODULES.md](./STAGE_6_PENDING_MODULES.md)
+### Questions about what a module models or claims
+→ See [STAGE_6_IMPLEMENTATION_REPORT.md](./STAGE_6_IMPLEMENTATION_REPORT.md) and [STAGE_6_TECHNICAL_VALIDATION.md](./STAGE_6_TECHNICAL_VALIDATION.md)
 
-### Architecture Questions
-→ See [STAGE_6_MODULE_1_IMPLEMENTATION.md](./STAGE_6_MODULE_1_IMPLEMENTATION.md)
+### Day-to-day history and decisions
+→ See [PROJECT_CHECKPOINT.md](./PROJECT_CHECKPOINT.md)
 
-### Quick Reference
-→ See [STAGE_6_QUICK_START.md](./STAGE_6_QUICK_START.md)
+### Historical Module 1 material
+→ See the historical documents listed above (for reference only)
 
 ---
 
 ## 📞 Contact/Questions
 
-All documentation is self-contained in the files listed above.
-
-For specific questions:
-1. Check the relevant documentation file (linked in this index)
-2. Search for keywords in [STAGE_6_PENDING_MODULES.md](./STAGE_6_PENDING_MODULES.md)
-3. Review Module 1 implementation as reference
+All Stage 6 documentation is self-contained in the files listed above. For a specific question, start with the Completion Summary, then the Technical Validation.
 
 ---
 
 ## 📝 Last Updated
 
-**Date:** 2025-01-17  
-**Module Status:** 1 of 8 Complete  
+**Date:** November 1, 2026  
+**Module Status:** 8 of 8 implemented and tested  
 **Build Status:** ✅ Passing  
-**Ready for:** Module 2 Implementation  
+**Browser Validation:** Pending  
+**Approval:** Pending  
 
 ---
 
 ## 🏁 Conclusion
 
-Stage 6 foundation is established and verified. All documentation is complete. Ready to begin implementation of Modules 2–8.
+All eight Stage 6 modules are implemented, tested and documented. The stage is awaiting browser validation, review and approval, and is not yet approved.
 
-**Status: ✅ READY TO PROCEED**
+**Status: implemented and automatically verified. Not yet approved.**
